@@ -10,7 +10,7 @@ function Login(){
     const handleSubmit = (e) => { 
         e.preventDefault();
         //alert(`Bonjour ${name}`)
-        navigate("/orderPage");
+        navigate("/orderPage",{state: {nom: name, test: "test"}});
         setName("")
 
      }
