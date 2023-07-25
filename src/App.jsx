@@ -1,32 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
 
 function App() {
-  const [count, setCount] = useState(0)
+  //state
+  const [name, setName] = useState("");
+  const tableau = useState("ArnaudV1");
+  const [count, setCount] = useState(1);
 
+  //console.log(tableau)
+  //comportement
+  const handleClick = (e) => {
+   e.preventDefault();
+    setCount(count + 1);
+    console.log(count);
+    setName(e.);
+  }
+
+  //affichage
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Arnaud</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-    </>
+    <div>
+      <h1>Bonjour {name}</h1>
+      <form>
+        <input type="Text" placeholder="Utilisateur"></input>
+        <button onClick={handleClick}>{count}</button>
+      </form>
+    </div>
   )
 }
-
 export default App
