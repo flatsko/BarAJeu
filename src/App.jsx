@@ -12,7 +12,7 @@ function App() {
    e.preventDefault();
     setCount(count + 1);
     console.log(count);
-    setName(e.);
+    //setName(e.);
   }
 
   //affichage
