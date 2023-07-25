@@ -16,7 +16,7 @@ function Login(){
     return(
         
             <form action="submit" onSubmit={handleSubmit}>
-            <h1>Bienvenue chez nous</h1>
+            <h1>Bienvenue chez nous !</h1>
             <br />
             <h2>Connectez Vous</h2>
                 <input placeholder="Entrez votre prénom" value={name} onChange={e => setName(e.target.value)}  type="text" required="required" />
