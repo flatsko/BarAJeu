@@ -11,32 +11,19 @@ function Login(){
         setName("")
 
      }
-    const handleClick = (e) =>
-    {
-        e.preventDefault();
-        if(name)
-        {
-            alert("Bonjour " + name)
-            window.location.reload();
-        }
-        else{
-            //alert("pas ok")
-            //setName("")
-        }
-    }
 
     //Affichage
     return(
-        <div>
+        
+            <form action="submit" onSubmit={handleSubmit}>
             <h1>Bienvenue chez nous</h1>
             <br />
             <h2>Connectez Vous</h2>
-            <form action="submit" onSubmit={handleClick}>
                 <input placeholder="Entrez votre prénom" value={name} onChange={e => setName(e.target.value)}  type="text" required="required" />
                 <button>Accéder à votre espace</button>
 
             </form>
-        </div>
+        
 
     )
     }
