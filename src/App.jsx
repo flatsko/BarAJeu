@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Login from "./component/LoginForm";
+import Login from "./component/pages/LoginForm";
 
 function App() {
   //state
@@ -17,17 +17,8 @@ function App() {
   }
 
   //affichage
-  return (
-    <div>
-      <h1>Bonjour {name}</h1>
-      <form>
-        <input type="Text" placeholder="Utilisateur"></input>
-        <button onClick={handleClick}>{count}</button>
-      </form>
-      <Login />
-    </div>
+  return   <Login />
     
 
-  )
 }
 export default App
