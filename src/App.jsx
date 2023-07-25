@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Login from "./component/LoginForm";
 
 function App() {
   //state
@@ -23,7 +24,10 @@ function App() {
         <input type="Text" placeholder="Utilisateur"></input>
         <button onClick={handleClick}>{count}</button>
       </form>
+      <Login />
     </div>
+    
+
   )
 }
 export default App
