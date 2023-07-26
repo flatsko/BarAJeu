@@ -18,4 +18,9 @@ function LoginPage () {
     
     }
 
+
+const LoginPageStyled = styled.div`
+
+`
+
 export default LoginPage
