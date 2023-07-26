@@ -6,12 +6,15 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  background-image: ("https://media.npr.org/assets/img/2020/07/04/gettyimages-1212201194-4ec3c82a40a41644543a69d931a6140a8a939c35-s800-c85.webp");
+  min-height: 100vh;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  
 }
 
 a {
@@ -26,9 +29,14 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  align-content: center;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+ background-size: cover;
+ background-color: rgba(0, 0, 128, 0.664);
+  background-image: url("https://media.npr.org/assets/img/2020/07/04/gettyimages-1212201194-4ec3c82a40a41644543a69d931a6140a8a939c35-s800-c85.webp");
+ba
 }
 
 h1 {
@@ -36,17 +44,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
+
 button:hover {
   border-color: #646cff;
 }
