@@ -1,13 +1,18 @@
 import { useState } from "react"
+import { Navigate, useNavigate, redirect } from "react-router-dom";
 
 function Login(){
     //States
-    const [name, setName] = useState()
+    const [name, setName] = useState("")
+    const [isconnected, setIsConnected] = useState("false");
+    const navigate = useNavigate()
     //const [first, setfirst] = useState(second)
     //Comportement
     const handleSubmit = (e) => { 
         e.preventDefault();
-        alert(`Bonjour ${name}`)
+        //alert(`Bonjour ${name}`)
+        navigate(`orderPage/${name}`);
+        //redirect("/orderPage");
         setName("")
 
      }
@@ -20,6 +25,7 @@ function Login(){
             <br />
             <h2>Connectez Vous</h2>
                 <input placeholder="Entrez votre prénom" value={name} onChange={e => setName(e.target.value)}  type="text" required="required" />
+                
                 <button>Accéder à votre espace</button>
 
             </form>
