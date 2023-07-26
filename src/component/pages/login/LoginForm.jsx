@@ -68,6 +68,7 @@ input{
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
+  border-radius: 1em;
   font-weight: 500;
   font-family: inherit;
   border-color: aqua;
@@ -75,6 +76,10 @@ input{
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+ }
+
+ button:hover{
+    border-color: #0044ff;
  }
     
 div{
@@ -84,6 +89,10 @@ div{
     align-items: center;
     min-height: 20vh;
     background-color: #1a1a1a
+}
+
+h2{
+    text-align:center;
 }
 
  `

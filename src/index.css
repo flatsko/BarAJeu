@@ -29,14 +29,16 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-content: center;
-  place-items: center;
+  align-items: center;
   min-width: 320px;
   min-height: 100vh;
  background-size: cover;
- background-color: rgba(0, 0, 128, 0.664);
+ background-color: rgba(0, 0, 128, 0.767);
   background-image: url("https://media.npr.org/assets/img/2020/07/04/gettyimages-1212201194-4ec3c82a40a41644543a69d931a6140a8a939c35-s800-c85.webp");
-ba
+background-blend-mode: darken;
 }
 
 h1 {
