@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate, Link } from 'react-router-dom'
 
 
 const OrderPage = () => {
@@ -18,7 +18,8 @@ const OrderPage = () => {
   return (
     <div>
       Bonjour {location.state.nom}
-      <button onClick={handleClick}>Retour à l'accueil</button>
+      <Link to="/">
+      <button>Retour à l'accueil</button></Link>
       <Outlet />
     </div>
   
