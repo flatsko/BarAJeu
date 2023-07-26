@@ -17,8 +17,10 @@ function App() {
     <div>
       
         <Routes>
-          <Route index element={<LoginPage />} />
-          <Route path="/orderPage" element={<OrderPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/orderPage" element={<OrderPage />} >
+            <Route index element={<LoginPage />} />
+          </Route>
           <Route path="*" element={<NoAccessPage />} />
         </Routes>
     
