@@ -18,7 +18,7 @@ function App() {
       
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/orderPage/:name" element={<OrderPage />} >
+          <Route path="/orderPage/:username" element={<OrderPage />} >
             <Route index element={<LoginPage />} />
           </Route>
           <Route path="*" element={<NoAccessPage />} />
