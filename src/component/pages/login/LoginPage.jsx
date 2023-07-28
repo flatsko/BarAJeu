@@ -1,7 +1,8 @@
 import { useState } from "react"
 import Login from "./LoginForm";
-import "./LoginForm.css";
 import { styled } from "styled-components";
+import Logo from "../../reusableUI/logo"
+
 function LoginPage () {
     //States
    
@@ -11,6 +12,7 @@ function LoginPage () {
     //Affichage
     return ( 
         <div className="">
+       <Logo />
         <Login />
         </div> 
     )
