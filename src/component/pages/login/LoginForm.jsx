@@ -68,6 +68,7 @@ const LoginStyled = styled.form`
   padding: 0.6em 1.2em 1em;
   border-radius: 5px;
   max-width: 7cap;
+  font-family: 'Open Sans', sans-serif;
 
   hr {
     height: 1px;

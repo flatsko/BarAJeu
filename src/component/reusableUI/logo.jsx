@@ -17,6 +17,7 @@ const StyledLogo = styled.div`
 align-items: center;
 display:flex;
 justify-content:center;
+transform: scale(1.5);
 img{
     height:100px;
 }
