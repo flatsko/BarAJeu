@@ -8,7 +8,7 @@ export default function Logo () {
     <StyledLogo>
         <div className='logo'>
         <h1>Meeple</h1> 
-    <img src="src\assets\117185_65269_eca92380-f8a7-433b-9fae-08a8e2b07e2b.png" />
+    <img src="\public\images\117185_65269_eca92380-f8a7-433b-9fae-08a8e2b07e2b.png" />
     <h1>Adventure</h1></div> </StyledLogo>
   )
 }

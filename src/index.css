@@ -6,7 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  background-image: ("https://media.npr.org/assets/img/2020/07/04/gettyimages-1212201194-4ec3c82a40a41644543a69d931a6140a8a939c35-s800-c85.webp");
+  background-image: url("\images\boardgames-2048px-2233-2x1-1.webp");
   min-height: 100vh;
   min-width: 100vw;
   font-synthesis: none;
@@ -37,8 +37,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
  background-size: cover;
- background-color: rgba(0, 0, 24, 0.507);
- background-image: url('https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=980&dpr=2');background-blend-mode: darken;
+ background-image: url("/public/images/boardgames-2048px-2233-2x1-1.webp");
+ background-blend-mode: saturation;
+ background-position: center;
+ background-color: rgba(0, 0, 0, 0.87);
 }
 
 h1 {
