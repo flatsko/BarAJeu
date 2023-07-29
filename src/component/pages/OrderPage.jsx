@@ -6,6 +6,7 @@ const OrderPage = () => {
   const {username} = useParams();
   const nav = useNavigate();
 
+
   return (
     <div>
       Bonjour {username}
@@ -13,7 +14,7 @@ const OrderPage = () => {
       <Link to="/">
       <button>Retour à l'accueil</button></Link>
       
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   
   )
