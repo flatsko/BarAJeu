@@ -32,7 +32,7 @@ const fonts = {
   XXXS: "8px",
   XXS: "10px",
   XS: "12px",
-  P0: "15px",
+  P0: "1em",
   P1: "18px",
   P2: "20px",
   P3: "24px",

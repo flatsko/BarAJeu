@@ -8,6 +8,7 @@
   background-color: #242424;
   background-image: ("https://media.npr.org/assets/img/2020/07/04/gettyimages-1212201194-4ec3c82a40a41644543a69d931a6140a8a939c35-s800-c85.webp");
   min-height: 100vh;
+  min-width: 100vw;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
