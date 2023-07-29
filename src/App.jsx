@@ -36,9 +36,9 @@ const StyledApp = styled.div`
 
   min-width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
+
   text-align: center;
-  margin-top:-10em;
+  
 
 
 
