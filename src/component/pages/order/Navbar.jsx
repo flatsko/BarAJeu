@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
+import NavBarRightSide from './NavBarRightSide';
 
 export default function Navbar({username}) {
   return (
@@ -10,12 +10,7 @@ export default function Navbar({username}) {
       <div className='leftBar'>
         left
       </div>
-    <div className='rightBar'>
-    Bonjour {username}
-    <p />
-    <Link to="/">
-    <button>Retour à l'accueil</button></Link>
-    </div> 
+      <NavBarRightSide username={username} />
     </NavbarStyled>
 
 
@@ -35,9 +30,5 @@ height:10vh;
 background-color:aquamarine
 }
 
-.rightBar
-{
-  background-color:bisque
 
-}
 `;
