@@ -29,12 +29,7 @@ const TextInputStyled = styled.div`
   margin: 18px 0; // could be handle in Parent too
   /* white-space: nowrap; */
 
-  .icon {
-    font-size: ${theme.fonts.P0};
-    margin-right: 8px;
-    color: ${theme.colors.greySemiDark};
-    /* min-width: 1em; // that way, the icon size is NOT affected by width of the entire component. */
-  }
+
 
   input {
     font-family: inherit;

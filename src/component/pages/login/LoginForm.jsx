@@ -46,11 +46,6 @@ function Login() {
             required
             value={name}
             icon={<Log className="icon" />} />
-          <div className="inputName">
-    
-    
-          </div>
-
 
           <PrimaryButton 
           label={"Acceder à mon espace"} 
@@ -101,6 +96,13 @@ font-family: "Amatic SC", cursive;
     min-width: 80%;
     font-size: ${theme.fonts.P0};
     font-family: 'Open Sans', sans-serif;
+  }
+
+  .icon {
+    font-size: ${theme.fonts.P0};
+    margin-right: 8px;
+    color: ${theme.colors.greySemiDark};
+    /* min-width: 1em; // that way, the icon size is NOT affected by width of the entire component. */
   }
 `;
 
