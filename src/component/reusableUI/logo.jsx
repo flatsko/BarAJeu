@@ -27,6 +27,7 @@ h1{
 }
 
 .logo {
+  margin-top:-10em;
   height: 6em;
   padding: 1.5em;
   will-change: filter;
