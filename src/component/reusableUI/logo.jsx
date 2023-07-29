@@ -31,7 +31,9 @@ h1{
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-  display:flex
+  display:flex;
+  justify-content:space-evenly;
+  color: ${theme.colors.primary};
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em ${theme.colors.primary_burger});
