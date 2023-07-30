@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { listeJeux } from "../../../data/listeJeux";
 import React, { useState } from "react";
+import Card from '../../reusableUI/card';
 
 export default function Menu() {
 
@@ -8,7 +9,7 @@ export default function Menu() {
 
   return (
     <MenuStyles>         
-         {listeJeux.map(({ id, title, imageSource, isAvailable }) => {
+         {lJeux.map(({ id, title, imageSource, isAvailable }) => {
             return (
               <Card
                 key={id}
