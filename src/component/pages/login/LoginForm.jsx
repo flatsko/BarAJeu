@@ -68,10 +68,10 @@ font-family: "Amatic SC", cursive;
   flex-wrap: wrap;
   color: ${theme.colors.white};
   padding: 0.6em 1.2em 1em;
-  border-radius: 5px;
+  border-radius: ${theme.borderRadius.round};
   max-width: 500px;
   min-width: 400px;
-  margin-top: 5em;
+  
 
   hr {
     height: 1px;

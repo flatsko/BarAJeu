@@ -12,9 +12,9 @@ function LoginPage () {
     //Affichage
     return ( 
         <div>
-        <LoginPageStyled className="logo">
+        <LoginPageStyled >
       
-       <Logo />
+       <Logo className="logo-login-page" />
        </LoginPageStyled> 
        <LoginFormStyled>
         <Login />
@@ -28,11 +28,16 @@ function LoginPage () {
 
 const LoginPageStyled = styled.div`
 
-
+.logo-login-page
+{
+    transform: scale(1.2)
+}
 `
 const LoginFormStyled = styled.div`
     display:flex;
     justify-content:center;
+
+
 
 `
 

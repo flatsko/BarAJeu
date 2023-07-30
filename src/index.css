@@ -6,7 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  background-image: url("\images\boardgames-2048px-2233-2x1-1.webp");
+  
   min-height: 100vh;
   min-width: 100vw;
   font-synthesis: none;
@@ -37,16 +37,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
  background-size: cover;
- background-image: url("/public/images/boardgames-2048px-2233-2x1-1.webp");
+ background-image: url("/images/background.webp");
  background-blend-mode: saturation;
  background-position: center;
  background-color: rgba(0, 0, 0, 0.87);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
 
 button:hover {
