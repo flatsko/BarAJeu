@@ -33,7 +33,7 @@ const ProfileStyled = styled.div`
     text-decoration: none;
     .description{
     color: ${theme.colors.greyMedium};
-    &:hover {
+    &:hover {       
       color: ${theme.colors.greyDark};
       text-decoration: underline;
     }
