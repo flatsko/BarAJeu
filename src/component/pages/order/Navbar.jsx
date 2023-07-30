@@ -25,7 +25,6 @@ background: ${theme.colors.white};
   display: flex;
   justify-content: space-between;
 
-
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};
 `;
