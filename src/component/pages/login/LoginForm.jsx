@@ -71,7 +71,7 @@ font-family: "Amatic SC", cursive;
   border-radius: ${theme.borderRadius.round};
   max-width: 500px;
   min-width: 400px;
-  margin-top: 5em;
+  
 
   hr {
     height: 1px;

@@ -35,21 +35,18 @@ const OrderPageStyled = styled.div`
 
 background-color: ${theme.colors.primary};
 min-height: 100vh;
-min-width:auto;
-min-width:100px;
-min-width: 100vw;
+align-items: center;
 display: flex;
 justify-content:center;
 background-color:red;
 
 .container{
-  display:flex;
-  flex-direction:column;
-  background-color:darkorchid;
-  max-width:1400px;
-  min-width:100vw;
-  justify-content:center;
-  min-height: 95vh;
+
+    height: 95vh;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: ${theme.borderRadius.extraRound};
 
 }
 

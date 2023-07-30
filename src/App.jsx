@@ -34,11 +34,11 @@ export default App
 
 const StyledApp = styled.div`
 
-  min-width: 100vw;
-  margin: 0 auto;
-
-  text-align: center;
   
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+
 
 
 

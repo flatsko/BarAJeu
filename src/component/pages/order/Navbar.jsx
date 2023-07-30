@@ -1,15 +1,17 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import NavBarRightSide from './NavBarRightSide';
+import NabBarLeftSide from './NabBarLeftSide';
+import { theme } from '../../../theme';
 
 export default function Navbar({username}) {
   return (
     
     <NavbarStyled>
 
-      <div className='leftBar'>
-        left
-      </div>
+      <NabBarLeftSide />
+      
+
       <NavBarRightSide username={username} />
     </NavbarStyled>
 
@@ -19,16 +21,12 @@ export default function Navbar({username}) {
 
 const NavbarStyled = styled.div`
 
-display:flex;
-justify-content:space-between;
-background-color:blue;
-width: 100%;
-height:10vh;
+background: ${theme.colors.white};
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
 
-.leftBar
-{
-background-color:aquamarine
-}
-
-
+  border-top-left-radius: ${theme.borderRadius.extraRound};
+  border-top-right-radius: ${theme.borderRadius.extraRound};
 `;
