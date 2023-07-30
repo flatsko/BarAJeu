@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import Card from '../../reusableUI/card';
 import { listeJeux } from "../../../data/listeJeux";
 import React, { useState } from "react";
 
