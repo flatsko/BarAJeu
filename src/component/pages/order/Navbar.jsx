@@ -10,8 +10,7 @@ export default function Navbar({username}) {
     <NavbarStyled>
 
       <NabBarLeftSide />
-      
-
+  
       <NavBarRightSide username={username} />
     </NavbarStyled>
 
@@ -25,7 +24,7 @@ background: ${theme.colors.white};
   height: 10vh;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+
 
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};

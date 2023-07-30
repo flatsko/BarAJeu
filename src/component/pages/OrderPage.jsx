@@ -14,10 +14,10 @@ const OrderPage = () => {
 
   return (
     <OrderPageStyled>
-      <div className='container'>Contain
+      <div className='container'>
         <Navbar username={username} >
-          <div className='leftBar'>leftbar</div>
-          <div className='rightBAr'>Right NavBar</div>
+          <div className='leftBar' />
+          <div className='rightBAr' />
 
           </Navbar>
           <Main />
@@ -35,15 +35,18 @@ const OrderPageStyled = styled.div`
 
 background-color: ${theme.colors.primary};
 min-height: 100vh;
+
 align-items: center;
 display: flex;
 justify-content:center;
-background-color:red;
+
 
 .container{
 
     height: 95vh;
-    max-width: 1400px;
+    
+    width: 90vw;
+    max-width:1400px;
     display: flex;
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};
