@@ -1,10 +1,10 @@
 import React from 'react'
 import { Outlet, useLocation, useNavigate, Link, useParams } from 'react-router-dom'
 import { styled } from 'styled-components';
-import { theme } from "../../theme/index";
-import Logo from '../reusableUI/logo';
-import Navbar from './order/Navbar';
-import Main from './order/Main';
+import { theme } from "../../../theme/index";
+import Logo from '../../reusableUI/logo';
+import Navbar from './Navbar';
+import Main from './Main';
 
 
 const OrderPage = () => {

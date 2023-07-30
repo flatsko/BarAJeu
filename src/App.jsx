@@ -2,7 +2,7 @@ import { useState } from "react"
 import LoginPage from "./component/pages/login/LoginPage.jsx";
 import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
 //import mainLayout from "./component/pages/layout/mainLayout.jsx";
-import OrderPage from "./component/pages/OrderPage.jsx";
+import OrderPage from "./component/pages/order/OrderPage.jsx";
 import NoAccessPage from "./component/pages/NoAccesPage.jsx";
 import { styled } from 'styled-components/'
 
