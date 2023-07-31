@@ -5,6 +5,7 @@ import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
 import OrderPage from "./component/pages/order/OrderPage.jsx";
 import NoAccessPage from "./component/pages/404/NoAccesPage.jsx";
 import { styled } from 'styled-components/'
+import ToastAdmin from "./component/ToastContainer.jsx";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           </Route>
           <Route path="*" element={<NoAccessPage />} />
         </Routes>
-    
+        <ToastAdmin />
     </StyledApp>
   )
 

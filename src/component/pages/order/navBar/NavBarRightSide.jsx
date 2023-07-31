@@ -5,7 +5,7 @@ import Profile from "./Profile";
 import ToggleButton from "../../../reusableUI/ToggleButton";
 import { ToastContainer, toast } from "react-toastify";
 import {FaUserSecret}from "react-icons/fa";
-import ToastAdmin from "./ToastAdmin";
+import ToastAdmin from "../../../ToastContainer";
 
 
 export default function NavBarRightSide({ username }) {

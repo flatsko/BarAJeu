@@ -5,12 +5,22 @@ import { theme } from "../../../theme/index";
 import Logo from '../../reusableUI/logo';
 import Navbar from './navBar/Navbar';
 import Main from './main/Main';
-
+import { toast } from "react-toastify";
 
 const OrderPage = () => {
   const {username} = useParams();
   const nav = useNavigate();
-
+  toast.success(`🎲 Bienvenue ${username}` , {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    toastId:"1",
+    });
 
   return (
     <OrderPageStyled>
@@ -21,6 +31,7 @@ const OrderPage = () => {
 
           </Navbar>
           <Main />
+          
           </div>
    
       
