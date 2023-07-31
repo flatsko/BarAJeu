@@ -4,8 +4,8 @@ import { theme } from "../../../../theme/index";
 import Profile from "./Profile";
 import ToggleButton from "../../../reusableUI/ToggleButton";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {FaUserSecret}from "react-icons/fa";
+import ToastAdmin from "./ToastAdmin";
 
 
 export default function NavBarRightSide({ username }) {
@@ -38,10 +38,9 @@ export default function NavBarRightSide({ username }) {
           isChecked={isChecked}
           policeColor=""
         />
-
       {/* <div className="adminButton">Admin Button</div> */}
       <Profile username={username} />
-      <ToastContainer className="toaster" bodyClassName="body-toast" />
+      <ToastAdmin />
     </NavBarRightSideStyles>
   );
 }
