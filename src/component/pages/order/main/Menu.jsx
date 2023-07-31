@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import { listeJeux } from "../../../data/listeJeux";
+import { listeJeux } from "../../../../data/listeJeux";
 import React, { useState } from "react";
-import Card from '../../reusableUI/card';
+import Card from '../../../reusableUI/card';
 
 export default function Menu() {
 

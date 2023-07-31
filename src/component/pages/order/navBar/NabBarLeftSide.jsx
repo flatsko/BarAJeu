@@ -1,7 +1,7 @@
 import React from 'react'
-import Logo from '../../reusableUI/logo';
+import Logo from '../../../reusableUI/logo';
 import { styled } from 'styled-components';
-import { refreshPage } from '../../../utils/window';
+import { refreshPage } from '../../../../utils/window';
 
 export default function NabBarLeftSide() {
   return (

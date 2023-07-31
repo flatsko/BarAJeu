@@ -3,8 +3,7 @@ import LoginPage from "./component/pages/login/LoginPage.jsx";
 import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
 //import mainLayout from "./component/pages/layout/mainLayout.jsx";
 import OrderPage from "./component/pages/order/OrderPage.jsx";
-import NoAccessPage from "./component/pages/NoAccesPage.jsx";
-import Addition from "./component/pages/games/additions.jsx";
+import NoAccessPage from "./component/pages/404/NoAccesPage.jsx";
 import { styled } from 'styled-components/'
 
 
@@ -21,7 +20,6 @@ function App() {
       
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/addition" element={<Addition />} />
           <Route path="/orderPage/:username" element={<OrderPage />} >
             <Route index element={<LoginPage />} />
           </Route>

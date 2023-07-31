@@ -1,6 +1,6 @@
 
 import { styled } from "styled-components";
-import { theme } from "../../../theme/index";
+import { theme } from "../../../../theme/index";
 import Menu from "./Menu";
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import { theme } from "../../../theme/index";
+import { theme } from "../../../../theme/index";
 import Profile from "./Profile";
 
 export default function NavBarRightSide({ username }) {

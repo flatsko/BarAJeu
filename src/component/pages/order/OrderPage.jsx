@@ -3,8 +3,8 @@ import { Outlet, useLocation, useNavigate, Link, useParams } from 'react-router-
 import { styled } from 'styled-components';
 import { theme } from "../../../theme/index";
 import Logo from '../../reusableUI/logo';
-import Navbar from './Navbar';
-import Main from './Main';
+import Navbar from './navBar/Navbar';
+import Main from './main/Main';
 
 
 const OrderPage = () => {

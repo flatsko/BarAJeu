@@ -1,5 +1,5 @@
 import React from "react";
-import { theme } from "../../../theme/index";
+import { theme } from "../../../../theme/index";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";

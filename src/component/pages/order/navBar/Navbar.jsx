@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from 'styled-components'
 import NavBarRightSide from './NavBarRightSide';
 import NabBarLeftSide from './NabBarLeftSide';
-import { theme } from '../../../theme';
+import { theme } from '../../../../theme';
 
 export default function Navbar({username}) {
   return (
