@@ -45,6 +45,9 @@ const ProfileStyled = styled.div`
     flex-direction:column;
     flex:1;
     flex-wrap:nowrap;
+    padding-left:50px;
+
+
   }
   p {
     color: ${theme.colors.greyBlue};

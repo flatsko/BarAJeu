@@ -28,14 +28,15 @@ export default function NavBarRightSide({ username }) {
 
   return (
     <NavBarRightSideStyles>
-      <i className="toggle">
+     
         <ToggleButton
           onToggle={handleToggle}
           labelIfChecked="ACTIVER LE MODE ADMIN"
           labelIfUnchecked="DÉSACTIVER LE MODE ADMIN"
           isChecked={isChecked}
+          policeColor=""
         />
-      </i>
+
       {/* <div className="adminButton">Admin Button</div> */}
       <Profile username={username} />
       <ToastContainer className="toaster" bodyClassName="body-toast" />
@@ -47,10 +48,6 @@ const NavBarRightSideStyles = styled.div`
   display: flex;
   align-items: center;
   padding-right: 50px;
-
-  .toggle {
-    margin-right: 50px;
-  }
 
 
     div {

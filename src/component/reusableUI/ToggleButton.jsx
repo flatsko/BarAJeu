@@ -7,9 +7,10 @@ export default function ToggleButton({
   onToggle,
   labelIfChecked = "Fermer",
   labelIfUnchecked = "Ouvrir",
+  policeColor,
 }) {
   return (
-    <ToggleButtonStyled>
+    <ToggleButtonStyled policeColor={policeColor}>
       <input
         type="checkbox"
         className="toggle"
@@ -100,6 +101,8 @@ const ToggleButtonStyled = styled.div`
       left: auto;
       opacity: 1;
       color: ${theme.colors.primary};
+      
+
       font-weight: ${theme.fonts.weights.bold};
     }
 
@@ -121,7 +124,7 @@ const ToggleButtonStyled = styled.div`
       left: 9px;
       right: auto;
       opacity: 1;
-      color: ${theme.colors.dark};
+      color: ${(props) => props.policeColor ? props.policeColor : theme.colors.primary };
       letter-spacing: 0px;
     }
 
