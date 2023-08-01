@@ -14,7 +14,7 @@ export default function Card({key, imageSource, title, isAvailable}) {
 }
 
 const CardStyled = styled.div`
-
+box-sizing: border-box;
 font-family: "Amatic SC", cursive;
   font-size: ${theme.fonts.size.P4};
   font-weight:  ${theme.fonts.weights.heavy};
@@ -29,9 +29,10 @@ font-family: "Amatic SC", cursive;
   align-content: center;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
-  padding: 50px 20px 10px 20px;
+  padding: 50px 20px 20px 20px;
   margin-bottom: 2em;
   gap: 15px;
+
 
 
   .image {

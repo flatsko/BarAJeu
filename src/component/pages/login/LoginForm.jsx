@@ -8,6 +8,7 @@ import { theme } from "../../../theme/index";
 import styles from "@openfonts/amatic-sc_all/index.css"
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle as Log } from "react-icons/bs";
+import Chat from "../order/chat/chat";
 
 function Login() {
   //States
@@ -33,27 +34,29 @@ function Login() {
   };
   //Affichage
   return (
-    <LoginStyled action="submit" onSubmit={handleSubmit}>
-      <div>
-        <h1>Bienvenue !</h1>
-
-        <hr />
-        <h2>Connectez Vous</h2>
-        <div className="inputForm">
-            <TextInput 
-            onChange={handleChange}
-            placeholder="Entrez votre prénom"
-            required
-            value={name}
-            icon={<Log className="icon" />} />
-
-          <PrimaryButton 
-          label={"Acceder à mon espace"} 
-          icon={<Arrow />} />
-
+   
+    <div>
+    
+      <LoginStyled action="submit" onSubmit={handleSubmit}>
+        <div>
+          <h1>Bienvenue !</h1>
+      
+          <hr />
+          <h2>Connectez Vous</h2>
+          <div className="inputForm">
+              <TextInput
+              onChange={handleChange}
+              placeholder="Entrez votre prénom"
+      
+              value={name}
+              icon={<Log className="icon" />} />
+            <PrimaryButton
+            label={"Acceder à mon espace"}
+            icon={<Arrow />} />
+          </div>
         </div>
-      </div>
-    </LoginStyled>
+      </LoginStyled>
+    </div>
   );
 }
 
