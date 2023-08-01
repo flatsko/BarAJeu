@@ -1,23 +1,31 @@
-import React from 'react'
-import { styled } from 'styled-components';
-import { theme } from '../../theme';
-import PrimaryButton from './PrimaryButton';
+import React from "react";
+import { styled } from "styled-components";
+import { theme } from "../../theme";
+import PrimaryButton from "./PrimaryButton";
 
-export default function Card({key, imageSource, title, isAvailable}) {
+export default function Card({ key, imageSource, title, isAvailable }) {
   return (
     <CardStyled>
-    <div className='image'><img src={imageSource} /></div>
-    <div className='titre'>{title}</div>
-    {isAvailable ? <div className='playButton'><PrimaryButton label={"Jouer"} /></div> : "Bientôt disponible"}
+      <div className="image">
+        <img src={imageSource} />
+      </div>
+      <div className="titre">{title}</div>
+      {isAvailable ? (
+        <div className="playButton">
+          <PrimaryButton label={"Jouer"} />
+        </div>
+      ) : (
+        "Bientôt disponible"
+      )}
     </CardStyled>
-  )
+  );
 }
 
 const CardStyled = styled.div`
-box-sizing: border-box;
-font-family: "Amatic SC", cursive;
+  box-sizing: border-box;
+  font-family: "Amat ic SC", cursive;
   font-size: ${theme.fonts.size.P4};
-  font-weight:  ${theme.fonts.weights.heavy};
+  font-weight: ${theme.fonts.weights.heavy};
   background-color: ${theme.colors.background_white};
   color: ${theme.colors.dark};
   display: flex;
@@ -32,8 +40,6 @@ font-family: "Amatic SC", cursive;
   padding: 50px 20px 20px 20px;
   margin-bottom: 2em;
   gap: 15px;
-
-
 
   .image {
     img {
