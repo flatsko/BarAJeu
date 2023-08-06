@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme/index";
 import Menu from "./Menu";
+import AdminPanel from "../admin/AdminPanel";
 
 export default function Main() {
   return (
@@ -8,6 +9,7 @@ export default function Main() {
       <div className="gridCont">
         <Menu />
       </div>
+      <AdminPanel />
     </MainStyled>
   );
 }
