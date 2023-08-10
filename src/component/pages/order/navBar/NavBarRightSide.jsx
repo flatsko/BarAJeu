@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../theme/index";
 import Profile from "./Profile";
 import ToggleButton from "../../../reusableUI/ToggleButton";
 import { ToastContainer, toast } from "react-toastify";
 import {FaUserSecret}from "react-icons/fa";
 import ToastAdmin from "../../../ToastContainer";
-
+import { useContext } from "react";
+import {createContext} from "../../../../context/Context"
 
 export default function NavBarRightSide({ username }) {
-  const [isChecked, setIsChecked] = useState("false");
+  //const [isChecked, setIsChecked] = useState("false");
+  const checked = useContext(createContext);
+  console.log
   const displayToastNotification = () => {
     if (isChecked) {
       toast.info("Mode admin activé", {
@@ -25,7 +27,7 @@ export default function NavBarRightSide({ username }) {
       });
     }
 
-    setIsChecked(!isChecked);
+   // setIsChecked(!isChecked);
   };
 
   return (

@@ -2,28 +2,33 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme/index";
 import Menu from "./Menu";
 import AdminPanel from "../admin/AdminPanel";
+import { useState } from "react";
 
 export default function Main() {
+
+  
   return (
-    <MainStyled className="gridCont">
+    <MainStyled>
+{/* <div className="basket">Basket</div>  */}
       <div className="gridCont">
         <Menu />
+        <AdminPanel />
       </div>
-      <AdminPanel />
+     
     </MainStyled>
   );
 }
 
 const MainStyled = styled.div`
-  flex: 1;
-  display: flex;
+
+  height: calc(95vh - 10vh);
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-  background-color: ${theme.colors.background_white};
-  padding: 40px;
-  /* display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 50% 50%; */
-  overflow-y: scroll;
+  background-color: ${theme.colors.greyBlue};
+  display: grid;
+  grid-template-columns: 1fr;
+border-bottom-left-radius: ${theme.borderRadius.extraRound};
+border-bottom-right-radius: ${theme.borderRadius.extraRound};
+
   .plot {
     z-index: 50;
     background: none;
@@ -31,9 +36,13 @@ const MainStyled = styled.div`
     box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.05),
       inset -2px -2px 0 #665235;
   }
-
+.basket{
+  
+}
   .gridCont {
-    flex: 1;
+    position: relative;
+    overflow:hidden;
+    display:grid;
   }
 
   .grid {

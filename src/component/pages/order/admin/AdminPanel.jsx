@@ -41,9 +41,14 @@ export default function AdminPanel() {
 }
 
 const AdminPanelStyled = styled.div`
+    position: absolute;
+    display:grid;
+    bottom:0;
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+border-bottom-right-radius: ${theme.borderRadius.extraRound};
+
   &.toggle {
-    position: fixed;
-    bottom: 0;
+
     left: 0px;
     background-color: ${theme.colors.background_white};
     text-align: left;
@@ -53,7 +58,6 @@ const AdminPanelStyled = styled.div`
   }
 
   &.notToggle {
-    position: fixed;
     bottom: 0;
     left: 0px;
     background-color: azure;
@@ -63,7 +67,7 @@ const AdminPanelStyled = styled.div`
     padding: -40px;
   }
   .buttonPanel {
-    display: flex;
+    display:flex;
     margin-top: -50px;
     padding-left: 40px;
     align-items: center;
