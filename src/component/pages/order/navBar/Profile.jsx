@@ -1,9 +1,11 @@
 import React from "react";
 import { theme } from "../../../../theme/index";
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
-export default function Profile({ username }) {
+export default function Profile() {
+  const { username } = useParams();
+
   return (
     <ProfileStyled>
       <div className="salutations">

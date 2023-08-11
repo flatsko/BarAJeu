@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-  Outlet,
-  useLocation,
   useNavigate,
-  Link,
   useParams,
 } from "react-router-dom";
 import { styled } from "styled-components";
@@ -15,27 +12,31 @@ import { toast } from "react-toastify";
 import Context from "../../../context/Context";
 
 const OrderPage = () => {
-  const [isChecked, setIsChecked] = useState("false");
+  const [isModeAdmin, setIsModeAdmin] = useState("false");
 
-  const { username } = useParams();
+
   const nav = useNavigate();
-  toast.success(`🎲 Bienvenue ${username}`, {
-    position: "top-center",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    toastId: "1",
-  });
+  // toast.success(`🎲 Bienvenue ${username}`, {
+  //   position: "top-center",
+  //   autoClose: 3000,
+  //   hideProgressBar: false,
+  //   closeOnClick: true,
+  //   pauseOnHover: true,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "light",
+  //   toastId: "1",
+  // });
 
+  const contextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
+  }
   return (
-    <Context.Provider>
+    <Context.Provider value={contextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar username={username}>
+          <Navbar>
             <div className="leftBar" />
             <div className="rightBAr" />
           </Navbar>
