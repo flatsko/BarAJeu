@@ -1,18 +1,15 @@
 import { useState } from "react";
 import {
   useNavigate,
-  useParams,
 } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
-import Logo from "../../reusableUI/logo";
 import Navbar from "./navBar/Navbar";
 import Main from "./main/Main";
-import { toast } from "react-toastify";
 import Context from "../../../context/Context";
 
 const OrderPage = () => {
-  const [isModeAdmin, setIsModeAdmin] = useState("false");
+  const [isModeAdmin, setIsModeAdmin] = useState();
 
 
   const nav = useNavigate();

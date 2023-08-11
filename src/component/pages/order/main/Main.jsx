@@ -2,17 +2,19 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme/index";
 import Menu from "./Menu";
 import AdminPanel from "../admin/AdminPanel";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Context from "../../../../context/Context";
 
 export default function Main() {
 
-  
+  const {isModeAdmin, setIsModeAdmin} = useContext(Context);
   return (
     <MainStyled>
 {/* <div className="basket">Basket</div>  */}
       <div className="gridCont">
         <Menu />
-        <AdminPanel />
+        {isModeAdmin && <AdminPanel />}
+        {console.log(isModeAdmin)}
       </div>
      
     </MainStyled>

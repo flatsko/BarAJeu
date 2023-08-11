@@ -10,9 +10,9 @@ import Context from "../../../../context/Context"
 export default function NavBarRightSide() {
   //const [isChecked, setIsChecked] = useState("false");
   const {isModeAdmin, setIsModeAdmin} = useContext(Context);
-  
+  console.log(`Nav ${isModeAdmin}`)
   const displayToastNotification = () => {
-    if (isModeAdmin) {
+    if (!isModeAdmin) {
       toast.info("Mode admin activé", {
         icon: <FaUserSecret size={30} />,
         theme: "dark",
@@ -34,8 +34,8 @@ export default function NavBarRightSide() {
      
         <ToggleButton
           onToggle={displayToastNotification}
-          labelIfChecked="ACTIVER LE MODE ADMIN"
-          labelIfUnchecked="DÉSACTIVER LE MODE ADMIN"
+          labelIfChecked="DÉSACTIVER LE MODE ADMIN"
+          labelIfUnchecked="ACTIVER LE MODE ADMIN"
           isChecked={isModeAdmin}
           policeColor=""
         />
