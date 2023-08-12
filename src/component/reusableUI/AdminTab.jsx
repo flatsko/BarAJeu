@@ -2,38 +2,24 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function AdminTab({handleClickButton,isLabelShow, show, showLabel, Icon, title}) {
+export default function AdminTab({handleClickButton,isLabelShow, show, showLabel, Icon, title, className}) {
 
-  const defineClasseName = (toggleName) => {
-   
-    if (toggleName == isLabelShow) {
-        
-      return "affiche";
-    }
-    {
-      return "koAffiche";
-    }
-  };
   return (
  
       <AdminTabStyled
       
         value={showLabel}
         onClick={handleClickButton}
-        className={defineClasseName(showLabel)}
-      >
-             
-              {console.log(`Camel ${isLabelShow}`)}
-              
-        {Icon}
-        {title}
+        className={className}
+      >                  
+        {Icon && Icon}
+        {title && title}
       </AdminTabStyled>
 
   );
 }
 
 const AdminTabStyled = styled.button`
-
     padding: 15px 30px;
     border-top-left-radius: ${theme.borderRadius.extraRound};
     border-top-right-radius: ${theme.borderRadius.extraRound};

@@ -4,8 +4,10 @@ import Menu from "./Menu";
 import AdminPanel from "../admin/AdminPanel";
 import { useContext, useState } from "react";
 import Context from "../../../../context/Context";
+import Admin from "../admin/Admin";
 
 export default function Main() {
+  const {isCollapsed} = useContext(Context);
 
   const {isModeAdmin, setIsModeAdmin} = useContext(Context);
   return (
@@ -13,8 +15,8 @@ export default function Main() {
 {/* <div className="basket">Basket</div>  */}
       <div className="gridCont">
         <Menu />
-        {isModeAdmin && <AdminPanel />}
-        {console.log(isModeAdmin)}
+        {isModeAdmin && <Admin className={isCollapsed ? "toggle" : "notToggle"} />}
+        {console.log(isCollapsed)}
       </div>
      
     </MainStyled>
@@ -28,8 +30,8 @@ const MainStyled = styled.div`
   background-color: ${theme.colors.greyBlue};
   display: grid;
   grid-template-columns: 1fr;
-border-bottom-left-radius: ${theme.borderRadius.extraRound};
-border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
   .plot {
     z-index: 50;

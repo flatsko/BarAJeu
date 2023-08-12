@@ -7,7 +7,6 @@ import NoAccessPage from "./component/pages/404/NoAccesPage.jsx";
 import { styled } from 'styled-components/'
 import ToastAdmin from "./component/ToastContainer.jsx";
 
-
 function App() {
   //state
 
@@ -25,7 +24,7 @@ function App() {
             <Route index element={<LoginPage />} />
           </Route>
           <Route path="*" element={<NoAccessPage />} />
-        </Routes>
+         </Routes>
         <ToastAdmin />
     </StyledApp>
   )

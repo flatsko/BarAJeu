@@ -10,9 +10,8 @@ import Context from "../../../context/Context";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
-
-
-  const nav = useNavigate();
+  const [isCollapsed, setIsCollapsed] = useState();
+  const  [currentTabSelected, setCurrentTabSelected] = useState("");
   // toast.success(`🎲 Bienvenue ${username}`, {
   //   position: "top-center",
   //   autoClose: 3000,
@@ -28,6 +27,10 @@ const OrderPage = () => {
   const contextValue = {
     isModeAdmin,
     setIsModeAdmin,
+    isCollapsed,
+    setIsCollapsed,
+    currentTabSelected,
+    setCurrentTabSelected,
   }
   return (
     <Context.Provider value={contextValue}>

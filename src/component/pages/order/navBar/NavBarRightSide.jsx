@@ -8,9 +8,7 @@ import { useContext } from "react";
 import Context from "../../../../context/Context"
 
 export default function NavBarRightSide() {
-  //const [isChecked, setIsChecked] = useState("false");
   const {isModeAdmin, setIsModeAdmin} = useContext(Context);
-  console.log(`Nav ${isModeAdmin}`)
   const displayToastNotification = () => {
     if (!isModeAdmin) {
       toast.info("Mode admin activé", {
