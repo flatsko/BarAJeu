@@ -15,19 +15,20 @@ export default function AdminPanel() {
 
 const AdminPanelStyled = styled.div`
   background-color: ${theme.colors.background_white};
+  color: ${theme.colors.dark};
+
   &.toggle {
-    left: 0px;
     background-color: ${theme.colors.background_white};
     text-align: left;
     min-width: 100vw;
-    min-height: 30vh;
+    min-height: 250vh;
     padding: -50px;
   }
 
   &.notToggle {
     bottom: 0;
     left: 0px;
-    background-color: azure;
+    background-color: #62a7a7;
     text-align: left;
     min-width: 100vw;
     min-height: 0vh;

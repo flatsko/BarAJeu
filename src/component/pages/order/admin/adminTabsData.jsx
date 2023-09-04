@@ -1,8 +1,10 @@
 
 import { AiOutlinePlus } from 'react-icons/ai';
+import { FiChevronsDown } from 'react-icons/fi';
 import { MdModeEditOutline } from 'react-icons/md';
 
 export const adminTabs = [
+
   {
     id: 1,
     index: "add",

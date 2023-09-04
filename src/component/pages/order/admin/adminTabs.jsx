@@ -16,7 +16,7 @@ export default function AdminTabs() {
   } = useContext(Context);
 
   const selectTab = (tabSelected) => {
-    console.log(tabSelected);
+   console.log(tabSelected);
     setIsCollapsed(true);
     setCurrentTabSelected(tabSelected);
     
@@ -24,8 +24,9 @@ export default function AdminTabs() {
 
 
   const handleClickIcon = (e) => {
+    console.log("ok")
     setIsCollapsed(!isCollapsed);
-    console.log(isCollapsed);
+    //console.log(isCollapsed);
     
   };
 
@@ -34,23 +35,24 @@ export default function AdminTabs() {
     <AdminTabsStyled>
       <div className="buttonPanel">
         {isCollapsed ? (
-          <FiChevronDown size={35} className="icon" onClick={handleClickIcon} />
-        ) : (
-          <FiChevronUp size={35} className="icon" onClick={handleClickIcon} />
-        )}
+          <AdminTab Icon={<FiChevronDown />} handleClickButton={() => handleClickIcon()} />
+          ) : (
+            <AdminTab Icon={<FiChevronsUp />} size={35} handleClickButton={() => handleClickIcon()} />
+            )}
         {adminTabs.map(({ index, title, showLabel, Icon }) => {
           return (
             <div>
               <AdminTab
                 key={index}
-                handleClickButton={() => selectTab(index)}
+                handleClickButton={() => selectTab(title)}
                 Icon={Icon}
                 showLabel={showLabel}
                 title={title}
                 isLabelShow={isLabelShow}
                 className={currentTabSelected === index ? "affiche" : "ko"}
               />{" "}
-              {console.log(`AdminTabs ${title}`)}
+             { //console.log(`AdminTabs ${title}`)
+             }
             </div>
           );
         })}

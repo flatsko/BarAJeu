@@ -6,6 +6,7 @@ import OrderPage from "./component/pages/order/OrderPage.jsx";
 import NoAccessPage from "./component/pages/404/NoAccesPage.jsx";
 import { styled } from 'styled-components/'
 import ToastAdmin from "./component/ToastContainer.jsx";
+import { theme } from "./theme/index.js";
 
 function App() {
   //state
@@ -35,11 +36,19 @@ export default App
 
 const StyledApp = styled.div`
 
-  
+
   margin: 0 auto;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-
+  background-color: ${theme.colors.primary}; 
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 
 
 

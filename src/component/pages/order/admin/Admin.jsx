@@ -29,7 +29,7 @@ const AdminStyled = styled.div`
     /* background-color: ${theme.colors.background_white}; */
     text-align: left;
     min-width: 100vw;
-    min-height: 30vh;
+    min-height: 35vh;
     padding: -50px;
   }
 

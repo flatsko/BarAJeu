@@ -24,11 +24,12 @@ const AdminTabStyled = styled.button`
     border-top-left-radius: ${theme.borderRadius.extraRound};
     border-top-right-radius: ${theme.borderRadius.extraRound};
     border: 2px;
-    border-color: blueviolet;
-    color: ${theme.colors.dark};
+    margin-right: 2px;
+    color: ${theme.colors.background_dark};
+    background-color: ${theme.colors.background_white};
 
     &.affiche {
-      background-color: ${theme.colors.background_dark};
+      background-color: ${theme.colors.background_white};
       color: ${theme.colors.white};
     }
 
