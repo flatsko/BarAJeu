@@ -1,57 +1,70 @@
-import React from 'react'
-import { Outlet, useLocation, useNavigate, Link, useParams } from 'react-router-dom'
-import { styled } from 'styled-components';
+import { useState } from "react";
+import {
+  useNavigate,
+} from "react-router-dom";
+import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
-import Logo from '../../reusableUI/logo';
-import Navbar from './Navbar';
-import Main from './Main';
-
+import Navbar from "./navBar/Navbar";
+import Main from "./main/Main";
+import Context from "../../../context/Context";
 
 const OrderPage = () => {
-  const {username} = useParams();
-  const nav = useNavigate();
+  const [isModeAdmin, setIsModeAdmin] = useState();
+  const [isCollapsed, setIsCollapsed] = useState();
+  const  [currentTabSelected, setCurrentTabSelected] = useState("");
+  // toast.success(`🎲 Bienvenue ${username}`, {
+  //   position: "top-center",
+  //   autoClose: 3000,
+  //   hideProgressBar: false,
+  //   closeOnClick: true,
+  //   pauseOnHover: true,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "light",
+  //   toastId: "1",
+  // });
 
-
+  const contextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
+    isCollapsed,
+    setIsCollapsed,
+    currentTabSelected,
+    setCurrentTabSelected,
+  }
   return (
-    <OrderPageStyled>
-      <div className='container'>
-        <Navbar username={username} >
-          <div className='leftBar' />
-          <div className='rightBAr' />
-
+    <Context.Provider value={contextValue}>
+      <OrderPageStyled>
+        <div className="container">
+          <Navbar>
+            <div className="leftBar" />
+            <div className="rightBAr" />
           </Navbar>
           <Main />
-          </div>
-   
-      
-    </OrderPageStyled>
-  
-  )
-}
+        </div>
+      </OrderPageStyled>
+    </Context.Provider>
+  );
+};
 
-export default OrderPage
+export default OrderPage;
 
 const OrderPageStyled = styled.div`
+  background-color: ${theme.colors.primary};
+  min-height: 100vh;
 
-background-color: ${theme.colors.primary};
-min-height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 
-align-items: center;
-display: flex;
-justify-content:center;
-
-
-.container{
-
+  .container {
     height: 95vh;
-    
+
     width: 90vw;
-    max-width:1400px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};
 
-}
-
-
+  }
 `;

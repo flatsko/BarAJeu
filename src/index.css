@@ -27,22 +27,6 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
- background-size: cover;
- background-image: url("/images/background.webp");
- background-blend-mode: saturation;
- background-position: center;
- background-color: rgba(0, 0, 0, 0.87);
-}
-
 
 
 button:hover {

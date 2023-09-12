@@ -13,7 +13,6 @@ function LoginPage () {
     return ( 
         <div>
         <LoginPageStyled >
-      
        <Logo className="logo-login-page" />
        </LoginPageStyled> 
        <LoginFormStyled>

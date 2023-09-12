@@ -1,26 +1,17 @@
-import React from 'react'
-import { styled } from 'styled-components';
-import { BsPersonCircle as Log } from "react-icons/bs";
+import React from "react";
+import { styled } from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function TextInput({name, icon, onChange, ...ExtraProps}) {
+export default function TextInput({ name, Icon, onChange, ...extraProps }) {
   return (
-
-    
-
     <TextInputStyled>
-    {icon && icon}
-    <input value={name}
-    onChange={onChange}
-    type="text"
-    {...ExtraProps} />
+      {Icon && Icon}
+      <input value={name} onChange={onChange} type="text" {...extraProps} />
     </TextInputStyled>
- 
-  )
+  );
 }
 
 const TextInputStyled = styled.div`
-
   background-color: ${theme.colors.background_white};
   border-radius: ${theme.borderRadius.round};
   display: flex;
@@ -29,14 +20,12 @@ const TextInputStyled = styled.div`
   margin: 18px 0; // could be handle in Parent too
   /* white-space: nowrap; */
 
-
-
   input {
     font-family: inherit;
 
     cursor: pointer;
     background-color: ${theme.colors.white};
-    border:none;
+    border: none;
     text-align: center;
     display: flex;
     color: ${theme.colors.incognito};

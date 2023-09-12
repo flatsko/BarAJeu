@@ -3,10 +3,10 @@ import LoginPage from "./component/pages/login/LoginPage.jsx";
 import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
 //import mainLayout from "./component/pages/layout/mainLayout.jsx";
 import OrderPage from "./component/pages/order/OrderPage.jsx";
-import NoAccessPage from "./component/pages/NoAccesPage.jsx";
-import Addition from "./component/pages/games/additions.jsx";
+import NoAccessPage from "./component/pages/404/NoAccesPage.jsx";
 import { styled } from 'styled-components/'
-
+import ToastAdmin from "./component/ToastContainer.jsx";
+import { theme } from "./theme/index.js";
 
 function App() {
   //state
@@ -21,13 +21,12 @@ function App() {
       
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/addition" element={<Addition />} />
           <Route path="/orderPage/:username" element={<OrderPage />} >
             <Route index element={<LoginPage />} />
           </Route>
           <Route path="*" element={<NoAccessPage />} />
-        </Routes>
-    
+         </Routes>
+        <ToastAdmin />
     </StyledApp>
   )
 
@@ -37,11 +36,19 @@ export default App
 
 const StyledApp = styled.div`
 
-  
+
   margin: 0 auto;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-
+  background-color: ${theme.colors.primary}; 
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 
 
 
