@@ -20,24 +20,24 @@ export default function Admin() {
 const AdminStyled = styled.div`
   position: absolute;
   display: grid;
+  grid-column: 1fr;
   bottom: 0;
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  background-color: transparent;
+  min-width: 90vh;
   &.toggle {
-    left: 0px;
+    //left: 0px;
     /* background-color: ${theme.colors.background_white}; */
     text-align: left;
-    min-width: 100vw;
-    min-height: 35vh;
-    padding: -50px;
+    
+    //padding: -50px;
   }
 
   &.notToggle {
     bottom: 0;
-    left: 0px;
+    //left: 0px;
     text-align: left;
-    min-width: 100vw;
+   
     min-height: 0vh;
     padding: -40px;
   }

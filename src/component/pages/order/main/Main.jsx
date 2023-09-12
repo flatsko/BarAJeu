@@ -25,14 +25,17 @@ export default function Main() {
 
 const MainStyled = styled.div`
 
-  height: calc(95vh - 10vh);
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-  background-color: ${theme.colors.greyBlue};
-  display: grid;
-  grid-template-columns: 1fr;
+background: ${theme.colors.background_white};
+  flex: 1; // or you can also use this : height: calc(95vh - 10vh);
+
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 
+  display: grid;
+  grid-template-columns: 1fr;
+
+  overflow-y: scroll;
   .plot {
     z-index: 50;
     background: none;
@@ -44,9 +47,7 @@ const MainStyled = styled.div`
   
 }
   .gridCont {
-    position: relative;
-    overflow:hidden;
-    display:grid;
+display:grid;
   }
 
   .grid {

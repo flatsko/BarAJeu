@@ -11,8 +11,11 @@ export default function AdminTab({handleClickButton,isLabelShow, show, showLabel
         value={showLabel}
         onClick={handleClickButton}
         className={className}
-      >                  
-        {Icon && Icon}
+       
+      >                
+        
+        <div className="icon">{Icon && Icon } 
+        </div>
         {title && title}
       </AdminTabStyled>
 
@@ -29,8 +32,8 @@ const AdminTabStyled = styled.button`
     background-color: ${theme.colors.background_white};
 
     &.affiche {
-      background-color: ${theme.colors.background_white};
-      color: ${theme.colors.white};
+     // background-color: ${theme.colors.background_white};
+    //  color: ${theme.colors.white};
     }
 
 `;

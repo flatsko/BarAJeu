@@ -7,7 +7,7 @@ import Context from "../../../../context/Context";
 export default function AdminPanel() {
   const { currentTabSelected, isCollapsed } = useContext(Context);
   return (
-    <AdminPanelStyled>
+    <AdminPanelStyled className={isCollapsed}>
       {isCollapsed && currentTabSelected && currentTabSelected}
     </AdminPanelStyled>
   );
@@ -16,13 +16,15 @@ export default function AdminPanel() {
 const AdminPanelStyled = styled.div`
   background-color: ${theme.colors.background_white};
   color: ${theme.colors.dark};
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
-  &.toggle {
-    background-color: ${theme.colors.background_white};
+  &.true {
+    //background-color: ${theme.colors.background_white};
     text-align: left;
-    min-width: 100vw;
-    min-height: 250vh;
-    padding: -50px;
+   // min-width: 1400px;
+    min-height: 25vh;
+    //padding: -50px;
   }
 
   &.notToggle {

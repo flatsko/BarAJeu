@@ -41,7 +41,7 @@ export default function AdminTabs() {
             )}
         {adminTabs.map(({ index, title, showLabel, Icon }) => {
           return (
-            <div>
+            
               <AdminTab
                 key={index}
                 handleClickButton={() => selectTab(title)}
@@ -49,11 +49,9 @@ export default function AdminTabs() {
                 showLabel={showLabel}
                 title={title}
                 isLabelShow={isLabelShow}
-                className={currentTabSelected === index ? "affiche" : "ko"}
-              />{" "}
-             { //console.log(`AdminTabs ${title}`)
-             }
-            </div>
+                className={currentTabSelected === title ? "affiche" : "ko"}
+              />
+            
           );
         })}
       </div>
@@ -61,13 +59,12 @@ export default function AdminTabs() {
   );
 }
 const AdminTabsStyled = styled.div`
-  display: flex;
-  align-items: flex-end;
-  margin-left: 71px;
+ 
 
   .buttonPanel {
     display: flex;
     flex-direction: row;
+    padding-left: 10px;
     align-items: center;
     border-radius: ${theme.borderRadius.extraRound};
     border: 2px;
@@ -79,11 +76,13 @@ const AdminTabsStyled = styled.div`
     }
   }
 
+  .affiche{
+    background-color: ${theme.colors.background_dark};
+    color: ${theme.colors.background_white};
+  }
   .icon {
-    align-items: flex-end;
-    display: flex;
-    flex: 1;
-    color: ${theme.colors.greyMedium};
-    background-color: ${theme.colors.background_white};
+position:relative;
+height
+
   }
 `;

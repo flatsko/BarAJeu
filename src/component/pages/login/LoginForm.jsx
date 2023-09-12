@@ -8,7 +8,6 @@ import { theme } from "../../../theme/index";
 import styles from "@openfonts/amatic-sc_all/index.css"
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle as Log } from "react-icons/bs";
-import Chat from "../order/chat/chat";
 
 function Login() {
   //States
