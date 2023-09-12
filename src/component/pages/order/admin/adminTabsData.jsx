@@ -2,6 +2,7 @@
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FiChevronsDown } from 'react-icons/fi';
 import { MdModeEditOutline } from 'react-icons/md';
+import AdminPageAdd from './adminPannelPage/AdminPageAdd';
 
 export const adminTabs = [
 
@@ -11,7 +12,7 @@ export const adminTabs = [
     Icon: <AiOutlinePlus />,
     title: "Ajouter des produits",
     showLabel: "addProduct",
-    link: "",
+    link: <AdminPageAdd />,
   },
 
   {
@@ -26,5 +27,5 @@ export const adminTabs = [
 
 export const getSelectedTab = (tabs, currentSelectedTab) =>
 {
-   tabs.find((tab) => tab.index === currentSelectedTab )
+   return tabs.find((tab) => tab.title === currentSelectedTab )
 } 

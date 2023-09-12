@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { adminTabs, getSelectedTab } from "./adminTabsData";
+import { adminTabs, getSelectedTab } from "./AdminTabsData";
 import AdminTab from "../../../reusableUI/AdminTab";
 import { FiChevronDown, FiChevronUp, FiChevronsUp } from "react-icons/fi";
 import { styled } from "styled-components";
@@ -60,15 +60,18 @@ export default function AdminTabs() {
 }
 const AdminTabsStyled = styled.div`
  
-
+ display: flex;
+justify-content:flex-start;
+  left: 5%;
+  
   .buttonPanel {
-    display: flex;
-    flex-direction: row;
-    padding-left: 10px;
-    align-items: center;
-    border-radius: ${theme.borderRadius.extraRound};
-    border: 2px;
-    box-shadow: ${theme.shadows.subtle};
+   // display: flex;
+   // flex-direction: row;
+    //padding-left: 10px;
+    //align-items: center;
+   // border-radius: ${theme.borderRadius.extraRound};
+   // border: 2px;
+   // box-shadow: ${theme.shadows.subtle};
 
     & :hover {
       cursor: pointer;
@@ -79,10 +82,16 @@ const AdminTabsStyled = styled.div`
   .affiche{
     background-color: ${theme.colors.background_dark};
     color: ${theme.colors.background_white};
-  }
-  .icon {
-position:relative;
-height
+    border-color: ${theme.colors.background_dark};
+    border-color: ${theme.colors.background_dark};
 
+  }
+   .icon {
+position:relative;
+display:contents;
+
+  } 
+    button {
+    margin-left: 1px;
   }
 `;

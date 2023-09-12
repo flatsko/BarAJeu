@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import AdminPanel from "./AdminPanel";
-import AdminTabs from "./adminTabs";
+import AdminTabs from "./AdminTabs";
 import { theme } from "../../../../theme";
 import { styled } from "styled-components";
 import Context from "../../../../context/Context";
@@ -12,34 +12,34 @@ export default function Admin() {
 
     <AdminStyled className={isCollapsed ? "toggle" : "notToggle"} >
       <AdminTabs />
-      <AdminPanel />
+      {isCollapsed && < AdminPanel />}
     </AdminStyled>
   );
 }
 
 const AdminStyled = styled.div`
   position: absolute;
-  display: grid;
-  grid-column: 1fr;
   bottom: 0;
+  left:0;
+  right:0;
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
-  min-width: 90vh;
-  &.toggle {
+  //min-width: 90vh;
+    &.toggle {
     //left: 0px;
-    /* background-color: ${theme.colors.background_white}; */
-    text-align: left;
+    // background-color: ${theme.colors.background_white}; */
+    //text-align: left;
     
     //padding: -50px;
   }
 
   &.notToggle {
-    bottom: 0;
+   // bottom: 0;
     //left: 0px;
-    text-align: left;
+    //text-align: left;
    
-    min-height: 0vh;
-    padding: -40px;
-  }
+   // min-height: 0vh;
+   // padding: -40px;
+  } 
 
-`;
+`; 
