@@ -1,27 +1,30 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 import { listeJeux } from "../../../../data/listeJeux";
-import { fakeMenu2 } from '../../../../data/fakeMenu';
+import { fakeMenu } from "../../../../data/fakeMenu";
 import React, { useState } from "react";
-import Card from '../../../reusableUI/Card';
-import { formatPrice } from '../../../../utils/maths';
-import { theme } from '../../../../theme';
+import Card from "../../../reusableUI/Card";
+import { formatPrice } from "../../../../utils/maths";
+import { theme } from "../../../../theme";
+import { useContext } from "react";
 export default function Menu() {
+  //const menu = useContext(menu);
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
 
-const [menu, setMenu] = useState(fakeMenu2)
   return (
-    <MenuStyles>         
-         {menu.map(({ id, title, imageSource, price, isAvailable }) => {
-            return (
-              <Card
-                key={id}
-                imageSource={imageSource}
-                title={title}
-                leftDescription={formatPrice(price)}
-                isAvailable={isAvailable}
-              />
-            );
-          })}</MenuStyles>
-  )
+    <MenuStyles>
+      {menu.map(({ id, title, imageSource, price, isAvailable }) => {
+        return (
+          <Card
+            key={id}
+            imageSource={imageSource}
+            title={title}
+            leftDescription={formatPrice(price)}
+            isAvailable={isAvailable}
+          />
+        );
+      })}
+    </MenuStyles>
+  );
 }
 
 const MenuStyles = styled.div`
@@ -34,7 +37,4 @@ const MenuStyles = styled.div`
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow-y: scroll;
-`
-
-  
-;
+`;

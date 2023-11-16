@@ -5,9 +5,10 @@ import { BsChevronRight as Arrow } from "react-icons/bs";
 import { styled } from "styled-components";
 import PrimaryButton from "../../reusableUI/PrimaryButton";
 import { theme } from "../../../theme/index";
-import styles from "@openfonts/amatic-sc_all/index.css"
+import styles from "@openfonts/amatic-sc_all/index.css";
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle as Log } from "react-icons/bs";
+import React from "react";
 
 function Login() {
   //States
@@ -27,31 +28,25 @@ function Login() {
   };
 
   const handleChange = (e) => {
-
-  setName(e.target.value)
-
+    setName(e.target.value);
   };
   //Affichage
   return (
-   
     <div>
-    
       <LoginStyled action="submit" onSubmit={handleSubmit}>
         <div>
           <h1>Bienvenue !</h1>
-      
+
           <hr />
           <h2>Connectez Vous</h2>
           <div className="inputForm">
-              <TextInput
+            <TextInput
               onChange={handleChange}
               placeholder="Entrez votre prénom"
-      
               value={name}
-              icon={<Log className="icon" />} />
-            <PrimaryButton
-            label={"Acceder à mon espace"}
-            icon={<Arrow />} />
+              icon={<Log className="icon" />}
+            />
+            <PrimaryButton label={"Acceder à mon espace"} icon={<Arrow />} />
           </div>
         </div>
       </LoginStyled>
@@ -60,7 +55,7 @@ function Login() {
 }
 
 const LoginStyled = styled.form`
-font-family: "Amatic SC", cursive;
+  font-family: "Amatic SC", cursive;
 
   background-color: ${theme.colors.background_dark};
   display: flex;
@@ -73,7 +68,6 @@ font-family: "Amatic SC", cursive;
   border-radius: ${theme.borderRadius.round};
   max-width: 500px;
   min-width: 400px;
-  
 
   hr {
     height: 1px;
@@ -97,7 +91,7 @@ font-family: "Amatic SC", cursive;
     align-items: center;
     min-width: 80%;
     font-size: ${theme.fonts.P0};
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 
   .icon {

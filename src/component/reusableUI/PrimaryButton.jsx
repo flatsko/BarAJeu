@@ -1,14 +1,19 @@
-import React from 'react'
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function PrimaryButton({label, icon, className}) {
+export default function PrimaryButton({
+  label,
+  icon,
+  className,
+  ...extraProps
+}) {
   return (
     <StyledPrimaryButton className={className}>
-        <span>{label}</span>
-        {icon && icon}
+      <span>{label}</span>
+      {icon && icon}
     </StyledPrimaryButton>
-  )
+  );
 }
 
 const StyledPrimaryButton = styled.button`
@@ -47,4 +52,4 @@ const StyledPrimaryButton = styled.button`
     opacity: 0.6;
     cursor: not-allowed;
   }
-`
+`;
