@@ -6,10 +6,25 @@ import Card from "../../../reusableUI/Card";
 import { formatPrice } from "../../../../utils/maths";
 import { theme } from "../../../../theme";
 import { useContext } from "react";
+import Context from "../../../../context/Context";
 export default function Menu() {
-  //const menu = useContext(menu);
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
+  // const menu1 = useContext(Context);
 
+  // const [menu, setMenu] = useState(fakeMenu.LARGE);
+  let { menu, setMenu, isModeAdmin } = useContext(Context);
+
+  const nvBurger = {
+    id: 1,
+    imageSource: "/images/burger1.png",
+    title: "Burger 1",
+    price: 5.297,
+    quantity: 0,
+    isAvailable: true,
+    isAdvertised: false,
+  };
+  //setMenu();
+  //menu.push(nvBurger);
+  // setMenu("");
   return (
     <MenuStyles>
       {menu.map(({ id, title, imageSource, price, isAvailable }) => {

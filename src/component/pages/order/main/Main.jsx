@@ -7,35 +7,31 @@ import Context from "../../../../context/Context";
 import Admin from "../admin/Admin";
 
 export default function Main() {
-  const {isCollapsed} = useContext(Context);
+  // const {} = useContext(Context);
 
-  const {isModeAdmin, setIsModeAdmin} = useContext(Context);
+  const { isCollapsed, isModeAdmin, setIsModeAdmin } = useContext(Context);
   return (
     <MainStyled>
-{/* <div className="basket">Basket</div>  */}
+      {/* <div className="basket">Basket</div>  */}
       {/* <div className="gridCont"> */}
-        <Menu />
-        {isModeAdmin && <Admin className={isCollapsed ? "toggle" : "notToggle"} />}
-        {/* {console.log(isCollapsed)} */}
+      <Menu />
+      {isModeAdmin && (
+        <Admin className={isCollapsed ? "toggle" : "notToggle"} />
+      )}
+      {/* {console.log(isCollapsed)} */}
       {/* </div> */}
-     
     </MainStyled>
   );
 }
 
 const MainStyled = styled.div`
-
-background: ${theme.colors.background_white};
-position: relative;
+  background: ${theme.colors.background_white};
+  position: relative;
   overflow-y: hidden;
   display: grid;
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
-
-.basket{
-  
-}
-
-
+  .basket {
+  }
 `;

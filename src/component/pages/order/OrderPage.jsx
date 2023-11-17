@@ -1,17 +1,17 @@
 import { useState } from "react";
-import {
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
 import Navbar from "./navBar/Navbar";
 import Main from "./main/Main";
 import Context from "../../../context/Context";
+import { fakeMenu } from "../../../data/fakeMenu";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
   const [isCollapsed, setIsCollapsed] = useState();
-  const  [currentTabSelected, setCurrentTabSelected] = useState("");
+  const [currentTabSelected, setCurrentTabSelected] = useState("");
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
   // toast.success(`🎲 Bienvenue ${username}`, {
   //   position: "top-center",
   //   autoClose: 3000,
@@ -31,7 +31,9 @@ const OrderPage = () => {
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
-  }
+    menu,
+    setMenu,
+  };
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>
@@ -65,6 +67,5 @@ const OrderPageStyled = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};
-
   }
 `;

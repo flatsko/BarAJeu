@@ -16,8 +16,8 @@ const TextInputStyled = styled.div`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
-  padding: 15px 24px;
-  margin: 18px 0; // could be handle in Parent too
+  padding: 15px 20px;
+  margin: 5px 0; // could be handle in Parent too
   /* white-space: nowrap; */
 
   input {

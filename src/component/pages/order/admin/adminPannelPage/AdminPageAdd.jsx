@@ -6,16 +6,15 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import PrimaryButton from "../../../../reusableUI/PrimaryButton";
 import { theme } from "../../../../../theme";
+import { useContext } from "react";
+import Context from "../../../../../context/Context";
 
 export default function AdminPageAdd() {
-  const [nom, setNom] = useState("Nom");
-  const [image, setImage] = useState(
-    "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-  );
-  const [prix, setPrix] = useState("Prix");
-  const [urlImage, setUrlImage] = useState(
-    "https://www.laboutiqueharibo.fr/dw/image/v2/BFFT_PRD/on/demandware.static/-/Sites-haribo-master-catalog/default/dw809ff44e/food/AP/102896-Dentier-210-bonbons.png?sw=460&sh=460"
-  );
+  const [nom, setNom] = useState("");
+  const [image, setImage] = useState("");
+  const [prix, setPrix] = useState("");
+
+  const { menu, setMenu } = useContext(Context);
 
   const handleChangeNom = (e) => {
     setNom(e.target.value);
@@ -35,29 +34,43 @@ export default function AdminPageAdd() {
     console.log("Good");
 
     const newProduct = {
-      id: "",
-      imageSource: "",
-      title: "",
-      price: "",
+      id: crypto.randomUUID(),
+      imageSource: urlImage,
+      title: nom,
+      price: prix,
       quantity: "",
       isAvailable: true,
       isAdvertised: false,
     };
+
+    const newMenu = [...menu];
+
+    newMenu.push(newProduct);
+    setMenu(newMenu);
   };
   return (
     <AdminPageAddStyled>
-      <img className="a" src={urlImage}></img>
+      {/* <img className="a" src={image}></img> */}
+      <div className="a">
+        {image ? (
+          <img className="a" src={image}></img>
+        ) : (
+          <div className="emptyImage">Aucune Image</div>
+        )}
+      </div>
       <AddFormStyled onSubmit={handleAdd}>
         <TextInput
           className={"b"}
           Icon={<FaHamburger />}
           name={nom}
           onChange={handleChangeNom}
+          placeHolder="Nom :"
         ></TextInput>
         <TextInput
           className={"c"}
           Icon={<BsFillCameraFill />}
           name={image}
+          placeHolder="Url de l'image :"
           onChange={handleChangeImage}
         ></TextInput>
         <TextInput
@@ -65,6 +78,7 @@ export default function AdminPageAdd() {
           Icon={<MdOutlineEuro />}
           name={prix}
           onChange={handleChangePrix}
+          placeHolder="Prix : "
           onClick={(e) => {
             e.target.value = "";
           }}
@@ -72,7 +86,7 @@ export default function AdminPageAdd() {
 
         <PrimaryButton
           className={"e"}
-          icon={MdOutlineEuro}
+          //icon={MdOutlineEuro}
           label={"Ajouter un nouveau produit au menu"}
         />
       </AddFormStyled>
@@ -84,21 +98,30 @@ const AddFormStyled = styled.form``;
 
 const AdminPageAddStyled = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 20%);
-  height: 100%;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  height: 90%;
   width: 70%;
+  max-height: 10px;
+  // justify-items: center;
+  align-items: center;
+  //align-content: center;
+
   .a {
     grid-area: 1 / 1 / 4 / 2;
     max-width: 100%;
+    //margin: 5px;
+    // align-content: center;
   }
   .b {
     grid-column-start: 2;
     grid-row-start: 1;
+    margin: 0px;
   }
   .c {
     grid-column-start: 2;
     grid-row-start: 2;
+    margin: 0px;
   }
   .d {
     grid-column-start: 2;
@@ -109,16 +132,36 @@ const AdminPageAddStyled = styled.div`
     color: ${theme.colors.white};
     background-color: ${theme.colors.green};
     width: 50%;
-
+    background-color: #60bd4f;
+    //margin-left : 0px;
+    border-color: ${theme.colors.white};
+    
+    align-items: center;
+  
     &:hover {
+      color: #60bd4f;
+      border-color: ${theme.colors.green};
+
     }
   }
 
+  .emptyImage {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid ${theme.colors.greyLight};
+    line-height: 1.5;
+    color: ${theme.colors.greySemiDark};
+    border-radius: ${theme.borderRadius.round};
+  }
   .test {
   }
 
   input {
     width: 50vw;
     display: grid;
-  }
+    align-items: center;
+
 `;
