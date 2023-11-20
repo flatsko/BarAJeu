@@ -45,7 +45,7 @@ const StyledApp = styled.div`
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: antiquewhite;
+  background-color: ${theme.colors.primary};
   @keyframes logo-spin {
     from {
       transform: rotate(0deg);

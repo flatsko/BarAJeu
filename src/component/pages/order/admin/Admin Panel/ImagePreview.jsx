@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 
 export default function ImagePreview({ imageSource, className }) {
-  console.log(imageSource);
   return (
     <ImagePrevienwStyled>
       <div className={className}>
@@ -24,8 +23,8 @@ const ImagePrevienwStyled = styled.div`
   align-items: center;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     object-position: center;
   }

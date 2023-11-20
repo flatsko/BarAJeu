@@ -14,9 +14,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  background-image: url("/images/burger-and-fries-background.jpg");
-  background-size: cover;
 }
 
 a {

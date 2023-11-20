@@ -9,7 +9,7 @@ export const adminAddData = (newProduct) => [
     value: newProduct.title,
     type: "text",
     placeholder: "Nom du produit",
-    Icon: <FaHamburger />,
+    Icon: <FaHamburger className="icon" />,
   },
   {
     id: "1",
@@ -17,7 +17,7 @@ export const adminAddData = (newProduct) => [
     value: newProduct.imageSource,
     type: "text",
     placeholder: "Url de l'image",
-    Icon: <BsFillCameraFill />,
+    Icon: <BsFillCameraFill className="icon" />,
   },
   {
     id: "2",
@@ -25,6 +25,6 @@ export const adminAddData = (newProduct) => [
     value: newProduct.price ? newProduct.price : "",
     type: "text",
     placeholder: "Prix",
-    Icon: <MdOutlineEuro />,
+    Icon: <MdOutlineEuro className="icon" />,
   },
 ];
