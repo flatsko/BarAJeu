@@ -1,43 +1,40 @@
-import { useState } from "react"
+import { useState } from "react";
 import Login from "./LoginForm";
 import { styled } from "styled-components";
-import Logo from "../../reusableUI/logo"
+import Logo from "../../reusableUI/Logo";
+import React from "react";
 
-function LoginPage () {
-    //States
-   
-    //Comportement
+function LoginPage() {
+  //States
 
+  //Comportement
 
-    //Affichage
-    return ( 
-        <div>
-        <LoginPageStyled >
-       <Logo className="logo-login-page" />
-       </LoginPageStyled> 
-       <LoginFormStyled>
-        <Login />
-        </LoginFormStyled>
-        </div>
-    )
-
-    
-    }
-
+  //Affichage
+  return (
+    <LoginPageStyled>
+      <Logo className="logo-login-page" />
+      <Login />
+    </LoginPageStyled>
+  );
+}
 
 const LoginPageStyled = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url("/images/burger-and-fries-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: darken;
 
-.logo-login-page
-{
-    transform: scale(1.2)
-}
-`
-const LoginFormStyled = styled.div`
-    display:flex;
-    justify-content:center;
+  .logo-login-page {
+    margin-top: -150px;
+    margin-bottom: 50px;
+    transform: scale(1.5);
+  }
+`;
 
-
-
-`
-
-export default LoginPage
+export default LoginPage;

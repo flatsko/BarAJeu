@@ -1,17 +1,36 @@
 import { useState } from "react";
-import {
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
 import Navbar from "./navBar/Navbar";
 import Main from "./main/Main";
 import Context from "../../../context/Context";
+import { fakeMenu } from "../../../data/fakeMenu";
+import { toast } from "react-toastify";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
   const [isCollapsed, setIsCollapsed] = useState();
-  const  [currentTabSelected, setCurrentTabSelected] = useState("");
+  const [currentTabSelected, setCurrentTabSelected] = useState("");
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
+
+  const handleDelete = (idTodelete) => {
+    const copyMenu = [...menu];
+    const produitASupprimer = copyMenu.filter((el) => el.id == idTodelete);
+    const cCopyMenu = copyMenu.filter((el) => el.id != idTodelete);
+
+    toast.dark(produitASupprimer[0].title + " supprimé(e)(s)", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    setMenu(cCopyMenu);
+  };
   // toast.success(`🎲 Bienvenue ${username}`, {
   //   position: "top-center",
   //   autoClose: 3000,
@@ -31,7 +50,11 @@ const OrderPage = () => {
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
-  }
+    menu,
+    setMenu,
+    handleDelete,
+  };
+
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>
@@ -65,6 +88,5 @@ const OrderPageStyled = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};
-
   }
 `;

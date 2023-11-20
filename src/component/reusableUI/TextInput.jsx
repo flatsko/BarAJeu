@@ -2,11 +2,12 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function TextInput({ name, Icon, onChange, ...extraProps }) {
+export default function TextInput({ value, Icon, ...extraProps }) {
+  console.log(Icon);
   return (
     <TextInputStyled>
       {Icon && Icon}
-      <input value={name} onChange={onChange} type="text" {...extraProps} />
+      <input value={value} type="text" {...extraProps} />
     </TextInputStyled>
   );
 }
@@ -16,8 +17,8 @@ const TextInputStyled = styled.div`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
-  padding: 15px 24px;
-  margin: 18px 0; // could be handle in Parent too
+  padding: 15px 20px;
+  margin: 5px 0; // could be handle in Parent too
   /* white-space: nowrap; */
 
   input {
