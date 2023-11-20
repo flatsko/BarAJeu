@@ -5,7 +5,7 @@ import { theme } from "../../theme/index";
 export default function TextInput({ value, Icon, onChange, ...extraProps }) {
   return (
     <TextInputStyled>
-      {Icon && Icon}
+      <div className="icon">{Icon && Icon}</div>
       <input value={value} onChange={onChange} type="text" {...extraProps} />
     </TextInputStyled>
   );

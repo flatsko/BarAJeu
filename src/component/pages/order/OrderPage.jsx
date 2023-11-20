@@ -12,6 +12,12 @@ const OrderPage = () => {
   const [isCollapsed, setIsCollapsed] = useState();
   const [currentTabSelected, setCurrentTabSelected] = useState("");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const handleDelete = (idTodelete) => {
+    const copyMenu = [...menu];
+    const cCopyMenu = copyMenu.filter((el) => el.id != idTodelete);
+    console.log(cCopyMenu);
+    setMenu(cCopyMenu);
+  };
   // toast.success(`🎲 Bienvenue ${username}`, {
   //   position: "top-center",
   //   autoClose: 3000,
@@ -33,7 +39,9 @@ const OrderPage = () => {
     setCurrentTabSelected,
     menu,
     setMenu,
+    handleDelete,
   };
+
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>

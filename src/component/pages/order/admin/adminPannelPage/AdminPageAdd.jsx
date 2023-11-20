@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TextInput from "../../../../reusableUI/TextInput";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
+import { CiCircleCheck } from "react-icons/ci";
 import PrimaryButton from "../../../../reusableUI/PrimaryButton";
 import { theme } from "../../../../../theme";
 import { useContext } from "react";
@@ -21,7 +19,7 @@ export default function AdminPageAdd() {
   const { menu, setMenu } = useContext(Context);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const adminAddDat = adminAddData(newProduct);
-
+  const [isAdded, setIsAdded] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct({ ...newProduct, [name]: value });
@@ -31,11 +29,20 @@ export default function AdminPageAdd() {
   const handleAdd = (e) => {
     e.preventDefault();
     // console.log("Good");
+
     newProduct.id = crypto.randomUUID();
     const newMenu = [newProduct, ...menu];
     setMenu(newMenu);
+    console.log("new product : ", newProduct);
+    console.log("new menu : ", newMenu);
+
     setNewProduct(EMPTY_PRODUCT);
+    setIsAdded(true);
+    setTimeout(() => {
+      setIsAdded(false);
+    }, 2000);
   };
+
   console.log(adminAddDat);
   return (
     <AdminPageAddStyled>
@@ -44,19 +51,32 @@ export default function AdminPageAdd() {
       <AddFormStyled onSubmit={handleAdd}>
         {adminAddDat.map((adminTextData) => {
           return (
-            <TextInput
-              key={adminTextData.id}
-              onChange={handleChange}
-              {...adminTextData}
-            ></TextInput>
+            <div className="input">
+              <TextInput
+                key={adminTextData.id}
+                onChange={handleChange}
+                {...adminTextData}
+              ></TextInput>
+            </div>
           );
         })}
-
-        <PrimaryButton
-          className={"e"}
-          //icon={MdOutlineEuro}
-          label={"Ajouter un nouveau produit au menu"}
-        />
+        <div className="endFrame">
+          <PrimaryButton
+            className={"e"}
+            //icon={MdOutlineEuro}
+            label={"Ajouter un nouveau produit au menu"}
+          />
+          <div className="addEvent">
+            {isAdded ? (
+              <div className="Icon">
+                {" "}
+                {<CiCircleCheck />} Ajouté avec succes{" "}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
       </AddFormStyled>
     </AdminPageAddStyled>
   );
@@ -74,7 +94,10 @@ const AdminPageAddStyled = styled.div`
   // justify-items: center;
   align-items: center;
   //align-content: center;
-
+  .endFrame {
+    display: flex;
+    align-items: baseline;
+  }
   .a {
     grid-area: 1 / 1 / 4 / 2;
     max-width: 100%;
@@ -96,10 +119,11 @@ const AdminPageAddStyled = styled.div`
     grid-row-start: 3;
   }
   .e {
+    display: flex;
     grid-area: 4 / 2 / -2 / -1;
     color: ${theme.colors.white};
     background-color: ${theme.colors.green};
-    width: 50%;
+    width: 60%;
     background-color: #60bd4f;
     //margin-left : 0px;
     border-color: ${theme.colors.white};
@@ -109,15 +133,27 @@ const AdminPageAddStyled = styled.div`
     &:hover {
       color: #60bd4f;
       border-color: ${theme.colors.green};
+      cursor: pointer;
     }
   }
 
-  .test {
+  .addEvent {
+    display: flex;
+    color: #60bd4f;
+    margin-left: 10px;
   }
 
   input {
-    width: 50vw;
+    grid-area: 1 / 2 / -2 / 3;
+
     display: grid;
-    align-items: center;
+    grid-row-gap: 8px;
+    width: 40vw;
+  }
+
+  .icon {
+    font-size: ${theme.fonts.P0};
+    margin-right: 8px;
+    color: ${theme.colors.greySemiDark};
   }
 `;

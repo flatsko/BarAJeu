@@ -6,10 +6,15 @@ export default function PrimaryButton({
   label,
   icon,
   className,
+  onClick,
   ...extraProps
 }) {
   return (
-    <StyledPrimaryButton className={className}>
+    <StyledPrimaryButton
+      className={className}
+      onClick={onClick}
+      {...extraProps}
+    >
       <span>{label}</span>
       {icon && icon}
     </StyledPrimaryButton>
