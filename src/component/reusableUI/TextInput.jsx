@@ -2,11 +2,11 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function TextInput({ name, Icon, onChange, ...extraProps }) {
+export default function TextInput({ value, Icon, onChange, ...extraProps }) {
   return (
     <TextInputStyled>
       {Icon && Icon}
-      <input value={name} onChange={onChange} type="text" {...extraProps} />
+      <input value={value} onChange={onChange} type="text" {...extraProps} />
     </TextInputStyled>
   );
 }

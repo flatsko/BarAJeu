@@ -8,81 +8,49 @@ import PrimaryButton from "../../../../reusableUI/PrimaryButton";
 import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import Context from "../../../../../context/Context";
+import { adminAddData } from "./adminAddFormData";
+import ImagePreviewStyled from "./ImagePreview";
+export const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+};
 
 export default function AdminPageAdd() {
-  const [nom, setNom] = useState("");
-  const [image, setImage] = useState("");
-  const [prix, setPrix] = useState("");
-
   const { menu, setMenu } = useContext(Context);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const adminAddDat = adminAddData(newProduct);
 
-  const handleChangeNom = (e) => {
-    setNom(e.target.value);
-    console.log(e);
-  };
-  const handleChangeImage = (e) => {
-    setImage(e.target.value);
-    console.log(e);
-  };
-  const handleChangePrix = (e) => {
-    setPrix(e.target.value);
-    console.log(e);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
+    console.log(newProduct);
   };
 
   const handleAdd = (e) => {
     e.preventDefault();
-    console.log("Good");
-
-    const newProduct = {
-      id: crypto.randomUUID(),
-      imageSource: urlImage,
-      title: nom,
-      price: prix,
-      quantity: "",
-      isAvailable: true,
-      isAdvertised: false,
-    };
-
-    const newMenu = [...menu];
-
-    newMenu.push(newProduct);
+    // console.log("Good");
+    newProduct.id = crypto.randomUUID();
+    const newMenu = [newProduct, ...menu];
     setMenu(newMenu);
+    setNewProduct(EMPTY_PRODUCT);
   };
+  console.log(adminAddDat);
   return (
     <AdminPageAddStyled>
       {/* <img className="a" src={image}></img> */}
-      <div className="a">
-        {image ? (
-          <img className="a" src={image}></img>
-        ) : (
-          <div className="emptyImage">Aucune Image</div>
-        )}
-      </div>
+      <ImagePreviewStyled imageSource={newProduct.imageSource} />
       <AddFormStyled onSubmit={handleAdd}>
-        <TextInput
-          className={"b"}
-          Icon={<FaHamburger />}
-          name={nom}
-          onChange={handleChangeNom}
-          placeHolder="Nom :"
-        ></TextInput>
-        <TextInput
-          className={"c"}
-          Icon={<BsFillCameraFill />}
-          name={image}
-          placeHolder="Url de l'image :"
-          onChange={handleChangeImage}
-        ></TextInput>
-        <TextInput
-          className={"d"}
-          Icon={<MdOutlineEuro />}
-          name={prix}
-          onChange={handleChangePrix}
-          placeHolder="Prix : "
-          onClick={(e) => {
-            e.target.value = "";
-          }}
-        ></TextInput>
+        {adminAddDat.map((adminTextData) => {
+          return (
+            <TextInput
+              key={adminTextData.id}
+              onChange={handleChange}
+              {...adminTextData}
+            ></TextInput>
+          );
+        })}
 
         <PrimaryButton
           className={"e"}
@@ -135,27 +103,15 @@ const AdminPageAddStyled = styled.div`
     background-color: #60bd4f;
     //margin-left : 0px;
     border-color: ${theme.colors.white};
-    
+
     align-items: center;
-  
+
     &:hover {
       color: #60bd4f;
       border-color: ${theme.colors.green};
-
     }
   }
 
-  .emptyImage {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid ${theme.colors.greyLight};
-    line-height: 1.5;
-    color: ${theme.colors.greySemiDark};
-    border-radius: ${theme.borderRadius.round};
-  }
   .test {
   }
 
@@ -163,5 +119,5 @@ const AdminPageAddStyled = styled.div`
     width: 50vw;
     display: grid;
     align-items: center;
-
+  }
 `;
