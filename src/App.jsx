@@ -36,7 +36,7 @@ const StyledApp = styled.div`
   margin: 0 auto;
   text-align: center;
   font-family: "Open Sans", sans-serif;
-  background-color: ${theme.colors.primary};
+
   margin: 0;
   display: flex;
   flex-wrap: wrap;
@@ -45,7 +45,7 @@ const StyledApp = styled.div`
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-
+  background-color: antiquewhite;
   @keyframes logo-spin {
     from {
       transform: rotate(0deg);

@@ -7,7 +7,7 @@ import PrimaryButton from "../../reusableUI/PrimaryButton";
 import { theme } from "../../../theme/index";
 import styles from "@openfonts/amatic-sc_all/index.css";
 import TextInput from "../../reusableUI/TextInput";
-import { BsPersonCircle as Log } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
 import React from "react";
 
 function Login() {
@@ -32,32 +32,30 @@ function Login() {
   };
   //Affichage
   return (
-    <div>
-      <LoginStyled action="submit" onSubmit={handleSubmit}>
-        <div>
-          <h1>Bienvenue !</h1>
+    <LoginStyled action="submit" onSubmit={handleSubmit}>
+      <div>
+        <h1>Bienvenue chez nous ! </h1>
 
-          <hr />
-          <h2>Connectez Vous</h2>
-          <div className="inputForm">
-            <TextInput
-              onChange={handleChange}
-              placeholder="Entrez votre prénom"
-              value={name}
-              icon={<Log className="icon" />}
-            />
-            <PrimaryButton label={"Acceder à mon espace"} icon={<Arrow />} />
-          </div>
+        <hr />
+        <h2>Connectez Vous</h2>
+        <div className="inputForm">
+          <TextInput
+            onChange={handleChange}
+            placeholder="Entrez votre prénom"
+            value={name}
+            Icon={<BsPersonCircle className="icon" />}
+            className="textInput"
+          />
+          <PrimaryButton label={"Acceder à mon espace"} icon={<Arrow />} />
         </div>
-      </LoginStyled>
-    </div>
+      </div>
+    </LoginStyled>
   );
 }
 
 const LoginStyled = styled.form`
   font-family: "Amatic SC", cursive;
 
-  background-color: ${theme.colors.background_dark};
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -89,15 +87,18 @@ const LoginStyled = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 80%;
+    width: 270px;
     font-size: ${theme.fonts.P0};
     font-family: "Open Sans", sans-serif;
   }
-
+  .textInput {
+    width: 200px;
+  }
   .icon {
     font-size: ${theme.fonts.P0};
     margin-right: 8px;
     color: ${theme.colors.greySemiDark};
+
     /* min-width: 1em; // that way, the icon size is NOT affected by width of the entire component. */
   }
 `;

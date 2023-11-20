@@ -4,14 +4,13 @@ import styles from "@openfonts/amatic-sc_all/index.css";
 import { theme } from "../../theme";
 import { Link } from "react-router-dom";
 
-export default function Logo({className, onClick}) {
-  console.log(onClick)
+export default function Logo({ className, onClick }) {
+  console.log(onClick);
   return (
     <StyledLogo className={className} onClick={onClick}>
-        
-        <h1>Meeple</h1>
-        <img className="logo" src="/images/logo.png"/>
-        <h1>Adventure</h1>
+      <h1>CRAZEE</h1>
+      <img className="logo" src="/images/logo-orange.png" />
+      <h1>BURGER</h1>
     </StyledLogo>
   );
 }
@@ -27,7 +26,8 @@ const StyledLogo = styled.div`
 
   h1 {
     font-family: "Amatic SC", cursive;
-    color: ${theme.colors.primary}
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.P6};
   }
 
   .logo {

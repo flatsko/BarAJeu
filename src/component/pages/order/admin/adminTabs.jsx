@@ -16,42 +16,41 @@ export default function AdminTabs() {
   } = useContext(Context);
 
   const selectTab = (tabSelected) => {
-   console.log(tabSelected);
     setIsCollapsed(true);
     setCurrentTabSelected(tabSelected);
-    
   };
-
 
   const handleClickIcon = (e) => {
-    console.log("ok")
     setIsCollapsed(!isCollapsed);
     //console.log(isCollapsed);
-    
   };
-
 
   return (
     <AdminTabsStyled>
       <div className="buttonPanel">
         {isCollapsed ? (
-          <AdminTab Icon={<FiChevronDown />} handleClickButton={() => handleClickIcon()} />
-          ) : (
-            <AdminTab Icon={<FiChevronsUp />} size={35} handleClickButton={() => handleClickIcon()} />
-            )}
+          <AdminTab
+            Icon={<FiChevronDown />}
+            handleClickButton={() => handleClickIcon()}
+          />
+        ) : (
+          <AdminTab
+            Icon={<FiChevronsUp />}
+            size={35}
+            handleClickButton={() => handleClickIcon()}
+          />
+        )}
         {adminTabs.map(({ index, title, showLabel, Icon }) => {
           return (
-            
-              <AdminTab
-                key={index}
-                handleClickButton={() => selectTab(title)}
-                Icon={Icon}
-                showLabel={showLabel}
-                title={title}
-                isLabelShow={isLabelShow}
-                className={currentTabSelected === title ? "affiche" : "ko"}
-              />
-            
+            <AdminTab
+              key={index}
+              handleClickButton={() => selectTab(title)}
+              Icon={Icon}
+              showLabel={showLabel}
+              title={title}
+              isLabelShow={isLabelShow}
+              className={currentTabSelected === title ? "affiche" : "ko"}
+            />
           );
         })}
       </div>
@@ -59,19 +58,18 @@ export default function AdminTabs() {
   );
 }
 const AdminTabsStyled = styled.div`
- 
- display: flex;
-justify-content:flex-start;
+  display: flex;
+  justify-content: flex-start;
   left: 5%;
-  
+
   .buttonPanel {
-   // display: flex;
-   // flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
     //padding-left: 10px;
     //align-items: center;
-   // border-radius: ${theme.borderRadius.extraRound};
-   // border: 2px;
-   // box-shadow: ${theme.shadows.subtle};
+    // border-radius: ${theme.borderRadius.extraRound};
+    // border: 2px;
+    // box-shadow: ${theme.shadows.subtle};
 
     & :hover {
       cursor: pointer;
@@ -79,19 +77,17 @@ justify-content:flex-start;
     }
   }
 
-  .affiche{
+  .affiche {
     background-color: ${theme.colors.background_dark};
     color: ${theme.colors.background_white};
     border-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
-
   }
-   .icon {
-position:relative;
-display:contents;
-
-  } 
-    button {
+  .icon {
+    position: relative;
+    display: contents;
+  }
+  button {
     margin-left: 1px;
   }
 `;
