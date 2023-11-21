@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { theme } from "../../theme/index";
 
 export default function TextInput({ value, Icon, ...extraProps }) {
-  console.log(Icon);
+  // console.log(Icon);
   return (
     <TextInputStyled>
       {Icon && Icon}

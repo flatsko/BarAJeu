@@ -14,7 +14,30 @@ export default function Menu() {
 
   // const [menu, setMenu] = useState(fakeMenu.LARGE);
   let { menu, setMenu, isModeAdmin, handleDelete } = useContext(Context);
+  let { productIdToModify: productIndexToModify, setProductIdToModify } =
+    useContext(Context);
 
+  function handleClick(id) {
+    const copyMenu = [...menu];
+    console.log(copyMenu);
+    console.log("before" + productIndexToModify);
+
+    productIndexToModify || productIndexToModify === 0
+      ? (copyMenu[productIndexToModify].isSelected = false)
+      : "";
+    //Set Selecte
+    copyMenu[[getProductIndexById(id)]].isSelected = true;
+    setMenu(copyMenu);
+    setProductIdToModify(getProductIndexById(id));
+    console.log("after" + productIndexToModify);
+    console.log(copyMenu[getProductIndexById(productIndexToModify)]);
+
+    // witchCardCssID(selectedProduct);
+  }
+
+  const getProductIndexById = (id) => {
+    return menu.map((el) => el.id).indexOf(id);
+  };
   const resetMenu = () => {
     setMenu(fakeMenu.LARGE);
   };
@@ -26,21 +49,32 @@ export default function Menu() {
       <MenuEmptyClient />
     );
   }
+
   return (
     <MenuStyles>
-      {menu.map(({ id, title, imageSource, price, isAvailable }) => {
-        return (
-          <Card
-            key={id}
-            imageSource={imageSource}
-            title={title}
-            leftDescription={formatPrice(price)}
-            isAvailable={isAvailable}
-            showDeleteButton={isModeAdmin}
-            onDelete={() => handleDelete(id)}
-          />
-        );
-      })}
+      {menu.map(
+        ({ id, title, imageSource, price, isAvailable, isSelected }) => {
+          return (
+            <Card
+              key={id}
+              imageSource={imageSource}
+              title={title}
+              leftDescription={formatPrice(price)}
+              isAvailable={isAvailable}
+              showDeleteButton={isModeAdmin}
+              onDelete={() => handleDelete(id)}
+              onClick={isModeAdmin ? () => handleClick(id) : () => {}}
+              className={
+                !isModeAdmin
+                  ? "produit"
+                  : !isSelected
+                  ? "produit-admin"
+                  : "produit-admin-selected"
+              }
+            />
+          );
+        }
+      )}
     </MenuStyles>
   );
 }
@@ -55,4 +89,51 @@ const MenuStyles = styled.div`
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow-y: scroll;
+
+  .produit-admin:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    transition-duration: 0.5s;
+    background-color: ${theme.colors.primary};
+    cursor: pointer;
+    .primary-button {
+      background-color: ${theme.colors.background_white};
+      color: ${theme.colors.primary};
+    }
+    .primary-button:hover {
+      border-color: ${theme.colors.background_white};
+      color: ${theme.colors.background_white};
+      background-color: ${theme.colors.primary};
+    }
+    .text-info .description .left-description {
+      color: ${theme.colors.background_white};
+    }
+    .deleteButton {
+      color: ${theme.colors.background_white};
+    }
+  }
+  .produit-admin:target {
+    cursor: pointer-events;
+  }
+
+  .produit-admin-selected {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    transition-duration: 0.5s;
+    background-color: ${theme.colors.primary};
+    cursor: pointer;
+    .primary-button {
+      background-color: ${theme.colors.background_white};
+      color: ${theme.colors.primary};
+    }
+    .primary-button:hover {
+      border-color: ${theme.colors.background_white};
+      color: ${theme.colors.background_white};
+      background-color: ${theme.colors.primary};
+    }
+    .text-info .description .left-description {
+      color: ${theme.colors.background_white};
+    }
+    .deleteButton {
+      color: ${theme.colors.background_white};
+    }
+  }
 `;

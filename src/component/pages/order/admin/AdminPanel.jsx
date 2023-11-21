@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
-import "./AdminTabsData";
 import { theme } from "../../../../theme";
 import Context from "../../../../context/Context";
-import { adminTabs, getSelectedTab } from "./AdminTabsData";
+import { adminTabs, getSelectedTab } from "./adminTabsData";
 export default function AdminPanel() {
   const { currentTabSelected, isCollapsed } = useContext(Context);
 
@@ -12,7 +11,6 @@ export default function AdminPanel() {
   return (
     <AdminPanelStyled className={isCollapsed}>
       {tabSelected && tabSelected.link}
-      {console.log(tabSelected)}
     </AdminPanelStyled>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { adminTabs, getSelectedTab } from "./AdminTabsData";
+import { adminTabs, getSelectedTab } from "./adminTabsData";
 import AdminTab from "../../../reusableUI/AdminTab";
 import { FiChevronDown, FiChevronUp, FiChevronsUp } from "react-icons/fi";
 import { styled } from "styled-components";

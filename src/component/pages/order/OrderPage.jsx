@@ -12,6 +12,7 @@ const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
   const [isCollapsed, setIsCollapsed] = useState();
   const [currentTabSelected, setCurrentTabSelected] = useState("");
+  const [productIdToModify, setProductIdToModify] = useState();
   const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   const handleDelete = (idTodelete) => {
@@ -53,6 +54,8 @@ const OrderPage = () => {
     menu,
     setMenu,
     handleDelete,
+    productIdToModify,
+    setProductIdToModify,
   };
 
   return (

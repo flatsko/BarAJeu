@@ -20,10 +20,10 @@ export default function AdminPageAdd() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const adminAddDat = adminAddData(newProduct);
   const [isAdded, setIsAdded] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct({ ...newProduct, [name]: value });
-    console.log(newProduct);
   };
 
   const handleAdd = (e) => {

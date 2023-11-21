@@ -10,35 +10,35 @@ export default function Card({
   leftDescription,
   showDeleteButton,
   onDelete,
+  className,
+  ...extraProps
 }) {
   return (
-    <div>
-      <CardStyled className="produit">
-        {showDeleteButton ? (
-          <button onClick={onDelete} className="deleteButton">
-            <TiDelete className="icon" />
-          </button>
-        ) : (
-          ""
-        )}
+    <CardStyled className={className ? className : "produit"} {...extraProps}>
+      {showDeleteButton ? (
+        <button onClick={onDelete} className="deleteButton">
+          <TiDelete className="icon" />
+        </button>
+      ) : (
+        ""
+      )}
 
-        <div className="image">
-          <img
-            src={imageSource ? imageSource : DEFAULT_IMAGE_SOURCE}
-            alt={title}
-          />
-        </div>
-        <div className="text-info">
-          <div className="title">{title}</div>
-          <div className="description">
-            <div className="left-description">{leftDescription}</div>
-            <div className="right-description">
-              <PrimaryButton className="primary-button" label={"Ajouter"} />
-            </div>
+      <div className="image">
+        <img
+          src={imageSource ? imageSource : DEFAULT_IMAGE_SOURCE}
+          alt={title}
+        />
+      </div>
+      <div className="text-info">
+        <div className="title">{title}</div>
+        <div className="description">
+          <div className="left-description">{leftDescription}</div>
+          <div className="right-description">
+            <PrimaryButton className="primary-button" label={"Ajouter"} />
           </div>
         </div>
-      </CardStyled>
-    </div>
+      </div>
+    </CardStyled>
   );
 }
 
