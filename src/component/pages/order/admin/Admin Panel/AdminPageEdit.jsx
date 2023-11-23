@@ -5,57 +5,103 @@ import { useContext } from "react";
 import Context from "../../../../../context/Context";
 import { adminAddData } from "./adminAddFormData";
 import TextInput from "../../../../reusableUI/TextInput";
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
+import { EMPTY_PRODUCT } from "../../../../../enum/products";
+import ImagePreviewStyled from "./ImagePreview";
+import HintMessage from "./HintMessage.jsx";
+import { theme } from "../../../../../theme/index.js";
+import AdminFields from "../../../../reusableUI/AdminFields.jsx";
 export default function AdminPageEdit() {
-  let { menu, productIdToModify } = useContext(Context);
-  const [adminAddDat, setAdminAddDat] = useState(
-    adminAddData(
-      productIdToModify || productIdToModify === 0
-        ? menu[productIdToModify]
-        : EMPTY_PRODUCT
-    )
-  );
-  const [newProduct, setNewProduct] = useState(
-    productIdToModify || productIdToModify === 0
-      ? menu[productIdToModify]
-      : EMPTY_PRODUCT
+  let { menu, setMenu, productToModify, setProductToModify } =
+    useContext(Context);
+  const inputText = adminAddData(
+    productToModify ? productToModify : EMPTY_PRODUCT
   );
 
   const handleChange = (e) => {
+    console.log(productToModify);
     const { name, value } = e.target;
-    console.log(e.target);
-    setAdminAddDat({ ...newProduct, [name]: value });
+
+    const productBeingEdited = { ...productToModify, [name]: value }; //lié au menu
+
+    setProductToModify({ ...productToModify, [name]: value }); //Lié au formulaire
+
+    let copyMenu = [...menu];
+
+    copyMenu[copyMenu.findIndex((el) => el.id === productBeingEdited.id)] =
+      productBeingEdited;
+
+    setMenu(copyMenu);
   };
   return (
     <AdminPageEditStyled>
-      {productIdToModify || productIdToModify === 0
-        ? adminAddDat.map((adminTextData) => {
-            // console.log("AdminText DATA" + adminTextData);
-            // console.log(menu[Number(productIdToModify)]);
-            //  console.log(productIdToModify);
-            // console.log(adminTextData.name);
-            //console.log(menu[productIdToModify]);
-            return (
-              <div className="input">
-                <TextInput
-                  key={adminTextData.id}
-                  onChange={handleChange}
-                  className="inputText"
-                  {...adminTextData}
-                ></TextInput>
-              </div>
-            );
-          })
-        : "Selectionne quelque chose" + productIdToModify}
-
-      <HiCursorClick></HiCursorClick>
+      <div>
+        {productToModify ? (
+          <div className="gridDiv">
+            {" "}
+            <ImagePreviewStyled
+              imageSource={productToModify.imageSource}
+            />{" "}
+            <div className="inputFo">
+              <AdminFields fields={inputText} handleChange={handleChange} />}
+            </div>
+          </div>
+        ) : (
+          <HintMessage />
+        )}
+      </div>
     </AdminPageEditStyled>
   );
 }
 
-const AdminPageEditStyled = styled.div``;
+const AdminPageEditStyled = styled.div`
+  .gridDiv {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1.7fr;
+    grid-template-rows: 0.4fr 0.4fr 0.4fr 1.9fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "imagePrev imagePrev input1"
+      "imagePrev imagePrev input2"
+      "imagePrev imagePrev input3"
+      ". . .";
+  }
+  .imagePrev {
+    grid-area: imagePrev;
+  }
+  .input1 {
+    grid-area: input1;
+  }
+  .input2 {
+    grid-area: input2;
+  }
+  .input3 {
+    grid-area: input3;
+  }
+
+  input {
+    //grid-area: 2 / 2 / -2 / 3;
+    width: 50vw;
+  }
+  .inputFo {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 20px;
+    // grid-row-gap: 8px;
+    position: relative;
+  }
+  .icon {
+    font-size: ${theme.fonts.P0};
+    padding-left: 5px;
+    color: ${theme.colors.greySemiDark};
+    position: absolute;
+    z-index: 100;
+  }
+  .inputText {
+    padding-left: 30px;
+  }
+`;

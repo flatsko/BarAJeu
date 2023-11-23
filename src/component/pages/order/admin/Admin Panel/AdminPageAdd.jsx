@@ -8,12 +8,8 @@ import { useContext } from "react";
 import Context from "../../../../../context/Context";
 import { adminAddData } from "./adminAddFormData";
 import ImagePreviewStyled from "./ImagePreview";
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
+import { EMPTY_PRODUCT } from "../../../../../enum/products";
+import AdminFields from "../../../../reusableUI/AdminFields";
 
 export default function AdminPageAdd() {
   const { menu, setMenu } = useContext(Context);
@@ -46,18 +42,7 @@ export default function AdminPageAdd() {
       {/* <img className="a" src={image}></img> */}
       <ImagePreviewStyled imageSource={newProduct.imageSource} />
       <AddFormStyled onSubmit={handleAdd}>
-        {adminAddDat.map((adminTextData) => {
-          return (
-            <div className="input">
-              <TextInput
-                key={adminTextData.id}
-                onChange={handleChange}
-                className="inputText"
-                {...adminTextData}
-              ></TextInput>
-            </div>
-          );
-        })}
+        <AdminFields fields={adminAddDat} handleChange={handleChange} />
         <div className="endFrame">
           <PrimaryButton
             className={"submitButton"}
@@ -95,26 +80,6 @@ const AdminPageAddStyled = styled.div`
   .endFrame {
     display: flex;
     align-items: baseline;
-  }
-  .a {
-    grid-area: 1 / 1 / 4 / 2;
-    max-width: 100%;
-    //margin: 5px;
-    // align-content: center;
-  }
-  .b {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    margin: 0px;
-  }
-  .c {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    margin: 0px;
-  }
-  .d {
-    grid-column-start: 2;
-    grid-row-start: 3;
   }
   .submitButton {
     display: flex;

@@ -14,25 +14,10 @@ export default function Menu() {
 
   // const [menu, setMenu] = useState(fakeMenu.LARGE);
   let { menu, setMenu, isModeAdmin, handleDelete } = useContext(Context);
-  let { productIdToModify: productIndexToModify, setProductIdToModify } =
-    useContext(Context);
+  let { productToModify, setProductToModify } = useContext(Context);
 
   function handleClick(id) {
-    const copyMenu = [...menu];
-    console.log(copyMenu);
-    console.log("before" + productIndexToModify);
-
-    productIndexToModify || productIndexToModify === 0
-      ? (copyMenu[productIndexToModify].isSelected = false)
-      : "";
-    //Set Selecte
-    copyMenu[[getProductIndexById(id)]].isSelected = true;
-    setMenu(copyMenu);
-    setProductIdToModify(getProductIndexById(id));
-    console.log("after" + productIndexToModify);
-    console.log(copyMenu[getProductIndexById(productIndexToModify)]);
-
-    // witchCardCssID(selectedProduct);
+    setProductToModify(menu[getProductIndexById(id)]);
   }
 
   const getProductIndexById = (id) => {
@@ -63,7 +48,7 @@ export default function Menu() {
               isAvailable={isAvailable}
               showDeleteButton={isModeAdmin}
               onDelete={() => handleDelete(id)}
-              onClick={isModeAdmin ? () => handleClick(id) : () => {}}
+              onClick={() => handleClick(id)}
               className={
                 !isModeAdmin
                   ? "produit"

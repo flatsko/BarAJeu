@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import TextInput from "./TextInput";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -8,12 +9,10 @@ export const EMPTY_PRODUCT = {
   price: 0,
 };
 
-export default function AdminFields() {
+export default function AdminFields({ fields, handleChange }) {
   return (
     <AdminFieldsStyled>
-    <ImagePreviewStyled imageSource={newProduct.imageSource} />
-    <AddFormStyled onSubmit={handleAdd}>
-      {adminAddDat.map((adminTextData) => {
+      {fields.map((adminTextData) => {
         return (
           <div className="input">
             <TextInput
@@ -25,7 +24,7 @@ export default function AdminFields() {
           </div>
         );
       })}
-      </AdminFieldsStyled>
+    </AdminFieldsStyled>
   );
 }
 const AddFormStyled = styled.form``;

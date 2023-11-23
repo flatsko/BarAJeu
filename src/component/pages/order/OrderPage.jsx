@@ -7,12 +7,13 @@ import Main from "./main/Main";
 import Context from "../../../context/Context";
 import { fakeMenu } from "../../../data/fakeMenu";
 import { toast } from "react-toastify";
+import { EMPTY_PRODUCT } from "../../reusableUI/AdminFields";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
   const [isCollapsed, setIsCollapsed] = useState();
   const [currentTabSelected, setCurrentTabSelected] = useState("");
-  const [productIdToModify, setProductIdToModify] = useState();
+  const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   const handleDelete = (idTodelete) => {
@@ -31,6 +32,12 @@ const OrderPage = () => {
       theme: "dark",
     });
     setMenu(cCopyMenu);
+  };
+
+  const handleEdit = (idToEdit) => {
+    const copyMenu = JSON.parse(JSON.stringify(menu));
+
+    copyMenu[idToEdit] = setMenu(CopyMenu);
   };
   // toast.success(`🎲 Bienvenue ${username}`, {
   //   position: "top-center",
@@ -54,8 +61,8 @@ const OrderPage = () => {
     menu,
     setMenu,
     handleDelete,
-    productIdToModify,
-    setProductIdToModify,
+    productToModify,
+    setProductToModify,
   };
 
   return (

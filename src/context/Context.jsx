@@ -16,6 +16,6 @@ export default createContext({
   //handleAdd: () => {},
   handleDelete: () => {},
 
-  productIdToModify: "",
-  setProductIdToModify: () => {},
+  productToModify: "",
+  setProductToModify: () => {},
 });
