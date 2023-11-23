@@ -9,6 +9,7 @@ import { useContext } from "react";
 import Context from "../../../../context/Context";
 import MenuEmptyAdmin from "./MenuEmptyAdmin";
 import MenuEmptyClient from "./MenuEmptyClient";
+import { deepClone } from "../../../../utils/array";
 export default function Menu() {
   // const menu1 = useContext(Context);
 
@@ -19,7 +20,9 @@ export default function Menu() {
   function handleClick(id) {
     setProductToModify(menu[getProductIndexById(id)]);
   }
-
+  const checkIfProductIsClicked = (idProductMenu, idProductClickedOn) => {
+    return idProductMenu === idProductClickedOn;
+  };
   const getProductIndexById = (id) => {
     return menu.map((el) => el.id).indexOf(id);
   };
@@ -49,13 +52,15 @@ export default function Menu() {
               showDeleteButton={isModeAdmin}
               onDelete={() => handleDelete(id)}
               onClick={() => handleClick(id)}
-              className={
-                !isModeAdmin
-                  ? "produit"
-                  : !isSelected
-                  ? "produit-admin"
-                  : "produit-admin-selected"
-              }
+              isHoverable={isModeAdmin}
+              isSelected={checkIfProductIsClicked(id, productToModify.id)}
+              // className={
+              //   !isModeAdmin
+              //     ? "produit"
+              //     : !isSelected
+              //     ? "produit-admin"
+              //     : "produit-admin-selected"
+              // }
             />
           );
         }
@@ -75,7 +80,7 @@ const MenuStyles = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow-y: scroll;
 
-  .produit-admin:hover {
+  /* .produit-admin:hover {
     transform: translateY(-5px) scale(1.005) translateZ(0);
     transition-duration: 0.5s;
     background-color: ${theme.colors.primary};
@@ -95,8 +100,8 @@ const MenuStyles = styled.div`
     .deleteButton {
       color: ${theme.colors.background_white};
     }
-  }
-  .produit-admin:target {
+  } */
+  /* .produit-admin:target {
     cursor: pointer-events;
   }
 
@@ -119,6 +124,5 @@ const MenuStyles = styled.div`
     }
     .deleteButton {
       color: ${theme.colors.background_white};
-    }
-  }
+    } */
 `;

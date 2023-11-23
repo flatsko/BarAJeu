@@ -10,6 +10,7 @@ import ImagePreviewStyled from "./ImagePreview";
 import HintMessage from "./HintMessage.jsx";
 import { theme } from "../../../../../theme/index.js";
 import AdminFields from "../../../../reusableUI/AdminFields.jsx";
+import { deepClone } from "../../../../../utils/array.jsx";
 export default function AdminPageEdit() {
   let { menu, setMenu, productToModify, setProductToModify } =
     useContext(Context);
@@ -25,7 +26,7 @@ export default function AdminPageEdit() {
 
     setProductToModify({ ...productToModify, [name]: value }); //Lié au formulaire
 
-    let copyMenu = [...menu];
+    let copyMenu = deepClone(menu);
 
     copyMenu[copyMenu.findIndex((el) => el.id === productBeingEdited.id)] =
       productBeingEdited;
@@ -42,7 +43,7 @@ export default function AdminPageEdit() {
               imageSource={productToModify.imageSource}
             />{" "}
             <div className="inputFo">
-              <AdminFields fields={inputText} handleChange={handleChange} />}
+              <AdminFields fields={inputText} handleChange={handleChange} />
             </div>
           </div>
         ) : (
