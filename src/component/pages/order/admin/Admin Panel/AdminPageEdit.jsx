@@ -13,13 +13,23 @@ export const EMPTY_PRODUCT = {
 };
 export default function AdminPageEdit() {
   let { menu, productIdToModify } = useContext(Context);
-  const adminAddDat = adminAddData(menu[productIdToModify]);
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [adminAddDat, setAdminAddDat] = useState(
+    adminAddData(
+      productIdToModify || productIdToModify === 0
+        ? menu[productIdToModify]
+        : EMPTY_PRODUCT
+    )
+  );
+  const [newProduct, setNewProduct] = useState(
+    productIdToModify || productIdToModify === 0
+      ? menu[productIdToModify]
+      : EMPTY_PRODUCT
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(e.target);
-    setNewProduct({ ...newProduct, [name]: value });
+    setAdminAddDat({ ...newProduct, [name]: value });
   };
   return (
     <AdminPageEditStyled>
