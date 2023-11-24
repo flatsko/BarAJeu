@@ -61,7 +61,8 @@ export default function AdminTabs() {
 const AdminTabsStyled = styled.div`
   display: flex;
   justify-content: flex-start;
-  left: 5%;
+  left: 15%;
+  margin-left: 50px;
 
   .buttonPanel {
     // display: flex;

@@ -8,6 +8,7 @@ import HintMessage from "./HintMessage.jsx";
 import { theme } from "../../../../../theme/index.js";
 import AdminFields from "../../../../reusableUI/AdminFields.jsx";
 import { deepClone } from "../../../../../utils/array.jsx";
+import EditInfoMessage from "./EditInfoMessage.jsx";
 export default function AdminPageEdit() {
   let { menu, setMenu, productToModify, setProductToModify, titleEditRef } =
     useContext(Context);
@@ -30,28 +31,17 @@ export default function AdminPageEdit() {
 
     setMenu(copyMenu);
   };
+
   return (
     <AdminPageEditStyled>
-      <div>
-        <div className="gridDiv">
-          {" "}
-          <ImagePreviewStyled imageSource={productToModify.imageSource} />{" "}
-          <div className="inputFo">
-            <AdminFields
-              fields={inputText}
-              onChange={handleChange}
-              ref={titleEditRef}
-              children={
-                <div style={{ color: "orange", padding: "20px" }}>
-                  Cliquer sur un produit du menu pour le modifier
-                  <ins> en temps réel</ins>
-                </div>
-              }
-            />
-          </div>
-        </div>
-        <HintMessage />)
-      </div>
+      <AdminFields
+        product={productToModify}
+        fields={inputText}
+        onChange={handleChange}
+        ref={titleEditRef}
+      >
+        <EditInfoMessage />
+      </AdminFields>
     </AdminPageEditStyled>
   );
 }
