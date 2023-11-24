@@ -36,23 +36,24 @@ export default function AdminPageEdit() {
   return (
     <AdminPageEditStyled>
       <div>
-        {productToModify ? (
-          <div className="gridDiv">
-            {" "}
-            <ImagePreviewStyled
-              imageSource={productToModify.imageSource}
-            />{" "}
-            <div className="inputFo">
-              <AdminFields
-                fields={inputText}
-                handleChange={handleChange}
-                ref={titleEditRef}
-              />
-            </div>
+        <div className="gridDiv">
+          {" "}
+          <ImagePreviewStyled imageSource={productToModify.imageSource} />{" "}
+          <div className="inputFo">
+            <AdminFields
+              fields={inputText}
+              onChange={handleChange}
+              ref={titleEditRef}
+              children={
+                <div style={{ color: "orange", padding: "20px" }}>
+                  Cliquer sur un produit du menu pour le modifier
+                  <ins> en temps réel</ins>
+                </div>
+              }
+            />
           </div>
-        ) : (
-          <HintMessage />
-        )}
+        </div>
+        <HintMessage />)
       </div>
     </AdminPageEditStyled>
   );

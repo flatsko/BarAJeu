@@ -3,8 +3,10 @@ import { FiChevronsDown } from "react-icons/fi";
 import { MdModeEditOutline } from "react-icons/md";
 import AdminPageAdd from "./Admin Panel/AdminPageAdd";
 import AdminPageEdit from "./Admin Panel/AdminPageEdit";
+import HintMessage from "./Admin Panel/HintMessage";
+import { EMPTY_PRODUCT } from "../../../../enum/products";
 
-export const adminTabs = [
+export const adminTabs = (hasAProductClicked) => [
   {
     id: 1,
     index: "add",
@@ -20,7 +22,7 @@ export const adminTabs = [
     Icon: <MdModeEditOutline />,
     title: "Modifier les produits",
     showLabel: "modProduct",
-    link: <AdminPageEdit />,
+    link: hasAProductClicked ? <AdminPageEdit /> : <HintMessage />,
   },
 ];
 

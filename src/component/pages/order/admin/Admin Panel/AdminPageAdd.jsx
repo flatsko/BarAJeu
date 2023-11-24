@@ -26,8 +26,8 @@ export default function AdminPageAdd() {
     e.preventDefault();
     // console.log("Good");
 
-    newProduct.id = crypto.randomUUID();
-    const newMenu = [newProduct, ...menu];
+    const newProductToAdd = { ...newProduct, id: crypto.randomUUID() };
+    const newMenu = [newProductToAdd, ...menu];
     setMenu(newMenu);
     setNewProduct(EMPTY_PRODUCT);
     setIsAdded(true);
@@ -36,30 +36,17 @@ export default function AdminPageAdd() {
     }, 2000);
   };
 
-  console.log(adminAddDat);
   return (
     <AdminPageAddStyled>
       {/* <img className="a" src={image}></img> */}
       <ImagePreviewStyled imageSource={newProduct.imageSource} />
       <AddFormStyled onSubmit={handleAdd}>
-        <AdminFields fields={adminAddDat} handleChange={handleChange} />
-        <div className="endFrame">
-          <PrimaryButton
-            className={"submitButton"}
-            //icon={MdOutlineEuro}
-            label={"Ajouter un nouveau produit au menu"}
-          />
-          <div className="addEvent">
-            {isAdded ? (
-              <div className="Icon">
-                {" "}
-                {<CiCircleCheck />} Ajouté avec succes{" "}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
+        <AdminFields
+          fields={adminAddDat}
+          onChange={handleChange}
+          onSubmit={handleAdd}
+          isAdded={isAdded}
+        />
       </AddFormStyled>
     </AdminPageAddStyled>
   );

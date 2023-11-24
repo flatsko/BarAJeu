@@ -8,13 +8,14 @@ import Context from "../../../../context/Context";
 
 export default function AdminTabs() {
   const [isLabelShow, seIsLabelShow] = useState("");
+  let { productToModify } = useContext(Context);
   const {
     isCollapsed,
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
   } = useContext(Context);
-
+  const tabs = adminTabs(productToModify);
   const selectTab = (tabSelected) => {
     setIsCollapsed(true);
     setCurrentTabSelected(tabSelected);
@@ -40,7 +41,7 @@ export default function AdminTabs() {
             handleClickButton={() => handleClickIcon()}
           />
         )}
-        {adminTabs.map(({ index, title, showLabel, Icon }) => {
+        {tabs.map(({ index, title, showLabel, Icon }) => {
           return (
             <AdminTab
               key={index}

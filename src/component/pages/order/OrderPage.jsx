@@ -7,7 +7,7 @@ import Main from "./main/Main";
 import Context from "../../../context/Context";
 import { fakeMenu } from "../../../data/fakeMenu";
 import { toast } from "react-toastify";
-import { EMPTY_PRODUCT } from "../../reusableUI/AdminFields";
+import { EMPTY_PRODUCT } from "../../../enum/products";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();

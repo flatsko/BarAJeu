@@ -3,10 +3,12 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Context from "../../../../context/Context";
 import { adminTabs, getSelectedTab } from "./adminTabsData";
+import { EMPTY_PRODUCT } from "../../../../enum/products";
 export default function AdminPanel() {
-  const { currentTabSelected, isCollapsed } = useContext(Context);
+  const { currentTabSelected, isCollapsed, productToModify } =
+    useContext(Context);
 
-  const tabs = adminTabs;
+  const tabs = adminTabs(productToModify !== EMPTY_PRODUCT);
   const tabSelected = getSelectedTab(tabs, currentTabSelected);
   return (
     <AdminPanelStyled className={isCollapsed}>
