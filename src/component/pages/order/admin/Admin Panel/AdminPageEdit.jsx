@@ -1,10 +1,7 @@
-import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { HiCursorClick } from "react-icons/hi";
 import { useContext } from "react";
 import Context from "../../../../../context/Context";
 import { adminAddData } from "./adminAddFormData";
-import TextInput from "../../../../reusableUI/TextInput";
 import { EMPTY_PRODUCT } from "../../../../../enum/products";
 import ImagePreviewStyled from "./ImagePreview";
 import HintMessage from "./HintMessage.jsx";

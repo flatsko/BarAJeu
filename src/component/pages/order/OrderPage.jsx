@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
 import Navbar from "./navBar/Navbar";
