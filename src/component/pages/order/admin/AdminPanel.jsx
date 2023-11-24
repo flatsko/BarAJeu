@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
-import "./AdminTabsData";
 import { theme } from "../../../../theme";
 import Context from "../../../../context/Context";
-import { adminTabs, getSelectedTab } from "./AdminTabsData";
+import { adminTabs, getSelectedTab } from "./adminTabsData";
+import { EMPTY_PRODUCT } from "../../../../enum/products";
 export default function AdminPanel() {
-  const { currentTabSelected, isCollapsed } = useContext(Context);
+  const { currentTabSelected, isCollapsed, productToModify } =
+    useContext(Context);
 
-  const tabs = adminTabs;
+  const tabs = adminTabs(productToModify !== EMPTY_PRODUCT);
   const tabSelected = getSelectedTab(tabs, currentTabSelected);
   return (
     <AdminPanelStyled className={isCollapsed}>
       {tabSelected && tabSelected.link}
-      {console.log(tabSelected)}
     </AdminPanelStyled>
   );
 }

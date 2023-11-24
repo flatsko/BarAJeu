@@ -15,4 +15,9 @@ export default createContext({
 
   //handleAdd: () => {},
   handleDelete: () => {},
+
+  productToModify: "",
+  setProductToModify: () => {},
+
+  titleEditRef: {},
 });

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { adminTabs, getSelectedTab } from "./AdminTabsData";
+import { adminTabs, getSelectedTab } from "./adminTabsData";
 import AdminTab from "../../../reusableUI/AdminTab";
 import { FiChevronDown, FiChevronUp, FiChevronsUp } from "react-icons/fi";
 import { styled } from "styled-components";
@@ -8,13 +8,14 @@ import Context from "../../../../context/Context";
 
 export default function AdminTabs() {
   const [isLabelShow, seIsLabelShow] = useState("");
+  let { productToModify } = useContext(Context);
   const {
     isCollapsed,
     setIsCollapsed,
     currentTabSelected,
     setCurrentTabSelected,
   } = useContext(Context);
-
+  const tabs = adminTabs(productToModify);
   const selectTab = (tabSelected) => {
     setIsCollapsed(true);
     setCurrentTabSelected(tabSelected);
@@ -40,7 +41,7 @@ export default function AdminTabs() {
             handleClickButton={() => handleClickIcon()}
           />
         )}
-        {adminTabs.map(({ index, title, showLabel, Icon }) => {
+        {tabs.map(({ index, title, showLabel, Icon }) => {
           return (
             <AdminTab
               key={index}
@@ -60,7 +61,8 @@ export default function AdminTabs() {
 const AdminTabsStyled = styled.div`
   display: flex;
   justify-content: flex-start;
-  left: 5%;
+  left: 15%;
+  margin-left: 50px;
 
   .buttonPanel {
     // display: flex;
