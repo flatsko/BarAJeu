@@ -11,6 +11,7 @@ import ImagePreviewStyled from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../enum/products";
 import AdminFields from "../../../../reusableUI/AdminFields";
 import SubmitMessage from "./SubmitMessage";
+import SubmitButton from "./SubmitButton";
 
 export default function AdminPageAdd() {
   const { menu, setMenu } = useContext(Context);
@@ -40,34 +41,6 @@ export default function AdminPageAdd() {
 
   console.log(adminAddDat);
   return (
-    // <AdminPageAddStyled>
-    //   {/* <img className="a" src={image}></img> */}
-    //   <ImagePreviewStyled imageSource={newProduct.imageSource} />
-    //   <AddFormStyled onSubmit={handleAdd}>
-    //     {/* <AdminFields
-    //       product={newProduct}
-    //       fields={adminAddDat}
-    //       handleChange={handleChange}
-    //     /> */}
-    //     <div className="endFrame">
-    //       <PrimaryButton
-    //         className={"submitButton"}
-    //         //icon={MdOutlineEuro}
-    //         label={"Ajouter un nouveau produit au menu"}
-    //       />
-    //       <div className="addEvent">
-    //         {isAdded ? (
-    //           <div className="Icon">
-    //             {" "}
-    //             {<CiCircleCheck />} Ajouté avec succes{" "}
-    //           </div>
-    //         ) : (
-    //           ""
-    //         )}
-    //       </div>
-    //     </div>
-    //   </AddFormStyled>
-    // </AdminPageAddStyled>
     <AdminFields
       product={newProduct}
       onSubmit={handleAdd}
@@ -75,12 +48,7 @@ export default function AdminPageAdd() {
       fields={adminAddDat}
     >
       <>
-        <PrimaryButton
-          className="submitButton"
-          label={"Ajouter un nouveau produit au menu"}
-          version="success"
-        />
-        {isAdded && <SubmitMessage />}
+        <SubmitButton isAdded={isAdded} />
       </>
     </AdminFields>
   );
