@@ -7,13 +7,14 @@ export default function PrimaryButton({
   icon,
   className,
   onClick,
-  version="normal"
+  version = "normal",
   ...extraProps
 }) {
   return (
     <StyledPrimaryButton
       className={className}
       onClick={onClick}
+      version={version}
       {...extraProps}
     >
       <span>{label}</span>
@@ -23,8 +24,10 @@ export default function PrimaryButton({
 }
 
 const StyledPrimaryButton = styled.button`
-   ${({ version }) => extraStyle[version]};
-`
+  ${({ version }) => extraStyle[version]};
+  width: 100%;
+  height: 50px;
+`;
 
 const extraStylePrimary = css`
   width: 100%;
@@ -82,7 +85,7 @@ const extraStylePrimary = css`
     justify-content: center;
     align-items: center;
   }
-`
+`;
 
 const extraStyleSuccess = css`
   cursor: pointer;
@@ -91,6 +94,7 @@ const extraStyleSuccess = css`
   border: 1px solid ${theme.colors.success};
   border-radius: ${theme.borderRadius.round};
   height: 100%;
+  width: 70%;
   padding: 0 1.5em;
   font-weight: ${theme.fonts.weights.semiBold};
   :hover {
@@ -103,8 +107,8 @@ const extraStyleSuccess = css`
     background: ${theme.colors.success};
     border: 1px solid ${theme.colors.success};
   }
-`
+`;
 const extraStyle = {
   normal: extraStylePrimary,
   success: extraStyleSuccess,
-}
+};

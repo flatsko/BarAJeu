@@ -35,7 +35,7 @@ const AdminFields = React.forwardRef(
 );
 export default AdminFields;
 
-const AdminFieldsStyled = styled.form` 
+const AdminFieldsStyled = styled.form`
   .gridDiv {
     display: grid;
     grid-template-columns: 1fr 0.3fr 1.7fr;
@@ -87,26 +87,7 @@ const AdminFieldsStyled = styled.form`
     padding-left: 30px;
   }
   .endFrame {
-    display:flex;
-    align-items:baseline;
+    display: flex;
+    align-items: baseline;
   }
-
-.submitButton {
-  display: flex;
-  grid-area: 4 / 2 / -2 / -1;
-  color: ${theme.colors.white};
-  background-color: ${theme.colors.green};
-  width: 50%;
-  height: 20px;
-  margin-left: 15px;
-  background-color: #60bd4f;
-  //margin-left : 0px;
-  border-color: ${theme.colors.white};
-  font-size: ${theme.fonts.size.P0};
-  align-items: center;
-
-  &:hover {
-    color: #60bd4f;
-    border-color: ${theme.colors.green};
-    cursor: pointer;
-  }`;
+`;
