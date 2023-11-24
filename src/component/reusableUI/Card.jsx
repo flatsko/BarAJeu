@@ -13,6 +13,7 @@ export default function Card({
   className,
   isHoverable,
   isSelected,
+
   ...extraProps
 }) {
   return (

@@ -17,7 +17,10 @@ export default function Menu() {
   let { menu, setMenu, isModeAdmin, handleDelete } = useContext(Context);
   let { productToModify, setProductToModify } = useContext(Context);
 
-  function handleClick(id) {
+  function handleCardClick(event, id) {
+    if (!isModeAdmin) return;
+    event.stopPropagation(id);
+
     setProductToModify(menu[getProductIndexById(id)]);
   }
   const checkIfProductIsClicked = (idProductMenu, idProductClickedOn) => {
@@ -30,6 +33,10 @@ export default function Menu() {
     setMenu(fakeMenu.LARGE);
   };
 
+  const handleCardDelete = (event, id) => {
+    event.stopPropagation(id);
+    handleDelete(id);
+  };
   if (menu.length === 0) {
     return isModeAdmin ? (
       <MenuEmptyAdmin resetMenu={() => resetMenu()} />
@@ -50,10 +57,11 @@ export default function Menu() {
               leftDescription={formatPrice(price)}
               isAvailable={isAvailable}
               showDeleteButton={isModeAdmin}
-              onDelete={() => handleDelete(id)}
-              onClick={() => handleClick(id)}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={(event) => handleCardClick(event, id)}
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsClicked(id, productToModify.id)}
+
               // className={
               //   !isModeAdmin
               //     ? "produit"
