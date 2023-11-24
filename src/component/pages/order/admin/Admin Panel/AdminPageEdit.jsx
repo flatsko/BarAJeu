@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { HiCursorClick } from "react-icons/hi";
 import { useContext } from "react";
@@ -12,7 +12,7 @@ import { theme } from "../../../../../theme/index.js";
 import AdminFields from "../../../../reusableUI/AdminFields.jsx";
 import { deepClone } from "../../../../../utils/array.jsx";
 export default function AdminPageEdit() {
-  let { menu, setMenu, productToModify, setProductToModify } =
+  let { menu, setMenu, productToModify, setProductToModify, titleEditRef } =
     useContext(Context);
   const inputText = adminAddData(
     productToModify ? productToModify : EMPTY_PRODUCT
@@ -43,7 +43,11 @@ export default function AdminPageEdit() {
               imageSource={productToModify.imageSource}
             />{" "}
             <div className="inputFo">
-              <AdminFields fields={inputText} handleChange={handleChange} />
+              <AdminFields
+                fields={inputText}
+                handleChange={handleChange}
+                ref={titleEditRef}
+              />
             </div>
           </div>
         ) : (

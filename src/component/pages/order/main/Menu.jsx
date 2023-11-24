@@ -14,15 +14,25 @@ export default function Menu() {
   // const menu1 = useContext(Context);
 
   // const [menu, setMenu] = useState(fakeMenu.LARGE);
-  let { menu, setMenu, isModeAdmin, handleDelete } = useContext(Context);
-  let { productToModify, setProductToModify } = useContext(Context);
+  let { menu, setMenu, isModeAdmin, handleDelete, titleEditRef } =
+    useContext(Context);
+  let {
+    productToModify,
+    setProductToModify,
+    setIsCollapsed,
+    setCurrentTabSelected,
+  } = useContext(Context);
 
-  function handleCardClick(event, id) {
+  const handleCardClick = async (event, id) => {
     if (!isModeAdmin) return;
     event.stopPropagation(id);
+    await setCurrentTabSelected("Modifier les produits");
+    await setIsCollapsed(true); //Ouvre le pannel admin
 
-    setProductToModify(menu[getProductIndexById(id)]);
-  }
+    await setProductToModify(menu[getProductIndexById(id)]);
+
+    titleEditRef.current.focus();
+  };
   const checkIfProductIsClicked = (idProductMenu, idProductClickedOn) => {
     return idProductMenu === idProductClickedOn;
   };

@@ -9,7 +9,7 @@ export const EMPTY_PRODUCT = {
   price: 0,
 };
 
-export default function AdminFields({ fields, handleChange }) {
+const AdminFields = React.forwardRef(({ fields, handleChange }, ref) => {
   return (
     <AdminFieldsStyled>
       {fields.map((adminTextData) => {
@@ -19,6 +19,7 @@ export default function AdminFields({ fields, handleChange }) {
               key={adminTextData.id}
               onChange={handleChange}
               className="inputText"
+              ref={adminTextData.name === "title" ? ref : null}
               {...adminTextData}
             ></TextInput>
           </div>
@@ -26,6 +27,8 @@ export default function AdminFields({ fields, handleChange }) {
       })}
     </AdminFieldsStyled>
   );
-}
+});
+
+export default AdminFields;
 const AddFormStyled = styled.form``;
 const AdminFieldsStyled = styled.div``;

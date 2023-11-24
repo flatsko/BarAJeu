@@ -2,16 +2,16 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme/index";
 
-export default function TextInput({ value, Icon, ...extraProps }) {
+const TextInput = React.forwardRef(({ value, Icon, ...extraProps }, ref) => {
   // console.log(Icon);
   return (
     <TextInputStyled>
       {Icon && Icon}
-      <input value={value} type="text" {...extraProps} />
+      <input ref={ref} value={value} type="text" {...extraProps} />
     </TextInputStyled>
   );
-}
-
+});
+export default TextInput;
 const TextInputStyled = styled.div`
   background-color: ${theme.colors.background_white};
   border-radius: ${theme.borderRadius.round};

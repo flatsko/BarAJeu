@@ -18,4 +18,6 @@ export default createContext({
 
   productToModify: "",
   setProductToModify: () => {},
+
+  titleEditRef: {},
 });

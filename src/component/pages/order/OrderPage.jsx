@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
@@ -15,6 +15,7 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("");
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const titleEditRef = useRef();
 
   const handleDelete = (idTodelete) => {
     const copyMenu = [...menu];
@@ -63,6 +64,7 @@ const OrderPage = () => {
     handleDelete,
     productToModify,
     setProductToModify,
+    titleEditRef,
   };
 
   return (
