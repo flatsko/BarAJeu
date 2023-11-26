@@ -10,11 +10,12 @@ import Context from "../../../../context/Context";
 import MenuEmptyAdmin from "./MenuEmptyAdmin";
 import MenuEmptyClient from "./MenuEmptyClient";
 import { deepClone } from "../../../../utils/array";
+import Admin from "../admin/Admin";
 export default function Menu() {
   // const menu1 = useContext(Context);
 
   // const [menu, setMenu] = useState(fakeMenu.LARGE);
-  let { menu, setMenu, isModeAdmin, handleDelete, titleEditRef } =
+  let { menu, setMenu, isModeAdmin, handleDelete, titleEditRef, isCollapsed } =
     useContext(Context);
   let {
     productToModify,
@@ -82,6 +83,10 @@ export default function Menu() {
             />
           );
         }
+      )}
+
+      {isModeAdmin && (
+        <Admin className={isCollapsed ? "toggle" : "notToggle"} />
       )}
     </MenuStyles>
   );

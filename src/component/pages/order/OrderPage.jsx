@@ -95,7 +95,7 @@ const OrderPageStyled = styled.div`
     height: 95vh;
 
     width: 90vw;
-    max-width: 1400px;
+    max-width: 1800px;
     display: flex;
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};

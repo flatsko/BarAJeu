@@ -38,7 +38,7 @@ export default AdminFields;
 const AdminFieldsStyled = styled.form`
   .gridDiv {
     display: grid;
-    grid-template-columns: 1fr 0.3fr 1.7fr;
+    grid-template-columns: 2fr 0.3fr 1.7fr;
     grid-template-rows: 0.4fr 0.4fr 0.4fr 1.9fr;
     gap: 0px 0px;
     grid-template-areas:
@@ -62,7 +62,7 @@ const AdminFieldsStyled = styled.form`
 
   input {
     //grid-area: 2 / 2 / -2 / 3;
-    width: 50vw;
+    width: 30vw;
   }
   .inputFo {
     grid-column-start: 2;
