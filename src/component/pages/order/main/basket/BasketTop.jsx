@@ -19,5 +19,7 @@ const BasketTopStyled = styled.div`
   background-color: ${theme.colors.background_dark};
   justify-content: space-between;
   flex: 1;
+  font-size: ${theme.fonts.size.P4};
+
   color: ${theme.colors.primary};
 `;

@@ -25,7 +25,7 @@ export default function PrimaryButton({
 
 const StyledPrimaryButton = styled.button`
   ${({ version }) => extraStyle[version]};
-  width: 100%;
+  //width: 100%;
   height: 50px;
 `;
 
@@ -94,8 +94,8 @@ const extraStyleSuccess = css`
   border: 1px solid ${theme.colors.success};
   border-radius: ${theme.borderRadius.round};
   height: 100%;
-  width: 70%;
-  padding: 0 1.5em;
+  width: 60%;
+  //padding: 0 1.5em;
   font-weight: ${theme.fonts.weights.semiBold};
   :hover {
     background: ${theme.colors.white};

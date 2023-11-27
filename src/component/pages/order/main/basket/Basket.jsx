@@ -8,7 +8,7 @@ export default function Basket() {
   return (
     <BasketStyled>
       <BasketTop></BasketTop>
-      <div className="contentBasket">VOTRE COMMANDE EST VIDE</div>
+      <div className="contentBasket">VOTRE COMMANDE EST VIDE.</div>
       <BasketBottom></BasketBottom>
     </BasketStyled>
   );
@@ -20,19 +20,19 @@ const BasketStyled = styled.div`
   grid-area: baket;
   display: flex;
   flex-direction: column;
-  flex: 1 5 1;
+  //flex: 1 1 1;
   flex-grow: 1;
   justify-content: space-between;
   align-content: space-between;
-
-  //flex-wrap: wrap;
-
+  //box-shadow: ${theme.shadows.strong}; //flex-wrap: wrap;
   .contentBasket {
+    font-size: ${theme.fonts.size.P4};
+
     display: flex;
     background-color: ${theme.colors.background_white};
     color: ${theme.colors.greyDark};
     justify-content: center;
     align-items: center;
-    flex: 15;
+    flex: 10;
   }
 `;

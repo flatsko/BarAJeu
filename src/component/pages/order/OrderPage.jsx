@@ -5,51 +5,16 @@ import Navbar from "./navBar/Navbar";
 import Main from "./main/Main";
 import Context from "../../../context/Context";
 import { fakeMenu } from "../../../data/fakeMenu";
-import { toast } from "react-toastify";
 import { EMPTY_PRODUCT } from "../../../enum/products";
+import { useMenu } from "../../../hooks/useMenu";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
   const [isCollapsed, setIsCollapsed] = useState();
   const [currentTabSelected, setCurrentTabSelected] = useState("");
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
   const titleEditRef = useRef();
-
-  const handleDelete = (idTodelete) => {
-    const copyMenu = [...menu];
-    const produitASupprimer = copyMenu.filter((el) => el.id == idTodelete);
-    const cCopyMenu = copyMenu.filter((el) => el.id != idTodelete);
-
-    toast.dark(produitASupprimer[0].title + " supprimé(e)(s)", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-    setMenu(cCopyMenu);
-  };
-
-  const handleEdit = (idToEdit) => {
-    const copyMenu = JSON.parse(JSON.stringify(menu));
-
-    copyMenu[idToEdit] = setMenu(CopyMenu);
-  };
-  // toast.success(`🎲 Bienvenue ${username}`, {
-  //   position: "top-center",
-  //   autoClose: 3000,
-  //   hideProgressBar: false,
-  //   closeOnClick: true,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  //   theme: "light",
-  //   toastId: "1",
-  // });
+  const { menu, setMenu, handleDelete } = useMenu();
 
   const contextValue = {
     isModeAdmin,
