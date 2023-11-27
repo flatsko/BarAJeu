@@ -20,4 +20,10 @@ export default createContext({
   setProductToModify: () => {},
 
   titleEditRef: {},
+
+  basketMenu: [],
+  setBasketMenu: () => {},
+
+  handleAddToBasket: () => {},
+  handleDeleteToBasket: () => {},
 });

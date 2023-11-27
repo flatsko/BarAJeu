@@ -4,11 +4,11 @@ import BasketTopLeft from "./BasketTopLeft";
 import BasketTopRight from "./BasketTopRight";
 import { theme } from "../../../../../theme";
 
-export default function BasketTop() {
+export default function BasketTop({ priceToPay }) {
   return (
     <BasketTopStyled className="topBasket">
       <BasketTopLeft></BasketTopLeft>
-      <BasketTopRight></BasketTopRight>
+      <BasketTopRight priceToPay={priceToPay}></BasketTopRight>
     </BasketTopStyled>
   );
 }
@@ -18,8 +18,9 @@ const BasketTopStyled = styled.div`
   align-items: center;
   background-color: ${theme.colors.background_dark};
   justify-content: space-between;
-  flex: 1;
-  font-size: ${theme.fonts.size.P4};
+  height: 100px;
+  font-size: ${theme.fonts.size.P3};
+  font-family: "Amatic SC", cursive;
 
   color: ${theme.colors.primary};
 `;

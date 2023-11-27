@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { formatPrice } from "../../../../../utils/maths";
 
-export default function BasketTopRight() {
+export default function BasketTopRight({ priceToPay }) {
   return (
-    <BasketTopRightStyled className="rightSide">0.00 €</BasketTopRightStyled>
+    <BasketTopRightStyled className="rightSide">
+      {formatPrice(priceToPay)}
+    </BasketTopRightStyled>
   );
 }
 

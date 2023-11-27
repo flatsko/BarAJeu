@@ -14,7 +14,7 @@ const BasketBottomStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   background-color: ${theme.colors.background_dark};
-  flex: 1;
+  height: 100px;
+  font-family: "Amatic SC", cursive;
 `;

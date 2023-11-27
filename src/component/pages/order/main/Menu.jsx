@@ -1,7 +1,5 @@
 import { styled } from "styled-components";
-import { listeJeux } from "../../../../data/listeJeux";
 import { fakeMenu } from "../../../../data/fakeMenu";
-import React, { useState } from "react";
 import Card from "../../../reusableUI/Card";
 import { formatPrice } from "../../../../utils/maths";
 import { theme } from "../../../../theme";
@@ -15,8 +13,16 @@ export default function Menu() {
   // const menu1 = useContext(Context);
 
   // const [menu, setMenu] = useState(fakeMenu.LARGE);
-  let { menu, setMenu, isModeAdmin, handleDelete, titleEditRef, isCollapsed } =
-    useContext(Context);
+  let {
+    menu,
+    setMenu,
+    isModeAdmin,
+    handleDelete,
+    titleEditRef,
+    isCollapsed,
+    basketMenu,
+    handleAddToBasket,
+  } = useContext(Context);
   let {
     productToModify,
     setProductToModify,
@@ -55,6 +61,11 @@ export default function Menu() {
       <MenuEmptyClient />
     );
   }
+  const handleButtonClick = (e, id) => {
+    let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
+    let tempProduct = menu[getProductIndexById(id)];
+    handleAddToBasket(basketMenuClone, tempProduct, id);
+  };
 
   return (
     <MenuStyles>
@@ -72,6 +83,9 @@ export default function Menu() {
               onClick={(event) => handleCardClick(event, id)}
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsClicked(id, productToModify.id)}
+              onClickButton={(event) => {
+                handleButtonClick(event, id);
+              }}
 
               // className={
               //   !isModeAdmin

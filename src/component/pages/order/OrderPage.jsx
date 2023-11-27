@@ -7,6 +7,8 @@ import Context from "../../../context/Context";
 import { fakeMenu } from "../../../data/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enum/products";
 import { useMenu } from "../../../hooks/useMenu";
+import { fakeBasket } from "../../../data/fakeBasket";
+import { useBasket } from "../../../hooks/useBasket";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
@@ -15,7 +17,8 @@ const OrderPage = () => {
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const { menu, setMenu, handleDelete } = useMenu();
-
+  const { basketMenu, setBasketMenu, handleAddToBasket, handleDeleteToBasket } =
+    useBasket();
   const contextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -29,6 +32,10 @@ const OrderPage = () => {
     productToModify,
     setProductToModify,
     titleEditRef,
+    basketMenu,
+    setBasketMenu,
+    handleAddToBasket,
+    handleDeleteToBasket,
   };
 
   return (

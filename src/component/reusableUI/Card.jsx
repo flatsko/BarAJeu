@@ -13,7 +13,8 @@ export default function Card({
   className,
   isHoverable,
   isSelected,
-
+  onClick,
+  onClickButton,
   ...extraProps
 }) {
   return (
@@ -21,6 +22,7 @@ export default function Card({
       className={className ? className : "produit"}
       isHoverable={isHoverable}
       isSelected={isSelected}
+      onClick={onClick}
       {...extraProps}
     >
       <div className={"card"}>
@@ -43,7 +45,11 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <PrimaryButton className="primary-button" label={"Ajouter"} />
+              <PrimaryButton
+                onClick={onClickButton}
+                className="primary-button"
+                label={"Ajouter"}
+              />
             </div>
           </div>
         </div>
