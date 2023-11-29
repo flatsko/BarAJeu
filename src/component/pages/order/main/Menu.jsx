@@ -9,10 +9,11 @@ import MenuEmptyAdmin from "./MenuEmptyAdmin";
 import MenuEmptyClient from "./MenuEmptyClient";
 import { deepClone } from "../../../../utils/array";
 import Admin from "../admin/Admin";
+import { useBasket } from "../../../../hooks/useBasket";
 export default function Menu() {
   // const menu1 = useContext(Context);
 
-  // const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const { basketMenu, handleAddToBasket } = useContext(Context);
   let {
     menu,
     setMenu,
@@ -20,8 +21,7 @@ export default function Menu() {
     handleDelete,
     titleEditRef,
     isCollapsed,
-    basketMenu,
-    handleAddToBasket,
+    handleDeleteToBasket,
   } = useContext(Context);
   let {
     productToModify,
@@ -53,6 +53,7 @@ export default function Menu() {
   const handleCardDelete = (event, id) => {
     event.stopPropagation(id);
     handleDelete(id);
+    handleDeleteToBasket(id);
   };
   if (menu.length === 0) {
     return isModeAdmin ? (
@@ -65,6 +66,7 @@ export default function Menu() {
     let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
     let tempProduct = menu[getProductIndexById(id)];
     handleAddToBasket(basketMenuClone, tempProduct, id);
+    console.log(basketMenu);
   };
 
   return (

@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import BasketTop from "./BasketTop";
 import BasketBottom from "./BasketBottom";
 import BasketCardProduct from "./BasketCardProduct";
+import BasketComingSoon from "./BasketComingSoon";
+import { useBasket } from "../../../../../hooks/useBasket";
+import { useContext } from "react";
 import Context from "../../../../../context/Context";
 
 export default function Basket() {
-  const { basketMenu } = useContext(Context);
+  let { basketMenu, handleDeleteToBasket } = useContext(Context);
 
   const sumToPay = basketMenu.reduce((total, basketProduct) => {
     total += basketProduct.price * basketProduct.quantity;
@@ -18,16 +20,19 @@ export default function Basket() {
       <BasketTop priceToPay={sumToPay} />
       <div className="contentBasket">
         <div className="box">
-          {basketMenu
-            ? basketMenu.map((basketProduct) => {
-                return (
-                  <BasketCardProduct
-                    key={basketProduct.id}
-                    {...basketProduct}
-                  ></BasketCardProduct>
-                );
-              })
-            : null}
+          {basketMenu.length > 0 ? (
+            basketMenu.map((basketProduct) => {
+              return (
+                <BasketCardProduct
+                  key={basketProduct.id}
+                  deleteClick={() => handleDeleteToBasket(basketProduct.id)}
+                  {...basketProduct}
+                ></BasketCardProduct>
+              );
+            })
+          ) : (
+            <BasketComingSoon></BasketComingSoon>
+          )}
         </div>
       </div>
       <BasketBottom></BasketBottom>
@@ -45,6 +50,7 @@ const BasketStyled = styled.div`
   flex: 1;
   justify-content: space-between;
   align-content: space-between;
+
   //overflow: auto;
   //box-shadow: ${theme.shadows.strong}; //flex-wrap: wrap;
   .contentBasket {

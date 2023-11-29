@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { fakeMenu } from "../data/fakeMenu";
 import { deepClone } from "../utils/array";
+import { useBasket } from "./useBasket";
+import Context from "../context/Context";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   const handleDelete = (idTodelete) => {
-    const copyMenu = [...menu];
+    const copyMenu = deepClone(menu);
     const produitASupprimer = copyMenu.filter((el) => el.id == idTodelete);
     const cCopyMenu = copyMenu.filter((el) => el.id != idTodelete);
 
