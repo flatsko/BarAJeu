@@ -9,26 +9,19 @@ import styles from "@openfonts/amatic-sc_all/index.css";
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
 import React from "react";
-import { createUser } from "../../../api/user";
+import { autenticateUser, createUser, getUser } from "../../../api/user";
 
 function Login() {
   //States
   const [name, setName] = useState("");
-  const [isconnected, setIsConnected] = useState("false");
   const navigate = useNavigate();
 
-  const InputNameBox = styled.input``;
-  //const [first, setfirst] = useState(second)
   //Comportement
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    //alert(`Bonjour ${name}`)
-    createUser(name);
-    setName("");
+    autenticateUser(name);
     navigate(`orderPage/${name}`);
-
-    //redirect("/orderPage");
-  };
+  }
 
   const handleChange = (e) => {
     setName(e.target.value);

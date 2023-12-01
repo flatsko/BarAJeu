@@ -11,6 +11,7 @@ import { fakeBasket } from "../../../data/fakeBasket";
 import { useBasket } from "../../../hooks/useBasket";
 import { getDoc } from "firebase/firestore";
 import { getUser } from "../../../api/user";
+import { useParams } from "react-router-dom";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
@@ -18,7 +19,9 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("");
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
+  const { username } = useParams();
   const { menu, setMenu, handleDelete } = useMenu();
+  const [isLoading, setIsLoading] = useState(true);
   const { basketMenu, setBasketMenu, handleAddToBasket, handleDeleteToBasket } =
     useBasket();
   const contextValue = {
@@ -38,10 +41,17 @@ const OrderPage = () => {
     setBasketMenu,
     handleAddToBasket,
     handleDeleteToBasket,
+    isLoading,
+    setIsLoading,
   };
+  //
 
   //Appel API pour récuprer alex
-  getUser("Alex");
+  getUserByID(username);
+  async function getUserByID(userId) {
+    const username = await getUser(userId);
+    setIsLoading(false);
+  }
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>

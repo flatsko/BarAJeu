@@ -31,6 +31,7 @@ const MainStyled = styled.div`
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "baket menu";
+  height: 100vh;
 
   .menu {
     grid-area: menu;

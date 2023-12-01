@@ -10,6 +10,7 @@ import MenuEmptyClient from "./MenuEmptyClient";
 import { deepClone } from "../../../../utils/array";
 import Admin from "../admin/Admin";
 import { useBasket } from "../../../../hooks/useBasket";
+import LoadingSpinner from "../../../reusableUI/Loading";
 export default function Menu() {
   // const menu1 = useContext(Context);
 
@@ -22,6 +23,7 @@ export default function Menu() {
     titleEditRef,
     isCollapsed,
     handleDeleteToBasket,
+    isLoading,
   } = useContext(Context);
   let {
     productToModify,
@@ -71,36 +73,39 @@ export default function Menu() {
 
   return (
     <MenuStyles>
-      {menu.map(
-        ({ id, title, imageSource, price, isAvailable, isSelected }) => {
-          return (
-            <Card
-              key={id}
-              imageSource={imageSource}
-              title={title}
-              leftDescription={formatPrice(price)}
-              isAvailable={isAvailable}
-              showDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={(event) => handleCardClick(event, id)}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfProductIsClicked(id, productToModify.id)}
-              onClickButton={(event) => {
-                handleButtonClick(event, id);
-              }}
+      {!isLoading ? (
+        menu.map(
+          ({ id, title, imageSource, price, isAvailable, isSelected }) => {
+            return (
+              <Card
+                key={id}
+                imageSource={imageSource}
+                title={title}
+                leftDescription={formatPrice(price)}
+                isAvailable={isAvailable}
+                showDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={(event) => handleCardClick(event, id)}
+                isHoverable={isModeAdmin}
+                isSelected={checkIfProductIsClicked(id, productToModify.id)}
+                onClickButton={(event) => {
+                  handleButtonClick(event, id);
+                }}
 
-              // className={
-              //   !isModeAdmin
-              //     ? "produit"
-              //     : !isSelected
-              //     ? "produit-admin"
-              //     : "produit-admin-selected"
-              // }
-            />
-          );
-        }
+                // className={
+                //   !isModeAdmin
+                //     ? "produit"
+                //     : !isSelected
+                //     ? "produit-admin"
+                //     : "produit-admin-selected"
+                // }
+              />
+            );
+          }
+        )
+      ) : (
+        <LoadingSpinner />
       )}
-
       {isModeAdmin && (
         <Admin className={isCollapsed ? "toggle" : "notToggle"} />
       )}
@@ -118,6 +123,7 @@ const MenuStyles = styled.div`
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow-y: scroll;
+  // height: 100vh;
 
   /* .produit-admin:hover {
     transform: translateY(-5px) scale(1.005) translateZ(0);

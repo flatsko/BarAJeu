@@ -7,6 +7,7 @@ import BasketComingSoon from "./BasketComingSoon";
 import { useBasket } from "../../../../../hooks/useBasket";
 import { useContext } from "react";
 import Context from "../../../../../context/Context";
+import LoadingSpinner from "../../../../reusableUI/Loading";
 
 export default function Basket() {
   let {
@@ -18,6 +19,7 @@ export default function Basket() {
     titleEditRef,
     setIsCollapsed,
     setCurrentTabSelected,
+    isLoading,
   } = useContext(Context);
 
   async function onCardClick(event, id) {
@@ -45,24 +47,28 @@ export default function Basket() {
       <BasketTop priceToPay={sumToPay} />
       <div className="contentBasket">
         <div className="box">
-          {basketMenu.length > 0 ? (
-            basketMenu.map((basketProduct) => {
-              return (
-                <BasketCardProduct
-                  key={basketProduct.id}
-                  deleteClick={() => handleDeleteToBasket(basketProduct.id)}
-                  isClicable={isModeAdmin}
-                  onClick={(e) => onCardClick(e, basketProduct)}
-                  isSelected={checkIfProductIsClicked(
-                    basketProduct.id,
-                    productToModify.id
-                  )}
-                  {...basketProduct}
-                ></BasketCardProduct>
-              );
-            })
+          {!isLoading ? (
+            basketMenu.length > 0 ? (
+              basketMenu.map((basketProduct) => {
+                return (
+                  <BasketCardProduct
+                    key={basketProduct.id}
+                    deleteClick={() => handleDeleteToBasket(basketProduct.id)}
+                    isClicable={isModeAdmin}
+                    onClick={(e) => onCardClick(e, basketProduct)}
+                    isSelected={checkIfProductIsClicked(
+                      basketProduct.id,
+                      productToModify.id
+                    )}
+                    {...basketProduct}
+                  ></BasketCardProduct>
+                );
+              })
+            ) : (
+              <BasketComingSoon></BasketComingSoon>
+            )
           ) : (
-            <BasketComingSoon></BasketComingSoon>
+            <LoadingSpinner />
           )}
         </div>
       </div>
