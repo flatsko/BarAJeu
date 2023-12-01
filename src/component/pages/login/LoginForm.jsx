@@ -9,6 +9,7 @@ import styles from "@openfonts/amatic-sc_all/index.css";
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
 import React from "react";
+import { createUser } from "../../../api/user";
 
 function Login() {
   //States
@@ -22,8 +23,10 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     //alert(`Bonjour ${name}`)
+    createUser(name);
     setName("");
     navigate(`orderPage/${name}`);
+
     //redirect("/orderPage");
   };
 

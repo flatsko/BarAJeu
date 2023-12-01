@@ -9,6 +9,8 @@ import { EMPTY_PRODUCT } from "../../../enum/products";
 import { useMenu } from "../../../hooks/useMenu";
 import { fakeBasket } from "../../../data/fakeBasket";
 import { useBasket } from "../../../hooks/useBasket";
+import { getDoc } from "firebase/firestore";
+import { getUser } from "../../../api/user";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
@@ -38,6 +40,8 @@ const OrderPage = () => {
     handleDeleteToBasket,
   };
 
+  //Appel API pour récuprer alex
+  getUser("Alex");
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>
