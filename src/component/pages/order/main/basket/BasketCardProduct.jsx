@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import Context from "../../../../../context/Context";
 import { formatPrice } from "../../../../../utils/maths";
@@ -13,17 +13,21 @@ export default function BasketCardProduct({
   quantity,
   className = "test",
   deleteClick,
+  isClicable,
+  onClick,
+  isSelected,
 }) {
   return (
-    <BasketCardProductStyled className={className}>
-      <div className="basketCard" onClick={deleteClick}>
-        <div className="deleteButton">
+    <BasketCardProductStyled className={className} isSelected={isSelected}>
+      <div className="basketCard">
+        <div className="deleteButton" onClick={deleteClick}>
           <MdDeleteForever className="icon" />
         </div>
+        {console.log(isSelected)}
         <div className="image">
           <img src={imageSource ? imageSource : "/images/coming-soon.png"} />
         </div>
-        <div className="name">
+        <div className="name" onClick={isClicable ? onClick : null}>
           <span>{title}</span>
         </div>
         <div className="price">{formatPrice(price)}</div>
@@ -43,6 +47,7 @@ export default function BasketCardProduct({
 }
 
 const BasketCardProductStyled = styled.div`
+  ${(props) => props.isSelected && selectedStyle}
   position: relative;
   height: 86px;
   width: 100%;
@@ -148,5 +153,18 @@ const BasketCardProductStyled = styled.div`
         align-items: center;
       }
     }
+  }
+`;
+
+const selectedStyle = css`
+  .basketCard {
+    position: relative;
+    height: 86px;
+    width: 100%;
+    background-color: ${theme.colors.primary};
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    transition-duration: 0.5s;
+    background-color: ${theme.colors.primary};
+    cursor: pointer;
   }
 `;

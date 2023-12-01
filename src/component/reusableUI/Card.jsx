@@ -174,7 +174,7 @@ const hoverableStyle = css`
       color: ${theme.colors.background_white};
       background-color: ${theme.colors.primary};
     }
-    .text-info .description .left-description {
+    .text-info .description .left-deClscription {
       color: ${theme.colors.background_white};
     }
     .deleteButton {

@@ -9,7 +9,32 @@ import { useContext } from "react";
 import Context from "../../../../../context/Context";
 
 export default function Basket() {
-  let { basketMenu, handleDeleteToBasket } = useContext(Context);
+  let {
+    basketMenu,
+    handleDeleteToBasket,
+    isModeAdmin,
+    setProductToModify,
+    productToModify,
+    titleEditRef,
+    setIsCollapsed,
+    setCurrentTabSelected,
+  } = useContext(Context);
+
+  async function onCardClick(event, id) {
+    if (!isModeAdmin) return;
+    event.stopPropagation(id);
+    await setCurrentTabSelected("Modifier les produits");
+    await setIsCollapsed(true); //Ouvre le pannel admin
+
+    setProductToModify(id);
+    titleEditRef.current.focus();
+    setIsCollapsed(true);
+    console.log(productToModify.id, basketMenu.id);
+  }
+
+  const checkIfProductIsClicked = (idProductMenu, idProductClickedOn) => {
+    return idProductMenu === idProductClickedOn;
+  };
 
   const sumToPay = basketMenu.reduce((total, basketProduct) => {
     total += basketProduct.price * basketProduct.quantity;
@@ -26,6 +51,12 @@ export default function Basket() {
                 <BasketCardProduct
                   key={basketProduct.id}
                   deleteClick={() => handleDeleteToBasket(basketProduct.id)}
+                  isClicable={isModeAdmin}
+                  onClick={(e) => onCardClick(e, basketProduct)}
+                  isSelected={checkIfProductIsClicked(
+                    basketProduct.id,
+                    productToModify.id
+                  )}
                   {...basketProduct}
                 ></BasketCardProduct>
               );

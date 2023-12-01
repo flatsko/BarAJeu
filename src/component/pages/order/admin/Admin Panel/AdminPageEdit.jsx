@@ -10,8 +10,15 @@ import AdminFields from "../../../../reusableUI/AdminFields.jsx";
 import { deepClone } from "../../../../../utils/array.jsx";
 import EditInfoMessage from "./EditInfoMessage.jsx";
 export default function AdminPageEdit() {
-  let { menu, setMenu, productToModify, setProductToModify, titleEditRef } =
-    useContext(Context);
+  let {
+    menu,
+    setMenu,
+    productToModify,
+    setProductToModify,
+    titleEditRef,
+    setBasketMenu,
+    basketMenu,
+  } = useContext(Context);
   const inputText = adminAddData(
     productToModify ? productToModify : EMPTY_PRODUCT
   );
@@ -24,11 +31,20 @@ export default function AdminPageEdit() {
 
     setProductToModify({ ...productToModify, [name]: value }); //Lié au formulaire
 
+    //Copy du menu
     let copyMenu = deepClone(menu);
+
+    //Copy du basket
+    let copyBasket = deepClone(basketMenu);
 
     copyMenu[copyMenu.findIndex((el) => el.id === productBeingEdited.id)] =
       productBeingEdited;
 
+    copyBasket[copyBasket.findIndex((el) => el.id === productBeingEdited.id)] =
+      productBeingEdited;
+
+    //Mise à jour des setters
+    setBasketMenu(copyBasket);
     setMenu(copyMenu);
   };
 
