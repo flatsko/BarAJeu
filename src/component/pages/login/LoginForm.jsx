@@ -10,6 +10,7 @@ import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
 import React from "react";
 import { autenticateUser, createUser, getUser } from "../../../api/user";
+import Welcome from "./Welcome";
 
 function Login() {
   //States
@@ -30,10 +31,7 @@ function Login() {
   return (
     <LoginStyled action="submit" onSubmit={handleSubmit}>
       <div>
-        <h1>Bienvenue chez nous ! </h1>
-
-        <hr />
-        <h2>Connectez Vous</h2>
+        <Welcome />
         <div className="inputForm">
           <TextInput
             onChange={handleChange}

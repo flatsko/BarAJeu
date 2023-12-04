@@ -49,7 +49,8 @@ const OrderPage = () => {
   //Appel API pour récuprer alex
   getUserByID(username);
   async function getUserByID(userId) {
-    const username = await getUser(userId);
+    const tempMenu = await getUser(userId);
+    // setMenu(tempMenu.menu);
     setIsLoading(false);
   }
   return (
