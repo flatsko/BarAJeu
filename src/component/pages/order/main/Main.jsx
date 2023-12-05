@@ -1,19 +1,15 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme/index";
 import Menu from "./Menu";
-import AdminPanel from "../admin/AdminPanel";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Context from "../../../../context/Context";
-import Admin from "../admin/Admin";
-import Basket from "./basket/basket";
-
+import Basket from "./basket/Basket";
 export default function Main() {
   // const {} = useContext(Context);
 
-  const { isCollapsed, isModeAdmin, setIsModeAdmin } = useContext(Context);
   return (
     <MainStyled>
-      <Basket></Basket>
+      <Basket />
       <Menu className="menu"></Menu>
 
       {/* {console.log(isCollapsed)} */}

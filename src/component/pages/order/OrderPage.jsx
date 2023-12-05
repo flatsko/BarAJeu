@@ -1,17 +1,16 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
 import Navbar from "./navBar/Navbar";
 import Main from "./main/Main";
 import Context from "../../../context/Context";
-import { fakeMenu } from "../../../data/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enum/products";
 import { useMenu } from "../../../hooks/useMenu";
-import { fakeBasket } from "../../../data/fakeBasket";
 import { useBasket } from "../../../hooks/useBasket";
-import { getDoc } from "firebase/firestore";
 import { getUser } from "../../../api/user";
 import { useParams } from "react-router-dom";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { fakeMenu } from "../../../data/fakeMenu";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
@@ -20,11 +19,14 @@ const OrderPage = () => {
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const { username } = useParams();
-  const { menu, setMenu, handleDelete } = useMenu();
+  const { menu, setMenu, handleDelete, resetMenu, handleAdd } = useMenu();
   const [isLoading, setIsLoading] = useState(true);
   const { basketMenu, setBasketMenu, handleAddToBasket, handleDeleteToBasket } =
     useBasket();
+  const { getLocalStorage, setLocalStorage } = useLocalStorage();
+
   const contextValue = {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
@@ -34,6 +36,8 @@ const OrderPage = () => {
     menu,
     setMenu,
     handleDelete,
+    resetMenu,
+    handleAdd,
     productToModify,
     setProductToModify,
     titleEditRef,
@@ -43,15 +47,34 @@ const OrderPage = () => {
     handleDeleteToBasket,
     isLoading,
     setIsLoading,
+    getLocalStorage,
+    setLocalStorage,
   };
-  //
 
-  //Appel API pour récuprer alex
-  getUserByID(username);
+  useEffect(() => {
+    setMainMenuByUser(username);
+    //localStorage.clear();
+    getBasket();
+  }, []);
+
+  // console.log(temp);
   async function getUserByID(userId) {
     const tempMenu = await getUser(userId);
-    // setMenu(tempMenu.menu);
     setIsLoading(false);
+    return tempMenu;
+  }
+
+  function getBasket() {
+    const basketMenuParsed = getLocalStorage("product");
+    basketMenuParsed
+      ? setBasketMenu(basketMenuParsed)
+      : setBasketMenu(fakeMenu.EMPTY);
+
+    console.log(basketMenuParsed);
+  }
+  async function setMainMenuByUser(username) {
+    const menuUser = await getUserByID(username);
+    setMenu(menuUser.menu);
   }
   return (
     <Context.Provider value={contextValue}>

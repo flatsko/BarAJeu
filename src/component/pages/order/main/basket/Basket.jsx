@@ -21,7 +21,6 @@ export default function Basket() {
     setCurrentTabSelected,
     isLoading,
   } = useContext(Context);
-
   async function onCardClick(event, id) {
     if (!isModeAdmin) return;
     event.stopPropagation(id);
@@ -56,10 +55,12 @@ export default function Basket() {
                     deleteClick={() => handleDeleteToBasket(basketProduct.id)}
                     isClicable={isModeAdmin}
                     onClick={(e) => onCardClick(e, basketProduct)}
-                    isSelected={checkIfProductIsClicked(
-                      basketProduct.id,
-                      productToModify.id
-                    )}
+                    isSelected={
+                      +checkIfProductIsClicked(
+                        basketProduct.id,
+                        productToModify.id
+                      )
+                    }
                     {...basketProduct}
                   ></BasketCardProduct>
                 );

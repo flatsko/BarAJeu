@@ -13,7 +13,8 @@ export default createContext({
   menu: [],
   setMenu: () => {},
 
-  //handleAdd: () => {},
+  resetMenu: () => {},
+  handleAdd: () => {},
   handleDelete: () => {},
 
   productToModify: "",
@@ -29,4 +30,7 @@ export default createContext({
 
   isLoading: true,
   setIsLoading: () => {},
+
+  getLocalStorage: () => {},
+  setLocalStorage: () => {},
 });

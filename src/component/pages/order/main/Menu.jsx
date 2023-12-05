@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import { fakeMenu } from "../../../../data/fakeMenu";
 import Card from "../../../reusableUI/Card";
 import { formatPrice } from "../../../../utils/maths";
 import { theme } from "../../../../theme";
@@ -9,23 +8,21 @@ import MenuEmptyAdmin from "./MenuEmptyAdmin";
 import MenuEmptyClient from "./MenuEmptyClient";
 import { deepClone } from "../../../../utils/array";
 import Admin from "../admin/Admin";
-import { useBasket } from "../../../../hooks/useBasket";
 import LoadingSpinner from "../../../reusableUI/Loading";
 export default function Menu() {
   // const menu1 = useContext(Context);
-
-  const { basketMenu, handleAddToBasket } = useContext(Context);
   let {
     menu,
-    setMenu,
+    username,
     isModeAdmin,
     handleDelete,
     titleEditRef,
     isCollapsed,
     handleDeleteToBasket,
     isLoading,
-  } = useContext(Context);
-  let {
+    resetMenu,
+    basketMenu,
+    handleAddToBasket,
     productToModify,
     setProductToModify,
     setIsCollapsed,
@@ -48,61 +45,55 @@ export default function Menu() {
   const getProductIndexById = (id) => {
     return menu.map((el) => el.id).indexOf(id);
   };
-  const resetMenu = () => {
-    setMenu(fakeMenu.LARGE);
-  };
 
   const handleCardDelete = (event, id) => {
     event.stopPropagation(id);
-    handleDelete(id);
+    handleDelete(id, username);
     handleDeleteToBasket(id);
   };
   if (menu.length === 0) {
     return isModeAdmin ? (
-      <MenuEmptyAdmin resetMenu={() => resetMenu()} />
+      <MenuEmptyAdmin resetMenu={() => resetMenu(username)} />
     ) : (
       <MenuEmptyClient />
     );
   }
-  const handleButtonClick = (e, id) => {
+  const handleButtonClick = (event, id) => {
+    event.stopPropagation(id);
     let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
     let tempProduct = menu[getProductIndexById(id)];
     handleAddToBasket(basketMenuClone, tempProduct, id);
-    console.log(basketMenu);
+    //console.log(basketMenu);
   };
 
   return (
     <MenuStyles>
       {!isLoading ? (
-        menu.map(
-          ({ id, title, imageSource, price, isAvailable, isSelected }) => {
-            return (
-              <Card
-                key={id}
-                imageSource={imageSource}
-                title={title}
-                leftDescription={formatPrice(price)}
-                isAvailable={isAvailable}
-                showDeleteButton={isModeAdmin}
-                onDelete={(event) => handleCardDelete(event, id)}
-                onClick={(event) => handleCardClick(event, id)}
-                isHoverable={isModeAdmin}
-                isSelected={checkIfProductIsClicked(id, productToModify.id)}
-                onClickButton={(event) => {
-                  handleButtonClick(event, id);
-                }}
+        menu.map(({ id, title, imageSource, price, isavailable }) => {
+          return (
+            <Card
+              key={id}
+              imageSource={imageSource}
+              title={title}
+              leftDescription={formatPrice(price)}
+              isavailable={isavailable}
+              showDeleteButton={isModeAdmin}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={(event) => handleCardClick(event, id)}
+              ishoverable={isModeAdmin}
+              isselected={+checkIfProductIsClicked(id, productToModify.id)}
+              onClickButton={(event) => handleButtonClick(event, id)}
 
-                // className={
-                //   !isModeAdmin
-                //     ? "produit"
-                //     : !isSelected
-                //     ? "produit-admin"
-                //     : "produit-admin-selected"
-                // }
-              />
-            );
-          }
-        )
+              // className={
+              //   !isModeAdmin
+              //     ? "produit"
+              //     : !isSelected
+              //     ? "produit-admin"
+              //     : "produit-admin-selected"
+              // }
+            />
+          );
+        })
       ) : (
         <LoadingSpinner />
       )}

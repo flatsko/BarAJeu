@@ -18,12 +18,12 @@ export default function BasketCardProduct({
   isSelected,
 }) {
   return (
-    <BasketCardProductStyled className={className} isSelected={isSelected}>
+    <BasketCardProductStyled className={className} isselected={isSelected}>
       <div className="basketCard">
         <div className="deleteButton" onClick={deleteClick}>
           <MdDeleteForever className="icon" />
         </div>
-        {console.log(isSelected)}
+
         <div className="image">
           <img src={imageSource ? imageSource : "/images/coming-soon.png"} />
         </div>
@@ -47,7 +47,7 @@ export default function BasketCardProduct({
 }
 
 const BasketCardProductStyled = styled.div`
-  ${(props) => props.isSelected && selectedStyle}
+  ${(props) => props.isselected && selectedStyle}
   position: relative;
   height: 86px;
   width: 100%;

@@ -15,7 +15,7 @@ import SubmitButton from "./SubmitButton";
 import { useSucesMessage } from "../../../../../hooks/useDisplaySucessMessage";
 
 export default function AdminPageAdd() {
-  const { menu, setMenu } = useContext(Context);
+  const { menu, setMenu, handleAdd, username } = useContext(Context);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const adminAddDat = adminAddData(newProduct);
   // const [isAdded, setIsAdded] = useState(false);
@@ -25,11 +25,9 @@ export default function AdminPageAdd() {
     setNewProduct({ ...newProduct, [name]: value });
   };
 
-  const handleAdd = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    const newProductAdded = { ...newProduct, id: crypto.randomUUID() };
-    const newMenu = [newProductAdded, ...menu];
-    setMenu(newMenu);
+    handleAdd(newProduct, username);
     setNewProduct(EMPTY_PRODUCT);
     displaySucessMessage();
   };
@@ -38,7 +36,7 @@ export default function AdminPageAdd() {
   return (
     <AdminFields
       product={newProduct}
-      onSubmit={handleAdd}
+      onSubmit={handleClick}
       onChange={handleChange}
       fields={adminAddDat}
     >

@@ -11,8 +11,8 @@ export default function Card({
   showDeleteButton,
   onDelete,
   className,
-  isHoverable,
-  isSelected,
+  ishoverable,
+  isselected,
   onClick,
   onClickButton,
   ...extraProps
@@ -20,8 +20,8 @@ export default function Card({
   return (
     <CardStyled
       className={className ? className : "produit"}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
+      ishoverable={ishoverable}
+      isselected={isselected}
       onClick={onClick}
       {...extraProps}
     >
@@ -59,7 +59,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle}
+  ${(props) => props.ishoverable && hoverableStyle}
   .card {
     background: ${theme.colors.white};
     width: 240px;
@@ -156,8 +156,8 @@ const CardStyled = styled.div`
         }
       }
     }
-    ${({ isHoverable, isSelected }) =>
-      isHoverable && isSelected && selectedStyle}
+    ${({ ishoverable, isselected }) =>
+      ishoverable && isselected && selectedStyle}
   }
 `;
 

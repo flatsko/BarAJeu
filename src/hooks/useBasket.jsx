@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { fakeBasket } from "../data/fakeBasket";
 import { deepClone } from "../utils/array";
-import { useContext } from "react";
 import Context from "../context/Context";
-import { useMenu } from "./useMenu";
-
 export const useBasket = () => {
   // const { menu } = useMenu();
-  const [basketMenu, setBasketMenu] = useState(fakeBasket.EMPTY);
 
+  const [basketMenu, setBasketMenu] = useState(fakeBasket.EMPTY);
+  let { setLocalStorage } = useContext(Context);
   const handleAddToBasket = (basketMenuClone, tempProduct, id) => {
     //Produit à ajouter
     const existant = basketMenuClone.findIndex(
@@ -25,7 +23,7 @@ export const useBasket = () => {
 
   const handleDeleteToBasket = (basketProductToDelete) => {
     let copyBasket = deepClone(basketMenu);
-    console.log(copyBasket);
+    //console.log(copyBasket);
     let newBasket = copyBasket.filter((el) => el.id != basketProductToDelete);
     setBasketMenu(newBasket);
     console.log(basketMenu);
@@ -35,6 +33,8 @@ export const useBasket = () => {
   const incrementProductInBasket = (indexProductToIncrement, basketCopy) => {
     basketCopy[indexProductToIncrement].quantity += 1;
     setBasketMenu(basketCopy);
+    //setLocalStorage("product", basketCopy);
+    localStorage.setItem("product", JSON.stringify(basketCopy));
   };
 
   const createNewProductInBakset = (productToAdd, basketCopy) => {
@@ -42,8 +42,9 @@ export const useBasket = () => {
     newProduct = { ...newProduct, quantity: 1 };
     const basketUpdated = [newProduct, ...basketCopy];
     setBasketMenu(basketUpdated);
-    console.log("newproduct", newProduct);
-    console.log(basketMenu);
+    localStorage.setItem("product", JSON.stringify(basketUpdated));
+    // setLocalStorage("product", basketUpdated);
+    //console.log(JSON.parse(localStorage.getItem("product")));
   };
 
   return { handleAddToBasket, handleDeleteToBasket, basketMenu, setBasketMenu };

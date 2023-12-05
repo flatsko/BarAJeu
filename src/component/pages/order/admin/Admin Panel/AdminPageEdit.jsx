@@ -3,14 +3,14 @@ import { useContext } from "react";
 import Context from "../../../../../context/Context";
 import { adminAddData } from "./adminAddFormData";
 import { EMPTY_PRODUCT } from "../../../../../enum/products";
-import ImagePreviewStyled from "./ImagePreview";
-import HintMessage from "./HintMessage.jsx";
 import { theme } from "../../../../../theme/index.js";
 import AdminFields from "../../../../reusableUI/AdminFields.jsx";
 import { deepClone } from "../../../../../utils/array.jsx";
 import EditInfoMessage from "./EditInfoMessage.jsx";
+import { syncBothMenus } from "../../../../../api/menu.js";
 export default function AdminPageEdit() {
   let {
+    username,
     menu,
     setMenu,
     productToModify,
@@ -24,28 +24,22 @@ export default function AdminPageEdit() {
   );
 
   const handleChange = (e) => {
-    console.log(productToModify);
+    // console.log(productToModify);
     const { name, value } = e.target;
-
     const productBeingEdited = { ...productToModify, [name]: value }; //lié au menu
-
     setProductToModify({ ...productToModify, [name]: value }); //Lié au formulaire
-
     //Copy du menu
     let copyMenu = deepClone(menu);
-
     //Copy du basket
     let copyBasket = deepClone(basketMenu);
-
     copyMenu[copyMenu.findIndex((el) => el.id === productBeingEdited.id)] =
       productBeingEdited;
-
     copyBasket[copyBasket.findIndex((el) => el.id === productBeingEdited.id)] =
       productBeingEdited;
-
     //Mise à jour des setters
     setBasketMenu(copyBasket);
     setMenu(copyMenu);
+    syncBothMenus(copyMenu, username);
   };
 
   return (

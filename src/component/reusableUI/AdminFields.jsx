@@ -10,7 +10,6 @@ const AdminFields = React.forwardRef(
   ({ fields, onChange, onSubmit, children, SubmitButton, product }, ref) => {
     return (
       <AdminFieldsStyled onSubmit={onSubmit}>
-        {console.log(SubmitButton)}
         <div className="gridDiv">
           <ImagePreviewStyled imageSource={product.imageSource} />
           <div className="input">
