@@ -7,7 +7,19 @@ import ImagePreviewStyled from "../pages/order/admin/Admin Panel/ImagePreview";
 import { theme } from "../../theme";
 
 const AdminFields = React.forwardRef(
-  ({ fields, onChange, onSubmit, children, SubmitButton, product }, ref) => {
+  (
+    {
+      fields,
+      onChange,
+      onSubmit,
+      onFocus,
+      onBlur,
+      children,
+      SubmitButton,
+      product,
+    },
+    ref
+  ) => {
     return (
       <AdminFieldsStyled onSubmit={onSubmit}>
         <div className="gridDiv">
@@ -18,6 +30,8 @@ const AdminFields = React.forwardRef(
                 <TextInput
                   key={adminTextData.id}
                   onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
                   className="inputText"
                   ref={adminTextData.name === "title" ? ref : null}
                   {...adminTextData}

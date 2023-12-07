@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import { fakeBasket } from "../data/fakeBasket";
 import { deepClone } from "../utils/array";
 import Context from "../context/Context";
+import { fakeMenu } from "../data/fakeMenu";
 export const useBasket = () => {
   // const { menu } = useMenu();
 
   const [basketMenu, setBasketMenu] = useState(fakeBasket.EMPTY);
-  let { setLocalStorage } = useContext(Context);
   const handleAddToBasket = (basketMenuClone, tempProduct, id) => {
     //Produit à ajouter
     const existant = basketMenuClone.findIndex(
@@ -47,5 +47,27 @@ export const useBasket = () => {
     //console.log(JSON.parse(localStorage.getItem("product")));
   };
 
-  return { handleAddToBasket, handleDeleteToBasket, basketMenu, setBasketMenu };
+  function getBasket() {
+    const basketMenuParsed = getLocalStorage("product");
+    basketMenuParsed
+      ? setBasketMenu(basketMenuParsed)
+      : setBasketMenu(fakeMenu.EMPTY);
+  }
+
+  const getLocalStorage = (key) => {
+    return JSON.parse(localStorage.getItem(key));
+  };
+
+  const setLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+    return;
+  };
+
+  return {
+    handleAddToBasket,
+    handleDeleteToBasket,
+    basketMenu,
+    setBasketMenu,
+    getBasket,
+  };
 };

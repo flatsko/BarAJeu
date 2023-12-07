@@ -56,7 +56,7 @@ const BasketCardProductStyled = styled.div`
   .basketCard {
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 1fr 1.7fr 0.5fr;
+    grid-template-columns: 1fr 1.7fr 0.7fr;
     grid-template-rows: 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
@@ -85,6 +85,7 @@ const BasketCardProductStyled = styled.div`
       grid-area: quantity;
       color: ${theme.colors.primary};
       font-size: ${theme.fonts.size.P0};
+      display: grid;
     }
     .name {
       font-size: ${theme.fonts.size.P3};
@@ -97,6 +98,7 @@ const BasketCardProductStyled = styled.div`
       position: relative;
       display: grid;
       grid-column-end: 3;
+      margin-left: 15px;
       span {
         overflow: hidden;
         /* width: 100%; */
@@ -105,6 +107,8 @@ const BasketCardProductStyled = styled.div`
       }
     }
     .price {
+      margin-left: 15px;
+
       grid-area: price;
       color: ${theme.colors.primary};
       font-size: ${theme.fonts.size.P0};
@@ -130,11 +134,11 @@ const BasketCardProductStyled = styled.div`
   }
   .basketCard:hover {
     .deleteButton {
-      position: absolute;
       border: none;
       box-sizing: border-box;
       grid-area: quantity;
-      width: 76px;
+      display: grid;
+      width: 60px;
       height: 100%;
       display: flex;
       right: 0;
@@ -146,6 +150,7 @@ const BasketCardProductStyled = styled.div`
       background: ${theme.colors.red};
       color: ${theme.colors.white};
       cursor: pointer;
+      z-index: 2;
 
       .icon {
         height: 100%;

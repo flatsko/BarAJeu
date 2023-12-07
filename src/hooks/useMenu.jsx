@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { fakeMenu } from "../data/fakeMenu";
 import { deepClone } from "../utils/array";
-import { syncBothMenus } from "../api/menu";
+import { getMenu, syncBothMenus } from "../api/menu";
+import Context from "../context/Context";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
-
+  let { setIsLoading } = useContext(Context);
   const handleDelete = (idTodelete, username) => {
     const copyMenu = deepClone(menu);
     const produitASupprimer = copyMenu.filter((el) => el.id == idTodelete);
@@ -43,5 +44,19 @@ export const useMenu = () => {
     syncBothMenus(newMenu, username);
     // displaySucessMessage();
   };
-  return { menu, setMenu, handleEdit, handleDelete, resetMenu, handleAdd };
+
+  async function setMainMenuByUser(username, setIsLoading) {
+    const menuProv = await getMenu(username);
+    menuProv ? setMenu(menuProv) : setMenu(fakeMenu.MEDIUM);
+    setIsLoading(false);
+  }
+  return {
+    menu,
+    setMenu,
+    handleEdit,
+    handleDelete,
+    resetMenu,
+    handleAdd,
+    setMainMenuByUser,
+  };
 };

@@ -9,7 +9,7 @@ export const useSucesMessage = () => {
     setIsAdded(true);
     setTimeout(() => {
       setIsAdded(false);
-    }, 200000);
+    }, 2000);
   };
 
   return { isAdded, displaySucessMessage };

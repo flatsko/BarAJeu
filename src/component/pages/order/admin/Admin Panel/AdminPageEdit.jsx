@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Context from "../../../../../context/Context";
 import { adminAddData } from "./adminAddFormData";
 import { EMPTY_PRODUCT } from "../../../../../enum/products";
@@ -8,7 +8,12 @@ import AdminFields from "../../../../reusableUI/AdminFields.jsx";
 import { deepClone } from "../../../../../utils/array.jsx";
 import EditInfoMessage from "./EditInfoMessage.jsx";
 import { syncBothMenus } from "../../../../../api/menu.js";
+import { useSucesMessage } from "../../../../../hooks/useDisplaySucessMessage.jsx";
+import SaveMessage from "./SaveMessage.jsx";
 export default function AdminPageEdit() {
+  const [valueOnFocus, setValueOnFocus] = useState();
+  const { isAdded: isSaved, displaySucessMessage } = useSucesMessage();
+
   let {
     username,
     menu,
@@ -24,14 +29,15 @@ export default function AdminPageEdit() {
   );
 
   const handleChange = (e) => {
-    // console.log(productToModify);
     const { name, value } = e.target;
     const productBeingEdited = { ...productToModify, [name]: value }; //lié au menu
     setProductToModify({ ...productToModify, [name]: value }); //Lié au formulaire
+
     //Copy du menu
     let copyMenu = deepClone(menu);
     //Copy du basket
     let copyBasket = deepClone(basketMenu);
+
     copyMenu[copyMenu.findIndex((el) => el.id === productBeingEdited.id)] =
       productBeingEdited;
     copyBasket[copyBasket.findIndex((el) => el.id === productBeingEdited.id)] =
@@ -42,6 +48,16 @@ export default function AdminPageEdit() {
     syncBothMenus(copyMenu, username);
   };
 
+  const handleOnBlur = (e) => {
+    let valueOnBlur = e.target.value;
+    if (valueOnFocus !== valueOnBlur) {
+      displaySucessMessage("Ca a changé");
+    }
+  };
+  const handleOnFocus = (e) => {
+    setValueOnFocus(e.target.value);
+  };
+
   return (
     <AdminPageEditStyled>
       <AdminFields
@@ -49,8 +65,10 @@ export default function AdminPageEdit() {
         fields={inputText}
         onChange={handleChange}
         ref={titleEditRef}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
       >
-        <EditInfoMessage />
+        {isSaved ? <SaveMessage /> : <EditInfoMessage />}
       </AdminFields>
     </AdminPageEditStyled>
   );

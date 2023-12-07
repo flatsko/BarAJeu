@@ -7,10 +7,8 @@ import Context from "../../../context/Context";
 import { EMPTY_PRODUCT } from "../../../enum/products";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
-import { getUser } from "../../../api/user";
 import { useParams } from "react-router-dom";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import { fakeMenu } from "../../../data/fakeMenu";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
@@ -19,10 +17,22 @@ const OrderPage = () => {
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
   const titleEditRef = useRef();
   const { username } = useParams();
-  const { menu, setMenu, handleDelete, resetMenu, handleAdd } = useMenu();
+  const {
+    menu,
+    setMenu,
+    handleDelete,
+    resetMenu,
+    handleAdd,
+    setMainMenuByUser,
+  } = useMenu();
   const [isLoading, setIsLoading] = useState(true);
-  const { basketMenu, setBasketMenu, handleAddToBasket, handleDeleteToBasket } =
-    useBasket();
+  const {
+    basketMenu,
+    setBasketMenu,
+    handleAddToBasket,
+    handleDeleteToBasket,
+    getBasket,
+  } = useBasket();
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
 
   const contextValue = {
@@ -49,33 +59,15 @@ const OrderPage = () => {
     setIsLoading,
     getLocalStorage,
     setLocalStorage,
+    setMainMenuByUser,
   };
 
   useEffect(() => {
-    setMainMenuByUser(username);
-    //localStorage.clear();
     getBasket();
+    setMainMenuByUser(username, setIsLoading);
   }, []);
 
-  // console.log(temp);
-  async function getUserByID(userId) {
-    const tempMenu = await getUser(userId);
-    setIsLoading(false);
-    return tempMenu;
-  }
-
-  function getBasket() {
-    const basketMenuParsed = getLocalStorage("product");
-    basketMenuParsed
-      ? setBasketMenu(basketMenuParsed)
-      : setBasketMenu(fakeMenu.EMPTY);
-
-    console.log(basketMenuParsed);
-  }
-  async function setMainMenuByUser(username) {
-    const menuUser = await getUserByID(username);
-    setMenu(menuUser.menu);
-  }
+  useEffect(() => {}, [menu]);
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>
