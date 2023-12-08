@@ -6,11 +6,8 @@ import { theme } from "../../../../../theme";
 
 export default function BasketTopRight({ priceToPay }) {
   return (
-    <BasketTopRightStyled className="rightSide">
-      <CasinoEffect
-        className={"casino"}
-        count={formatPrice(priceToPay)}
-      ></CasinoEffect>
+    <BasketTopRightStyled key="transition" className="rightSide">
+      <CasinoEffect count={formatPrice(priceToPay)} className="casino" />
     </BasketTopRightStyled>
   );
 }
