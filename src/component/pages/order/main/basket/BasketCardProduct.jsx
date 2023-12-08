@@ -11,14 +11,14 @@ export default function BasketCardProduct({
   imageSource,
   price,
   quantity,
-  className = "test",
+  className,
   deleteClick,
   isClicable,
   onClick,
   isSelected,
 }) {
   return (
-    <BasketCardProductStyled className={className} isselected={isSelected}>
+    <BasketCardProductStyled isselected={isSelected}>
       <div className="basketCard">
         <div className="deleteButton" onClick={deleteClick}>
           <MdDeleteForever className="icon" />
@@ -35,13 +35,6 @@ export default function BasketCardProduct({
           <span>x {quantity}</span>
         </div>
       </div>
-      {/* {console.log(basketMenu)}{" "}
-      {Object.keys(basketMenu).length != 0
-        ? basketMenu.map((el) => {
-            return el.title;
-          })
-        : null}{" "}
-      ; */}
     </BasketCardProductStyled>
   );
 }
@@ -53,6 +46,9 @@ const BasketCardProductStyled = styled.div`
   width: 100%;
   margin-bottom: 10px;
 
+  .test {
+    color: red;
+  }
   .basketCard {
     margin-bottom: 10px;
     display: grid;
@@ -151,7 +147,9 @@ const BasketCardProductStyled = styled.div`
       color: ${theme.colors.white};
       cursor: pointer;
       z-index: 2;
-
+      :hover {
+        color: black;
+      }
       .icon {
         height: 100%;
         display: flex;

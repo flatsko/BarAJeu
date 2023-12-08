@@ -4,10 +4,11 @@ import BasketTop from "./BasketTop";
 import BasketBottom from "./BasketBottom";
 import BasketCardProduct from "./BasketCardProduct";
 import BasketComingSoon from "./BasketComingSoon";
-import { useBasket } from "../../../../../hooks/useBasket";
 import { useContext } from "react";
 import Context from "../../../../../context/Context";
 import LoadingSpinner from "../../../../reusableUI/Loading";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import BasketProduct from "./BasketProduct";
 
 export default function Basket() {
   let {
@@ -47,30 +48,21 @@ export default function Basket() {
       <div className="contentBasket">
         <div className="box">
           {!isLoading ? (
-            basketMenu.length > 0 ? (
-              basketMenu.map((basketProduct) => {
-                return (
-                  <BasketCardProduct
-                    key={basketProduct.id}
-                    deleteClick={() => handleDeleteToBasket(basketProduct.id)}
-                    isClicable={isModeAdmin}
-                    onClick={(e) => onCardClick(e, basketProduct)}
-                    isSelected={
-                      +checkIfProductIsClicked(
-                        basketProduct.id,
-                        productToModify.id
-                      )
-                    }
-                    {...basketProduct}
-                  ></BasketCardProduct>
-                );
-              })
-            ) : (
-              <BasketComingSoon></BasketComingSoon>
-            )
+            <BasketProduct
+              basketMenu={basketMenu}
+              checkIfProductIsClicked={checkIfProductIsClicked}
+              onCardClick={onCardClick}
+              handleDeleteToBasket={handleDeleteToBasket}
+              isModeAdmin={isModeAdmin}
+              productToModify={productToModify}
+            ></BasketProduct>
           ) : (
             <LoadingSpinner />
           )}
+
+          {basketMenu.length == 0 ? (
+            <BasketComingSoon></BasketComingSoon>
+          ) : null}
         </div>
       </div>
       <BasketBottom></BasketBottom>
@@ -102,7 +94,17 @@ const BasketStyled = styled.div`
     height: 50px;
     flex-grow: 1;
   }
-
+  .transition {
+    font-size: ${theme.fonts.size.P0};
+    grid-area: baket;
+    display: flex;
+    flex-direction: column;
+    //flex: 1 1 1;
+    flex-grow: 1;
+    flex: 1;
+    justify-content: space-between;
+    align-content: space-between;
+  }
   .box {
     margin-top: 20px;
     margin-bottom: 20px;

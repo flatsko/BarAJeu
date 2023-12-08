@@ -26,6 +26,8 @@ export const useBasket = () => {
     //console.log(copyBasket);
     let newBasket = copyBasket.filter((el) => el.id != basketProductToDelete);
     setBasketMenu(newBasket);
+    setLocalStorage("product", newBasket);
+
     console.log(basketMenu);
   };
 
@@ -34,7 +36,6 @@ export const useBasket = () => {
     basketCopy[indexProductToIncrement].quantity += 1;
     setBasketMenu(basketCopy);
     //setLocalStorage("product", basketCopy);
-    localStorage.setItem("product", JSON.stringify(basketCopy));
   };
 
   const createNewProductInBakset = (productToAdd, basketCopy) => {
@@ -42,9 +43,8 @@ export const useBasket = () => {
     newProduct = { ...newProduct, quantity: 1 };
     const basketUpdated = [newProduct, ...basketCopy];
     setBasketMenu(basketUpdated);
-    localStorage.setItem("product", JSON.stringify(basketUpdated));
-    // setLocalStorage("product", basketUpdated);
-    //console.log(JSON.parse(localStorage.getItem("product")));
+    // localStorage.setItem("product", JSON.stringify(basketUpdated));
+    //setLocalStorage("product", basketUpdated);
   };
 
   function getBasket() {
