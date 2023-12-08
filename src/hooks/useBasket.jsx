@@ -35,7 +35,7 @@ export const useBasket = () => {
   const incrementProductInBasket = (indexProductToIncrement, basketCopy) => {
     basketCopy[indexProductToIncrement].quantity += 1;
     setBasketMenu(basketCopy);
-    //setLocalStorage("product", basketCopy);
+    setLocalStorage("product", basketCopy);
   };
 
   const createNewProductInBakset = (productToAdd, basketCopy) => {
@@ -44,7 +44,7 @@ export const useBasket = () => {
     const basketUpdated = [newProduct, ...basketCopy];
     setBasketMenu(basketUpdated);
     // localStorage.setItem("product", JSON.stringify(basketUpdated));
-    //setLocalStorage("product", basketUpdated);
+    setLocalStorage("product", basketUpdated);
   };
 
   function getBasket() {

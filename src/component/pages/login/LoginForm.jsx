@@ -23,7 +23,7 @@ function Login() {
     const userRecived = await autenticateUser(name);
     console.log(userRecived);
     console.log(name);
-    navigate(`orderPage/${userRecived.username}`);
+    navigate(`orderPage/${userRecived}`);
   };
 
   const handleChange = (e) => {
