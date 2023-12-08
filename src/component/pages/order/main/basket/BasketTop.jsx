@@ -18,7 +18,7 @@ const BasketTopStyled = styled.div`
   align-items: center;
   background-color: ${theme.colors.background_dark};
   justify-content: space-between;
-  height: 100px;
+  height: 70px;
   font-size: ${theme.fonts.size.P3};
   font-family: "Amatic SC", cursive;
 

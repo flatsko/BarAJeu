@@ -51,6 +51,8 @@ const BasketCardProductStyled = styled.div`
     color: red;
   }
   .basketCard {
+    position: relative;
+
     margin-bottom: 10px;
     display: grid;
     grid-template-columns: 1fr 1.7fr 0.7fr;
@@ -61,9 +63,10 @@ const BasketCardProductStyled = styled.div`
       "image price quantity";
     font-size: ${theme.fonts.size.P1};
     align-items: center;
-    justify-items: start;
+    justify-items: center;
     background-color: ${theme.colors.white};
     height: 100%;
+    width: 100%;
     border-radius: ${theme.borderRadius.round};
     // background-color: ${theme.colors.primary};
 
@@ -130,14 +133,15 @@ const BasketCardProductStyled = styled.div`
     }
   }
   .basketCard:hover {
+    position: relative;
     .deleteButton {
       border: none;
       box-sizing: border-box;
       grid-area: quantity;
       display: grid;
-      width: 60px;
+      width: 100%;
       height: 100%;
-      display: flex;
+      position: absolute;
       right: 0;
       border-top-right-radius: ${theme.borderRadius.round};
       border-bottom-right-radius: ${theme.borderRadius.round};
@@ -155,6 +159,9 @@ const BasketCardProductStyled = styled.div`
         height: 100%;
         display: flex;
         align-items: center;
+      }
+      .quantity {
+        display: none;
       }
     }
   }

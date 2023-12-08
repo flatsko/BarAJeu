@@ -28,7 +28,7 @@ export default function BasketProduct({
             appear={true}
             classNames={"cardAnim"}
             key={basketProduct.id}
-            timeout={{ enter: 5000, exit: 5000 }}
+            timeout={2000}
           >
             <BasketCardProduct
               key={basketProduct.id}

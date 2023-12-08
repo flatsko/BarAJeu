@@ -1,8 +1,5 @@
-import React from "react";
 import { styled } from "styled-components";
-import styles from "@openfonts/amatic-sc_all/index.css";
 import { theme } from "../../theme";
-import { Link } from "react-router-dom";
 
 export default function Logo({ className, onClick }) {
   return (

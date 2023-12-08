@@ -18,11 +18,13 @@ function Login() {
   const navigate = useNavigate();
 
   //Comportement
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    autenticateUser(name);
-    navigate(`orderPage/${name}`);
-  }
+    const userRecived = await autenticateUser(name);
+    console.log(userRecived);
+    console.log(name);
+    navigate(`orderPage/${userRecived.username}`);
+  };
 
   const handleChange = (e) => {
     setName(e.target.value);
