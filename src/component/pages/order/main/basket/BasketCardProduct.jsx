@@ -43,8 +43,9 @@ const BasketCardProductStyled = styled.div`
   ${(props) => props.isselected && selectedStyle}
   position: relative;
   height: 86px;
-  width: 100%;
+  width: 90%;
   margin-bottom: 10px;
+  display: flex;
 
   .test {
     color: red;

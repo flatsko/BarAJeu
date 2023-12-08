@@ -21,49 +21,74 @@ export default function BasketProduct({
   } = useContext(Context);
 
   return (
-    <BasketProductStyled>
-      <TransitionGroup>
-        {basketMenu.map((basketProduct) => {
-          return (
-            <CSSTransition
-              classNames={"cardAnim"}
+    <TransitionGroup component={BasketProductStyled}>
+      {basketMenu.map((basketProduct) => {
+        return (
+          <CSSTransition
+            appear={true}
+            classNames={"cardAnim"}
+            key={basketProduct.id}
+            timeout={{ enter: 5000, exit: 5000 }}
+          >
+            <BasketCardProduct
               key={basketProduct.id}
-              timeout={{ enter: 5000, exit: 5000 }}
-            >
-              <BasketCardProduct
-                key={basketProduct.id}
-                deleteClick={() => handleDeleteToBasket(basketProduct.id)}
-                isClicable={isModeAdmin}
-                onClick={(e) => onCardClick(e, basketProduct)}
-                isSelected={
-                  +checkIfProductIsClicked(basketProduct.id, productToModify.id)
-                }
-                {...basketProduct}
-              ></BasketCardProduct>
-            </CSSTransition>
-          );
-        })}
-      </TransitionGroup>
-    </BasketProductStyled>
+              deleteClick={() => handleDeleteToBasket(basketProduct.id)}
+              isClicable={isModeAdmin}
+              onClick={(e) => onCardClick(e, basketProduct)}
+              isSelected={
+                +checkIfProductIsClicked(basketProduct.id, productToModify.id)
+              }
+              {...basketProduct}
+            ></BasketCardProduct>
+          </CSSTransition>
+        );
+      })}
+    </TransitionGroup>
   );
 }
 
 const BasketProductStyled = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+
   .cardAnim-enter {
     .basketCard {
-      background-color: red;
+      transform: translateX(100px);
+      opacity: 0%;
     }
   }
 
   .cardAnim-enter-active {
     .basketCard {
-      background-color: blue;
+      transition: 2s;
+      transform: translateX(0px);
+      opacity: 100%;
     }
   }
 
   .cardAnim-enter-done {
     .basketCard {
-      background-color: green;
+    }
+  }
+
+  .cardAnim-exit {
+    .basketCard {
+      transform: translateX(0px);
+      opacity: 100%;
+    }
+  }
+  .cardAnim-exit-active {
+    .basketCard {
+      transform: translateX(-100px);
+      opacity: 0%;
+      transition: 2s;
+    }
+  }
+  .cardAnim-exit-done {
+    .basketCard {
+      background-color: red;
     }
   }
 `;
