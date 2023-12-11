@@ -44,7 +44,7 @@ export const adminAddData = (newProduct) => [
     name: "isPublicised",
     value: newProduct.isPublicised,
     type: "button",
-    placeholder: newProduct.isPublicised ? "Sans Pub" : "Avec",
+    placeholder: newProduct.isPublicised ? "Avec Pub" : "Sans Pub",
     Icon: <GoMegaphone className="icon" />,
   },
 ];

@@ -196,6 +196,21 @@ const hoverableStyle = css`
     .text-info .description .left-deClscription {
       color: ${theme.colors.background_white};
     }
+    .text-info {
+      .description {
+        .left-description {
+          color: white;
+        }
+        .right-description {
+          .primary-button {
+            transition: 0.2s;
+            border-color: ${theme.colors.background_white};
+            color: ${theme.colors.primary};
+            background-color: ${theme.colors.white};
+          }
+        }
+      }
+    }
     .deleteButton {
       color: ${theme.colors.background_white};
     }
