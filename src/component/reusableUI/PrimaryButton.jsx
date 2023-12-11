@@ -27,6 +27,8 @@ const StyledPrimaryButton = styled.button`
   ${({ version }) => extraStyle[version]};
   //width: 100%;
   height: 50px;
+  outline: none;
+  cursor: pointer;
 `;
 
 const extraStylePrimary = css`
@@ -39,6 +41,7 @@ const extraStylePrimary = css`
   white-space: nowrap; //prevents the text label from wrapping to the next line.
   text-decoration: none; //removes the text decoration in case you’re applying the .btn class to a link.
   line-height: 1;
+  outline: none;
 
   padding: 18px 24px;
   border-radius: 5px;
@@ -48,17 +51,22 @@ const extraStylePrimary = css`
   background-color: #ff9f1b;
   border: 1px solid #ff9f1b;
 
-  :hover {
+  &:hover {
     color: ${theme.colors.primary};
     background-color: ${theme.colors.white};
     border: 1px solid ${theme.colors.primary};
     transition: all 200ms ease-out;
+    cursor: pointer;
+    outline: none;
   }
-  :active {
+  &:active {
     background-color: ${theme.colors.primary};
     color: ${theme.colors.white};
+    outline: none;
   }
-
+  :focus {
+    outline: none;
+  }
   &.is-disabled {
     opacity: 50%;
     cursor: not-allowed;
@@ -72,11 +80,13 @@ const extraStylePrimary = css`
     :hover {
       color: ${theme.colors.white};
       background-color: ${theme.colors.primary};
-      border: 1px solid ${theme.colors.white};
+      //border: 1px solid ${theme.colors.white};
+      outline: none;
     }
     :active {
-      background-color: ${theme.colors.white};
+      background-color: ${theme.colors.red};
       color: ${theme.colors.primary};
+      outline: none;
     }
   }
 
@@ -97,15 +107,17 @@ const extraStyleSuccess = css`
   width: 60%;
   //padding: 0 1.5em;
   font-weight: ${theme.fonts.weights.semiBold};
-  :hover {
+  &:hover {
     background: ${theme.colors.white};
     color: ${theme.colors.success};
     border: 1px solid ${theme.colors.success};
+    outline: none;
   }
-  :active {
+  &:active {
     color: ${theme.colors.white};
     background: ${theme.colors.success};
     border: 1px solid ${theme.colors.success};
+    outline: none;
   }
 `;
 const extraStyle = {

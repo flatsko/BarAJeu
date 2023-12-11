@@ -50,7 +50,7 @@ function Login() {
 
 const LoginStyled = styled.form`
   font-family: "Amatic SC", cursive;
-
+  border: none;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -77,22 +77,38 @@ const LoginStyled = styled.form`
   }
 
   .inputForm {
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 270px;
     font-size: ${theme.fonts.P0};
     font-family: "Open Sans", sans-serif;
+    position: relative;
+    background-color: ${theme.colors.background_white};
   }
   .textInput {
     width: 200px;
   }
+
+  input {
+    background-color: ${theme.colors.background_white};
+
+    &::placeholder {
+      background-color: ${theme.colors.background_white};
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
   .icon {
+    position: absolute;
     font-size: ${theme.fonts.P0};
-    margin-right: 8px;
     color: ${theme.colors.greySemiDark};
+    top: 20%;
+    left: 25px;
 
     /* min-width: 1em; // that way, the icon size is NOT affected by width of the entire component. */
   }
