@@ -44,7 +44,7 @@ const AdminFields = React.forwardRef(
               <AdminPannelButton
                 icon={adminTextData.Icon}
                 label={adminTextData.placeholder}
-                onClick={onClick}
+                onClick={(e) => onClick(e, adminTextData.name)}
                 {...adminTextData}
               />
             );
@@ -60,6 +60,7 @@ export default AdminFields;
 const AdminFieldsStyled = styled.form`
   margin: 20px;
   display: flex;
+  max-height: 200px;
   // max-height: 100px;
   input {
     background-color: ${theme.colors.background_white};

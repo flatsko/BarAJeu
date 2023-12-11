@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import TextInput from "../../../../reusableUI/TextInput";
-import { CiCircleCheck } from "react-icons/ci";
-import PrimaryButton from "../../../../reusableUI/PrimaryButton";
-import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import Context from "../../../../../context/Context";
 import { adminAddData } from "./adminAddFormData";
-import ImagePreviewStyled from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../enum/products";
 import AdminFields from "../../../../reusableUI/AdminFields";
-import SubmitMessage from "./SubmitMessage";
 import SubmitButton from "./SubmitButton";
 import { useSucesMessage } from "../../../../../hooks/useDisplaySucessMessage";
 

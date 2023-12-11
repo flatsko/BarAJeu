@@ -12,7 +12,9 @@ export default function AdminPannelButton({
   return (
     <AdminPannelButtonStyled onClick={onClick} {...extraprops}>
       {icon}
-      <span className="label">{label}</span>
+      <div className="label" {...extraprops}>
+        {label}
+      </div>
     </AdminPannelButtonStyled>
   );
 }

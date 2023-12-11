@@ -58,19 +58,29 @@ export default function AdminPageEdit() {
     setValueOnFocus(e.target.value);
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e, name) => {
     e.preventDefault();
+    console.log(name);
     const productCopy = productToModify;
-    productCopy.isAvailable = !productCopy.isAvailable;
+    productCopy[name] = !productCopy[name];
     setProductToModify(productCopy);
 
     //Cloner le Menu
     const copyMenu = deepClone(menu);
-    //Trouver l'index à remplacer
+    const copyBasket = deepClone(basketMenu);
+    //Trouver l'index à remplacer dans le menu
     const index = copyMenu.findIndex((el) => el.id == productCopy.id);
-    //Remplacer
+
+    //Trouver l'index à remplacer dans le basket
+    const indexBasket = copyBasket.findIndex((el) => el.id == productCopy.id);
+    //Remplacer pour le menu
     copyMenu[index] = productCopy;
     setMenu(copyMenu);
+    console.log(copyBasket);
+    //Remplacer pour le basket
+    productCopy.quantity = copyBasket[indexBasket].quantity;
+    copyBasket[indexBasket] = productCopy;
+    setBasketMenu(copyBasket);
   };
   return (
     <AdminPageEditStyled>

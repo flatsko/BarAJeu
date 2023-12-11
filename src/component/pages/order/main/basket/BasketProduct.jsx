@@ -38,6 +38,7 @@ export default function BasketProduct({
               isSelected={
                 +checkIfProductIsClicked(basketProduct.id, productToModify.id)
               }
+              isPublicised={basketProduct.isPublicised}
               {...basketProduct}
             ></BasketCardProduct>
           </CSSTransition>

@@ -4,6 +4,7 @@ import { theme } from "../../../../../theme";
 import Context from "../../../../../context/Context";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
+import Sticker from "../../../../reusableUI/Sticker";
 
 export default function BasketCardProduct({
   id,
@@ -16,10 +17,13 @@ export default function BasketCardProduct({
   isClicable,
   onClick,
   isSelected,
+  isAvailable,
+  isPublicised,
 }) {
   return (
     <BasketCardProductStyled isselected={isSelected}>
       <div className="basketCard">
+        {isPublicised ? <Sticker className={"sticker"}></Sticker> : null}
         <div className="deleteButton" onClick={deleteClick}>
           <MdDeleteForever className="icon" />
         </div>
@@ -30,7 +34,9 @@ export default function BasketCardProduct({
         <div className="name" onClick={isClicable ? onClick : null}>
           <span>{title}</span>
         </div>
-        <div className="price">{formatPrice(price)}</div>
+        <div className="price">
+          {isAvailable ? formatPrice(price) : "Non disponible"}
+        </div>
         <div className="quantity">
           <span>x {quantity}</span>
         </div>
@@ -46,7 +52,14 @@ const BasketCardProductStyled = styled.div`
   width: 90%;
   margin-bottom: 10px;
   display: flex;
-
+  .sticker {
+    position: absolute;
+    display: grid;
+    grid-area: image;
+    bottom: 10px;
+    right: 0;
+    z-index: 2;
+  }
   .test {
     color: red;
   }

@@ -32,6 +32,7 @@ export default function Card({
       {!isAvailable ? (
         <img className="epuise" src="../images/stock-epuise.png" />
       ) : null}
+      {isPublicised ? <Ribbon /> : null}
       <div className={"card"}>
         {showDeleteButton ? (
           <button onClick={onDelete} className="deleteButton">
