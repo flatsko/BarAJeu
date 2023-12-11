@@ -2,20 +2,22 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme/index";
 
-const TextInput = React.forwardRef(({ value, Icon, ...extraProps }, ref) => {
-  // console.log(Icon);
-  return (
-    <TextInputStyled>
-      {Icon && Icon}
-      <input ref={ref} value={value} type="text" {...extraProps} />
-    </TextInputStyled>
-  );
-});
+const TextInput = React.forwardRef(
+  ({ className, value, Icon, ...extraProps }, ref) => {
+    // console.log(Icon);
+    return (
+      <TextInputStyled className={className}>
+        {Icon && Icon}
+        <input ref={ref} value={value} type="text" {...extraProps} />
+      </TextInputStyled>
+    );
+  }
+);
 export default TextInput;
 const TextInputStyled = styled.div`
   background-color: ${theme.colors.background_white};
   border-radius: ${theme.borderRadius.round};
-  display: flex;
+  // display: flex;
   align-items: center;
   padding: 15px 20px;
   margin: 5px 0; // could be handle in Parent too
@@ -32,6 +34,7 @@ const TextInputStyled = styled.div`
     color: ${theme.colors.incognito};
     text-align: left;
     font-size: ${theme.fonts.P2};
+    padding-left: 40px;
 
     &::placeholder {
       background: ${theme.colors.white};

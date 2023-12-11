@@ -8,7 +8,6 @@ import { theme } from "../../../theme/index";
 import styles from "@openfonts/amatic-sc_all/index.css";
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
-import React from "react";
 import { autenticateUser, createUser, getUser } from "../../../api/user";
 import Welcome from "./Welcome";
 
@@ -23,7 +22,7 @@ function Login() {
     const userRecived = await autenticateUser(name);
     console.log(userRecived);
     console.log(name);
-    navigate(`orderPage/${userRecived}`);
+    navigate(`orderPage/${name}`);
   };
 
   const handleChange = (e) => {

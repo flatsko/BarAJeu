@@ -69,31 +69,34 @@ export default function Menu() {
   return (
     <MenuStyles>
       {!isLoading ? (
-        menu.map(({ id, title, imageSource, price, isavailable }) => {
-          return (
-            <Card
-              key={id}
-              imageSource={imageSource}
-              title={title}
-              leftDescription={formatPrice(price)}
-              isavailable={isavailable}
-              showDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={(event) => handleCardClick(event, id)}
-              ishoverable={isModeAdmin}
-              isselected={+checkIfProductIsClicked(id, productToModify.id)}
-              onClickButton={(event) => handleButtonClick(event, id)}
+        menu.map(
+          ({ id, title, imageSource, price, isAvailable, isPublicised }) => {
+            return (
+              <Card
+                key={id}
+                imageSource={imageSource}
+                title={title}
+                leftDescription={formatPrice(price)}
+                isAvailable={isAvailable}
+                isPublicised={isPublicised}
+                showDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={(event) => handleCardClick(event, id)}
+                ishoverable={isModeAdmin}
+                isselected={+checkIfProductIsClicked(id, productToModify.id)}
+                onClickButton={(event) => handleButtonClick(event, id)}
 
-              // className={
-              //   !isModeAdmin
-              //     ? "produit"
-              //     : !isSelected
-              //     ? "produit-admin"
-              //     : "produit-admin-selected"
-              // }
-            />
-          );
-        })
+                // className={
+                //   !isModeAdmin
+                //     ? "produit"
+                //     : !isSelected
+                //     ? "produit-admin"
+                //     : "produit-admin-selected"
+                // }
+              />
+            );
+          }
+        )
       ) : (
         <LoadingSpinner />
       )}

@@ -3,6 +3,7 @@ import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 const DEFAULT_IMAGE_SOURCE = "/images/coming-soon.png";
 import { TiDelete } from "react-icons/ti";
+import Ribbon from "./Ribbon";
 
 export default function Card({
   title,
@@ -15,6 +16,8 @@ export default function Card({
   isselected,
   onClick,
   onClickButton,
+  isAvailable,
+  isPublicised,
   ...extraProps
 }) {
   return (
@@ -23,8 +26,12 @@ export default function Card({
       ishoverable={ishoverable}
       isselected={isselected}
       onClick={onClick}
+      isAvailable={isAvailable}
       {...extraProps}
     >
+      {!isAvailable ? (
+        <img className="epuise" src="../images/stock-epuise.png" />
+      ) : null}
       <div className={"card"}>
         {showDeleteButton ? (
           <button onClick={onDelete} className="deleteButton">
@@ -59,7 +66,15 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
+  ${(props) => (props.isAvailable ? null : availableStyle)}
   ${(props) => props.ishoverable && hoverableStyle}
+  position:relative;
+  .epuise {
+    position: absolute;
+    top: 20%;
+    left: 0px;
+    width: 100%;
+  }
   .card {
     background: ${theme.colors.white};
     width: 240px;
@@ -71,7 +86,6 @@ const CardStyled = styled.div`
     padding-bottom: 10px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
-    position: relative;
 
     .image {
       width: 100%;
@@ -160,10 +174,14 @@ const CardStyled = styled.div`
       ishoverable && isselected && selectedStyle}
   }
 `;
-
+const availableStyle = css`
+  .card {
+    opacity: 0.2;
+  }
+`;
 const hoverableStyle = css`
+  position: relative;
   .card:hover {
-    border: red;
     border: 5px;
     transform: translateY(-5px) scale(1.005) translateZ(0);
     transition-duration: 0.5s;
@@ -184,6 +202,7 @@ const hoverableStyle = css`
 `;
 
 const selectedStyle = css`
+  position: relative;
   background-color: ${theme.colors.primary};
   transform: translateY(-5px) scale(1.005) translateZ(0);
   transition-duration: 0.5s;

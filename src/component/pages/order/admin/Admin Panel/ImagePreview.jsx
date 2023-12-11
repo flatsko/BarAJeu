@@ -23,8 +23,6 @@ const ImagePrevienwStyled = styled.div`
   align-items: center;
 
   img {
-    width: 200px;
-    height: 200px;
     object-fit: contain;
     object-position: center;
   }
@@ -39,5 +37,7 @@ const ImagePrevienwStyled = styled.div`
     line-height: 1.5;
     color: ${theme.colors.greySemiDark};
     border-radius: ${theme.borderRadius.round};
+    width: 200px;
+    height: 200px;
   }
 `;

@@ -18,8 +18,8 @@ export default function AdminPanel() {
 }
 
 const AdminPanelStyled = styled.div`
-  background-color: ${theme.colors.background_white};
-  color: ${theme.colors.dark};
+  background-color: ${theme.colors.white};
+  //color: ${theme.colors.dark};
   // border-bottom-left-radius: ${theme.borderRadius.extraRound};
   //border-bottom-right-radius: ${theme.borderRadius.extraRound};
   height: 250px;

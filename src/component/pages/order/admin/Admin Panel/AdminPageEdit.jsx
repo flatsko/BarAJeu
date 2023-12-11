@@ -58,6 +58,20 @@ export default function AdminPageEdit() {
     setValueOnFocus(e.target.value);
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    const productCopy = productToModify;
+    productCopy.isAvailable = !productCopy.isAvailable;
+    setProductToModify(productCopy);
+
+    //Cloner le Menu
+    const copyMenu = deepClone(menu);
+    //Trouver l'index à remplacer
+    const index = copyMenu.findIndex((el) => el.id == productCopy.id);
+    //Remplacer
+    copyMenu[index] = productCopy;
+    setMenu(copyMenu);
+  };
   return (
     <AdminPageEditStyled>
       <AdminFields
@@ -67,6 +81,7 @@ export default function AdminPageEdit() {
         ref={titleEditRef}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
+        onClick={handleClick}
       >
         {isSaved ? <SaveMessage /> : <EditInfoMessage />}
       </AdminFields>
@@ -74,55 +89,4 @@ export default function AdminPageEdit() {
   );
 }
 
-const AdminPageEditStyled = styled.div`
-  .gridDiv {
-    display: grid;
-    grid-template-columns: 1fr 0.3fr 1.7fr;
-    grid-template-rows: 0.4fr 0.4fr 0.4fr 1.9fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      "imagePrev imagePrev input1"
-      "imagePrev imagePrev input2"
-      "imagePrev imagePrev input3"
-      ". . .";
-  }
-  .imagePrev {
-    grid-area: imagePrev;
-  }
-  .input1 {
-    grid-area: input1;
-  }
-  .input2 {
-    grid-area: input2;
-  }
-  .input3 {
-    grid-area: input3;
-  }
-
-  input {
-    //grid-area: 2 / 2 / -2 / 3;
-    width: 50vw;
-  }
-  .inputFo {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin-bottom: 20px;
-    // grid-row-gap: 8px;
-    position: relative;
-  }
-  .icon {
-    font-size: ${theme.fonts.P0};
-    padding-left: 5px;
-    color: ${theme.colors.greySemiDark};
-    position: absolute;
-    z-index: 100;
-  }
-  .inputText {
-    padding-left: 30px;
-  }
-`;
+const AdminPageEditStyled = styled.div``;
