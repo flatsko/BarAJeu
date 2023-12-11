@@ -61,6 +61,7 @@ const LoginStyled = styled.form`
   border-radius: ${theme.borderRadius.round};
   max-width: 500px;
   min-width: 400px;
+  // background-color: transparent;
 
   hr {
     height: 1px;
@@ -82,14 +83,16 @@ const LoginStyled = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 270px;
+    width: 100%;
     font-size: ${theme.fonts.P0};
     font-family: "Open Sans", sans-serif;
     position: relative;
-    background-color: ${theme.colors.background_white};
+    background-color: transparent;
   }
   .textInput {
-    width: 200px;
+    padding: 16px 0px;
+    //margin-left: 10px;
+    width: 100%;
   }
 
   input {
@@ -103,12 +106,18 @@ const LoginStyled = styled.form`
       outline: none;
     }
   }
+
+  button {
+    margin-top: 20px;
+    min-width: 100%;
+    padding: 15px, 20px;
+  }
   .icon {
     position: absolute;
     font-size: ${theme.fonts.P0};
     color: ${theme.colors.greySemiDark};
-    top: 20%;
-    left: 25px;
+    top: 18%;
+    left: 15px;
 
     /* min-width: 1em; // that way, the icon size is NOT affected by width of the entire component. */
   }

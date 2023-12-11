@@ -60,6 +60,8 @@ export default AdminFields;
 const AdminFieldsStyled = styled.form`
   margin: 20px;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   max-height: 200px;
   // max-height: 100px;
   input {
