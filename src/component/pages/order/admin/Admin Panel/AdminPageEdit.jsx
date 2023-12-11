@@ -81,6 +81,9 @@ export default function AdminPageEdit() {
     productCopy.quantity = copyBasket[indexBasket].quantity;
     copyBasket[indexBasket] = productCopy;
     setBasketMenu(copyBasket);
+    syncBothMenus(copyMenu, username);
+
+    console.log(copyMenu, username);
   };
   return (
     <AdminPageEditStyled>

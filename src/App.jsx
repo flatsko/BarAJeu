@@ -1,4 +1,3 @@
-import { useState } from "react";
 import LoginPage from "./component/pages/login/LoginPage.jsx";
 import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
 //import mainLayout from "./component/pages/layout/mainLayout.jsx";
@@ -7,7 +6,6 @@ import NoAccessPage from "./component/pages/404/NoAccesPage.jsx";
 import { styled } from "styled-components/";
 import ToastAdmin from "./component/ToastContainer.jsx";
 import { theme } from "./theme/index.js";
-import React from "react";
 
 function App() {
   //state

@@ -9,10 +9,12 @@ import MenuEmptyClient from "./MenuEmptyClient";
 import { deepClone } from "../../../../utils/array";
 import Admin from "../admin/Admin";
 import LoadingSpinner from "../../../reusableUI/Loading";
+import { syncBothMenus } from "../../../../api/menu";
 export default function Menu() {
   // const menu1 = useContext(Context);
   let {
     menu,
+    setMenu,
     username,
     isModeAdmin,
     handleDelete,
@@ -60,20 +62,74 @@ export default function Menu() {
   }
   const handleButtonClick = (event, id) => {
     event.stopPropagation(id);
+    //Clone du basket
     let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
-    let tempProduct = menu[getProductIndexById(id)];
-    handleAddToBasket(basketMenuClone, tempProduct, id);
+    //clone du menu
+    let menuCopy = deepClone(menu);
+    //Recherche de l'index
+
+    //menuCopy[indexMenu] = menuCopy[getProductIndexById(id)]
+    let tempProduct = menuCopy[getProductIndexById(id)];
+    const indexMenu = menuCopy.findIndex((el) => el.id == tempProduct.id);
+    menuCopy[indexMenu] = tempProduct;
+    menuCopy = handleAddToBasket(basketMenuClone, tempProduct, id);
     //console.log(basketMenu);
   };
+  const handleClickOperators = (e, name, id) => {
+    //copy du menu
+    console.table(e.target.className);
+    let menuCopy = deepClone(menu);
+    //travail de la copie
+    const index = menuCopy.findIndex((el) => el.id == id);
+    const productToModify = menuCopy[index];
+    switch (e.target.className) {
+      case "moins":
+        //On verifie qu'on est pas a 0
+        if (productToModify.quantity > 0) {
+          //On enleve 1 en quantity au bon produit du menu
+          productToModify.quantity = --productToModify.quantity;
+        }
 
+        break;
+      case "plus":
+        //On ajoute 1 en quantity au bon produit du menu
+        productToModify.quantity = ++productToModify.quantity;
+
+        break;
+      default:
+        break;
+    }
+    menuCopy[index] = productToModify;
+    setMenu(menuCopy);
+    let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
+    const basketId = basketMenuClone.findIndex((el) => el.id == id);
+    if (productToModify.quantity > 0) {
+      basketMenuClone[basketId] = productToModify;
+      handleAddToBasket(basketMenuClone, productToModify, id);
+    } else {
+      handleDeleteToBasket(basketMenuClone[basketId].id);
+    }
+
+    syncBothMenus(menuCopy, username);
+    console.log(username);
+  };
   return (
     <MenuStyles>
       {!isLoading ? (
         menu.map(
-          ({ id, title, imageSource, price, isAvailable, isPublicised }) => {
+          ({
+            id,
+            title,
+            imageSource,
+            price,
+            isAvailable,
+            isPublicised,
+            quantity,
+          }) => {
             return (
               <Card
                 key={id}
+                id={id}
                 imageSource={imageSource}
                 title={title}
                 leftDescription={formatPrice(price)}
@@ -85,7 +141,8 @@ export default function Menu() {
                 ishoverable={isModeAdmin}
                 isselected={+checkIfProductIsClicked(id, productToModify.id)}
                 onClickButton={(event) => handleButtonClick(event, id)}
-
+                quantity={quantity ? quantity : 0}
+                onClickOperators={handleClickOperators}
                 // className={
                 //   !isModeAdmin
                 //     ? "produit"

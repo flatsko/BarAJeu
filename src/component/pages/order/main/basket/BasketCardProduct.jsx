@@ -5,6 +5,7 @@ import Context from "../../../../../context/Context";
 import { formatPrice } from "../../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
 import Sticker from "../../../../reusableUI/Sticker";
+import BasketProductNonAvailable from "./BasketProductNonAvailable";
 
 export default function BasketCardProduct({
   id,
@@ -35,7 +36,7 @@ export default function BasketCardProduct({
           <span>{title}</span>
         </div>
         <div className="price">
-          {isAvailable ? formatPrice(price) : "Non disponible"}
+          {isAvailable ? formatPrice(price) : <BasketProductNonAvailable />}
         </div>
         <div className="quantity">
           <span>x {quantity}</span>

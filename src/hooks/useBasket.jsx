@@ -17,7 +17,7 @@ export const useBasket = () => {
       createNewProductInBakset(tempProduct, basketMenuClone);
       //Quantité à incrément
     } else {
-      incrementProductInBasket(existant, basketMenuClone);
+      incrementProductInBasket(tempProduct, basketMenuClone);
     }
   };
 
@@ -31,16 +31,15 @@ export const useBasket = () => {
     console.log(basketMenu);
   };
 
-  const findProductById = () => {};
   const incrementProductInBasket = (indexProductToIncrement, basketCopy) => {
-    basketCopy[indexProductToIncrement].quantity += 1;
     setBasketMenu(basketCopy);
     setLocalStorage("product", basketCopy);
+    console.log(basketCopy);
   };
 
   const createNewProductInBakset = (productToAdd, basketCopy) => {
     let newProduct = deepClone(productToAdd);
-    newProduct = { ...newProduct, quantity: 1 };
+    //newProduct = { ...newProduct, quantity: 1 };
     const basketUpdated = [newProduct, ...basketCopy];
     setBasketMenu(basketUpdated);
     // localStorage.setItem("product", JSON.stringify(basketUpdated));
@@ -52,8 +51,27 @@ export const useBasket = () => {
     basketMenuParsed
       ? setBasketMenu(basketMenuParsed)
       : setBasketMenu(fakeMenu.EMPTY);
+    return basketMenu;
   }
+  const hydrateMenu = (basketMenu, menu, setMenu) => {
+    //Clone du menu
+    let copyMenu = deepClone(menu);
+    const baketMenu = getBasket();
+    baketMenu.map((basketElement) => {
+      copyMenu.map((menuElement) => {
+        if (basketElement.id == menuElement.id) {
+          const indexMenu = copyMenu.findIndex(
+            (el) => (el.id = menuElement.id)
+          );
+          copyMenu[indexMenu].quantity = basketElement.quantity;
+          setMenu(copyMenu);
+          console.log(copyMenu);
+        }
+      });
+    });
 
+    console.log(menu);
+  };
   const getLocalStorage = (key) => {
     return JSON.parse(localStorage.getItem(key));
   };
@@ -69,5 +87,6 @@ export const useBasket = () => {
     basketMenu,
     setBasketMenu,
     getBasket,
+    hydrateMenu,
   };
 };

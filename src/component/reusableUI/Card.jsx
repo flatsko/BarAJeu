@@ -18,6 +18,9 @@ export default function Card({
   onClickButton,
   isAvailable,
   isPublicised,
+  quantity,
+  onClickOperators,
+  id,
   ...extraProps
 }) {
   return (
@@ -53,11 +56,22 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
+              <button
+                className="moins"
+                onClick={(e) => onClickOperators(e, title, id)}
+              >
+                -
+              </button>
               <PrimaryButton
-                onClick={onClickButton}
                 className="primary-button"
-                label={"Ajouter"}
-              />
+                label={quantity}
+              ></PrimaryButton>
+              <button
+                className="plus"
+                onClick={(e) => onClickOperators(e, title, id)}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -123,9 +137,8 @@ const CardStyled = styled.div`
     }
     .text-info {
       display: grid;
-      grid-template-rows: 30% 70%;
+      grid-template-rows: 30% 1fr;
       padding: 5px;
-
       .title {
         margin: auto 0;
         font-size: ${theme.fonts.size.P4};
@@ -144,7 +157,8 @@ const CardStyled = styled.div`
       .description {
         display: grid;
         grid-template-columns: 1fr 1fr;
-
+        align-items: center;
+        max-height: 50px;
         .left-description {
           display: flex;
           justify-content: flex-start;
@@ -158,15 +172,36 @@ const CardStyled = styled.div`
         }
 
         .right-description {
+          margin: 5px;
+          padding: 10px;
+          border-radius: ${theme.borderRadius.round};
           display: flex;
           justify-content: flex-end;
           align-items: center;
           font-size: ${theme.fonts.size.P1};
-
+          background-color: ${theme.colors.primary};
+          height: 50%;
           .primary-button {
+            display: flex;
             font-size: ${theme.fonts.size.XS};
+            padding: 20px;
             cursor: pointer;
             padding: 12px;
+            //width: 10px;
+          }
+          .moins {
+            font-size: ${theme.fonts.size.P1};
+            display: flex;
+            background-color: ${theme.colors.primary};
+            border: none;
+          }
+          .plus {
+            padding-top: 3px;
+            display: flex;
+            font-size: ${theme.fonts.size.P1};
+
+            background-color: ${theme.colors.primary};
+            border: none;
           }
         }
       }

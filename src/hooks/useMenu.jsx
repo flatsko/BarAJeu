@@ -48,6 +48,7 @@ export const useMenu = () => {
   async function setMainMenuByUser(username, setIsLoading) {
     const menuProv = await getMenu(username);
     menuProv ? setMenu(menuProv) : setMenu(fakeMenu.MEDIUM);
+    //setMenu(fakeMenu.MEDIUM);
     setIsLoading(false);
   }
   return {

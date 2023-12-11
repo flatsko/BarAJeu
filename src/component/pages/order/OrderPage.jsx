@@ -32,6 +32,7 @@ const OrderPage = () => {
     handleAddToBasket,
     handleDeleteToBasket,
     getBasket,
+    hydrateMenu,
   } = useBasket();
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
 
@@ -65,9 +66,9 @@ const OrderPage = () => {
   useEffect(() => {
     getBasket();
     setMainMenuByUser(username, setIsLoading);
+    // hydrateMenu(getBasket, menu, setMenu);
   }, []);
 
-  useEffect(() => {}, [menu]);
   return (
     <Context.Provider value={contextValue}>
       <OrderPageStyled>

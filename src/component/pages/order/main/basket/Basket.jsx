@@ -39,7 +39,9 @@ export default function Basket() {
   };
 
   const sumToPay = basketMenu.reduce((total, basketProduct) => {
-    total += basketProduct.price * basketProduct.quantity;
+    basketProduct.isAvailable
+      ? (total += basketProduct.price * basketProduct.quantity)
+      : null;
     return total;
   }, 0);
   return (
