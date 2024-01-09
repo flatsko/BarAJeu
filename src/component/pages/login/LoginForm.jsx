@@ -8,23 +8,21 @@ import { theme } from "../../../theme/index";
 import styles from "@openfonts/amatic-sc_all/index.css";
 import TextInput from "../../reusableUI/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
-import React from "react";
+import { autenticateUser, createUser, getUser } from "../../../api/user";
+import Welcome from "./Welcome";
 
 function Login() {
   //States
   const [name, setName] = useState("");
-  const [isconnected, setIsConnected] = useState("false");
   const navigate = useNavigate();
 
-  const InputNameBox = styled.input``;
-  //const [first, setfirst] = useState(second)
   //Comportement
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //alert(`Bonjour ${name}`)
-    setName("");
+    const userRecived = await autenticateUser(name);
+    console.log(userRecived);
+    console.log(name);
     navigate(`orderPage/${name}`);
-    //redirect("/orderPage");
   };
 
   const handleChange = (e) => {
@@ -34,10 +32,7 @@ function Login() {
   return (
     <LoginStyled action="submit" onSubmit={handleSubmit}>
       <div>
-        <h1>Bienvenue chez nous ! </h1>
-
-        <hr />
-        <h2>Connectez Vous</h2>
+        <Welcome />
         <div className="inputForm">
           <TextInput
             onChange={handleChange}
@@ -55,7 +50,7 @@ function Login() {
 
 const LoginStyled = styled.form`
   font-family: "Amatic SC", cursive;
-
+  border: none;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -66,6 +61,7 @@ const LoginStyled = styled.form`
   border-radius: ${theme.borderRadius.round};
   max-width: 500px;
   min-width: 400px;
+  // background-color: transparent;
 
   hr {
     height: 1px;
@@ -82,22 +78,46 @@ const LoginStyled = styled.form`
   }
 
   .inputForm {
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 270px;
+    align-items: flex-start;
+    width: 100%;
     font-size: ${theme.fonts.P0};
     font-family: "Open Sans", sans-serif;
+    position: relative;
+    background-color: transparent;
   }
   .textInput {
-    width: 200px;
+    padding: 16px 0px;
+    //margin-left: 10px;
+    width: 100%;
+  }
+
+  input {
+    background-color: ${theme.colors.background_white};
+
+    &::placeholder {
+      background-color: ${theme.colors.background_white};
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    margin-top: 20px;
+    min-width: 100%;
+    padding: 15px, 20px;
   }
   .icon {
+    position: absolute;
     font-size: ${theme.fonts.P0};
-    margin-right: 8px;
     color: ${theme.colors.greySemiDark};
+    top: 18%;
+    left: 15px;
 
     /* min-width: 1em; // that way, the icon size is NOT affected by width of the entire component. */
   }

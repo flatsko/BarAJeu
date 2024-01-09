@@ -1,11 +1,7 @@
-import React from "react";
 import { styled } from "styled-components";
-import styles from "@openfonts/amatic-sc_all/index.css";
 import { theme } from "../../theme";
-import { Link } from "react-router-dom";
 
 export default function Logo({ className, onClick }) {
-  console.log(onClick);
   return (
     <StyledLogo className={className} onClick={onClick}>
       <h1>CRAZEE</h1>

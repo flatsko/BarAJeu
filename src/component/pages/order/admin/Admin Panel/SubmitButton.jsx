@@ -17,6 +17,7 @@ export default function SubmitButton({ isAdded }) {
   );
 }
 
-const SubmitButtonStyled = styled.button`
-  height: 100%;
+const SubmitButtonStyled = styled.div`
+  display: flex;
+  flex: 1;
 `;

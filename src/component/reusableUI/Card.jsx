@@ -3,6 +3,7 @@ import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 const DEFAULT_IMAGE_SOURCE = "/images/coming-soon.png";
 import { TiDelete } from "react-icons/ti";
+import Ribbon from "./Ribbon";
 
 export default function Card({
   title,
@@ -11,18 +12,30 @@ export default function Card({
   showDeleteButton,
   onDelete,
   className,
-  isHoverable,
-  isSelected,
-
+  ishoverable,
+  isselected,
+  onClick,
+  onClickButton,
+  isAvailable,
+  isPublicised,
+  quantity,
+  onClickOperators,
+  id,
   ...extraProps
 }) {
   return (
     <CardStyled
       className={className ? className : "produit"}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
+      ishoverable={ishoverable}
+      isselected={isselected}
+      onClick={onClick}
+      isAvailable={isAvailable}
       {...extraProps}
     >
+      {!isAvailable ? (
+        <img className="epuise" src="../images/stock-epuise.png" />
+      ) : null}
+      {isPublicised ? <Ribbon /> : null}
       <div className={"card"}>
         {showDeleteButton ? (
           <button onClick={onDelete} className="deleteButton">
@@ -43,7 +56,22 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <PrimaryButton className="primary-button" label={"Ajouter"} />
+              <button
+                className="moins"
+                onClick={(e) => onClickOperators(e, title, id)}
+              >
+                -
+              </button>
+              <PrimaryButton
+                className="primary-button"
+                label={quantity}
+              ></PrimaryButton>
+              <button
+                className="plus"
+                onClick={(e) => onClickOperators(e, title, id)}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -53,7 +81,15 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle}
+  ${(props) => (props.isAvailable ? null : availableStyle)}
+  ${(props) => props.ishoverable && hoverableStyle}
+  position:relative;
+  .epuise {
+    position: absolute;
+    top: 20%;
+    left: 0px;
+    width: 100%;
+  }
   .card {
     background: ${theme.colors.white};
     width: 240px;
@@ -65,7 +101,6 @@ const CardStyled = styled.div`
     padding-bottom: 10px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
-    position: relative;
 
     .image {
       width: 100%;
@@ -102,9 +137,8 @@ const CardStyled = styled.div`
     }
     .text-info {
       display: grid;
-      grid-template-rows: 30% 70%;
+      grid-template-rows: 30% 1fr;
       padding: 5px;
-
       .title {
         margin: auto 0;
         font-size: ${theme.fonts.size.P4};
@@ -123,7 +157,8 @@ const CardStyled = styled.div`
       .description {
         display: grid;
         grid-template-columns: 1fr 1fr;
-
+        align-items: center;
+        max-height: 50px;
         .left-description {
           display: flex;
           justify-content: flex-start;
@@ -137,27 +172,52 @@ const CardStyled = styled.div`
         }
 
         .right-description {
+          margin: 5px;
+          padding: 10px;
+          border-radius: ${theme.borderRadius.round};
           display: flex;
           justify-content: flex-end;
           align-items: center;
           font-size: ${theme.fonts.size.P1};
-
+          background-color: ${theme.colors.primary};
+          height: 50%;
           .primary-button {
+            display: flex;
             font-size: ${theme.fonts.size.XS};
+            padding: 20px;
             cursor: pointer;
             padding: 12px;
+            //width: 10px;
+          }
+          .moins {
+            font-size: ${theme.fonts.size.P1};
+            display: flex;
+            background-color: ${theme.colors.primary};
+            border: none;
+          }
+          .plus {
+            padding-top: 3px;
+            display: flex;
+            font-size: ${theme.fonts.size.P1};
+
+            background-color: ${theme.colors.primary};
+            border: none;
           }
         }
       }
     }
-    ${({ isHoverable, isSelected }) =>
-      isHoverable && isSelected && selectedStyle}
+    ${({ ishoverable, isselected }) =>
+      ishoverable && isselected && selectedStyle}
   }
 `;
-
+const availableStyle = css`
+  .card {
+    opacity: 0.2;
+  }
+`;
 const hoverableStyle = css`
+  position: relative;
   .card:hover {
-    border: red;
     border: 5px;
     transform: translateY(-5px) scale(1.005) translateZ(0);
     transition-duration: 0.5s;
@@ -168,8 +228,23 @@ const hoverableStyle = css`
       color: ${theme.colors.background_white};
       background-color: ${theme.colors.primary};
     }
-    .text-info .description .left-description {
+    .text-info .description .left-deClscription {
       color: ${theme.colors.background_white};
+    }
+    .text-info {
+      .description {
+        .left-description {
+          color: white;
+        }
+        .right-description {
+          .primary-button {
+            transition: 0.2s;
+            border-color: ${theme.colors.background_white};
+            color: ${theme.colors.primary};
+            background-color: ${theme.colors.white};
+          }
+        }
+      }
     }
     .deleteButton {
       color: ${theme.colors.background_white};
@@ -178,6 +253,7 @@ const hoverableStyle = css`
 `;
 
 const selectedStyle = css`
+  position: relative;
   background-color: ${theme.colors.primary};
   transform: translateY(-5px) scale(1.005) translateZ(0);
   transition-duration: 0.5s;

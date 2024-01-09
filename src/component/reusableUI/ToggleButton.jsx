@@ -1,6 +1,5 @@
-
-import styled from "styled-components"
-import { theme } from "../../theme"
+import styled from "styled-components";
+import { theme } from "../../theme";
 
 export default function ToggleButton({
   isChecked,
@@ -10,7 +9,7 @@ export default function ToggleButton({
   policeColor,
 }) {
   return (
-    <ToggleButtonStyled policeColor={policeColor}>
+    <ToggleButtonStyled policecolor={policeColor}>
       <input
         type="checkbox"
         className="toggle"
@@ -25,7 +24,7 @@ export default function ToggleButton({
         data-unchecked={labelIfUnchecked}
       ></label>
     </ToggleButtonStyled>
-  )
+  );
 }
 
 const ToggleButtonStyled = styled.div`
@@ -101,7 +100,6 @@ const ToggleButtonStyled = styled.div`
       left: auto;
       opacity: 1;
       color: ${theme.colors.primary};
-      
 
       font-weight: ${theme.fonts.weights.bold};
     }
@@ -124,7 +122,8 @@ const ToggleButtonStyled = styled.div`
       left: 9px;
       right: auto;
       opacity: 1;
-      color: ${(props) => props.policeColor ? props.policeColor : theme.colors.primary };
+      color: ${(props) =>
+        props.policeColor ? props.policeColor : theme.colors.primary};
       letter-spacing: 0px;
     }
 
@@ -134,4 +133,4 @@ const ToggleButtonStyled = styled.div`
       background-color: ${theme.colors.primary};
     }
   }
-`
+`;

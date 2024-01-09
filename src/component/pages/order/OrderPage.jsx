@@ -1,57 +1,43 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../theme/index";
 import Navbar from "./navBar/Navbar";
 import Main from "./main/Main";
 import Context from "../../../context/Context";
-import { fakeMenu } from "../../../data/fakeMenu";
-import { toast } from "react-toastify";
 import { EMPTY_PRODUCT } from "../../../enum/products";
+import { useMenu } from "../../../hooks/useMenu";
+import { useBasket } from "../../../hooks/useBasket";
+import { useParams } from "react-router-dom";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState();
   const [isCollapsed, setIsCollapsed] = useState();
   const [currentTabSelected, setCurrentTabSelected] = useState("");
   const [productToModify, setProductToModify] = useState(EMPTY_PRODUCT);
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
   const titleEditRef = useRef();
-
-  const handleDelete = (idTodelete) => {
-    const copyMenu = [...menu];
-    const produitASupprimer = copyMenu.filter((el) => el.id == idTodelete);
-    const cCopyMenu = copyMenu.filter((el) => el.id != idTodelete);
-
-    toast.dark(produitASupprimer[0].title + " supprimé(e)(s)", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-    setMenu(cCopyMenu);
-  };
-
-  const handleEdit = (idToEdit) => {
-    const copyMenu = JSON.parse(JSON.stringify(menu));
-
-    copyMenu[idToEdit] = setMenu(CopyMenu);
-  };
-  // toast.success(`🎲 Bienvenue ${username}`, {
-  //   position: "top-center",
-  //   autoClose: 3000,
-  //   hideProgressBar: false,
-  //   closeOnClick: true,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  //   theme: "light",
-  //   toastId: "1",
-  // });
+  const { username } = useParams();
+  const {
+    menu,
+    setMenu,
+    handleDelete,
+    resetMenu,
+    handleAdd,
+    setMainMenuByUser,
+  } = useMenu();
+  const [isLoading, setIsLoading] = useState(true);
+  const {
+    basketMenu,
+    setBasketMenu,
+    handleAddToBasket,
+    handleDeleteToBasket,
+    getBasket,
+    hydrateMenu,
+  } = useBasket();
+  const { getLocalStorage, setLocalStorage } = useLocalStorage();
 
   const contextValue = {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
@@ -61,10 +47,27 @@ const OrderPage = () => {
     menu,
     setMenu,
     handleDelete,
+    resetMenu,
+    handleAdd,
     productToModify,
     setProductToModify,
     titleEditRef,
+    basketMenu,
+    setBasketMenu,
+    handleAddToBasket,
+    handleDeleteToBasket,
+    isLoading,
+    setIsLoading,
+    getLocalStorage,
+    setLocalStorage,
+    setMainMenuByUser,
   };
+
+  useEffect(() => {
+    getBasket();
+    setMainMenuByUser(username, setIsLoading);
+    // hydrateMenu(getBasket, menu, setMenu);
+  }, []);
 
   return (
     <Context.Provider value={contextValue}>
@@ -95,7 +98,7 @@ const OrderPageStyled = styled.div`
     height: 95vh;
 
     width: 90vw;
-    max-width: 1400px;
+    max-width: 1800px;
     display: flex;
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};

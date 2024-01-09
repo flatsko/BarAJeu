@@ -1,7 +1,4 @@
 import { styled } from "styled-components";
-import { listeJeux } from "../../../../data/listeJeux";
-import { fakeMenu } from "../../../../data/fakeMenu";
-import React, { useState } from "react";
 import Card from "../../../reusableUI/Card";
 import { formatPrice } from "../../../../utils/maths";
 import { theme } from "../../../../theme";
@@ -10,13 +7,24 @@ import Context from "../../../../context/Context";
 import MenuEmptyAdmin from "./MenuEmptyAdmin";
 import MenuEmptyClient from "./MenuEmptyClient";
 import { deepClone } from "../../../../utils/array";
+import Admin from "../admin/Admin";
+import LoadingSpinner from "../../../reusableUI/Loading";
+import { syncBothMenus } from "../../../../api/menu";
 export default function Menu() {
   // const menu1 = useContext(Context);
-
-  // const [menu, setMenu] = useState(fakeMenu.LARGE);
-  let { menu, setMenu, isModeAdmin, handleDelete, titleEditRef } =
-    useContext(Context);
   let {
+    menu,
+    setMenu,
+    username,
+    isModeAdmin,
+    handleDelete,
+    titleEditRef,
+    isCollapsed,
+    handleDeleteToBasket,
+    isLoading,
+    resetMenu,
+    basketMenu,
+    handleAddToBasket,
     productToModify,
     setProductToModify,
     setIsCollapsed,
@@ -39,49 +47,118 @@ export default function Menu() {
   const getProductIndexById = (id) => {
     return menu.map((el) => el.id).indexOf(id);
   };
-  const resetMenu = () => {
-    setMenu(fakeMenu.LARGE);
-  };
 
   const handleCardDelete = (event, id) => {
     event.stopPropagation(id);
-    handleDelete(id);
+    handleDelete(id, username);
+    handleDeleteToBasket(id);
   };
   if (menu.length === 0) {
     return isModeAdmin ? (
-      <MenuEmptyAdmin resetMenu={() => resetMenu()} />
+      <MenuEmptyAdmin resetMenu={() => resetMenu(username)} />
     ) : (
       <MenuEmptyClient />
     );
   }
+  const handleButtonClick = (event, id) => {
+    event.stopPropagation(id);
+    //Clone du basket
+    let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
+    //clone du menu
+    let menuCopy = deepClone(menu);
+    //Recherche de l'index
 
+    //menuCopy[indexMenu] = menuCopy[getProductIndexById(id)]
+    let tempProduct = menuCopy[getProductIndexById(id)];
+    const indexMenu = menuCopy.findIndex((el) => el.id == tempProduct.id);
+    menuCopy[indexMenu] = tempProduct;
+    menuCopy = handleAddToBasket(basketMenuClone, tempProduct, id);
+    //console.log(basketMenu);
+  };
+  const handleClickOperators = (e, name, id) => {
+    //copy du menu
+    console.table(e.target.className);
+    let menuCopy = deepClone(menu);
+    //travail de la copie
+    const index = menuCopy.findIndex((el) => el.id == id);
+    const productToModify = menuCopy[index];
+    switch (e.target.className) {
+      case "moins":
+        //On verifie qu'on est pas a 0
+        if (productToModify.quantity > 0) {
+          //On enleve 1 en quantity au bon produit du menu
+          productToModify.quantity = --productToModify.quantity;
+        }
+
+        break;
+      case "plus":
+        //On ajoute 1 en quantity au bon produit du menu
+        productToModify.quantity = ++productToModify.quantity;
+
+        break;
+      default:
+        break;
+    }
+    menuCopy[index] = productToModify;
+    setMenu(menuCopy);
+    let basketMenuClone = basketMenu ? deepClone(basketMenu) : null;
+    const basketId = basketMenuClone.findIndex((el) => el.id == id);
+    if (productToModify.quantity > 0) {
+      basketMenuClone[basketId] = productToModify;
+      handleAddToBasket(basketMenuClone, productToModify, id);
+    } else {
+      handleDeleteToBasket(basketMenuClone[basketId].id);
+    }
+
+    syncBothMenus(menuCopy, username);
+    console.log(username);
+  };
   return (
     <MenuStyles>
-      {menu.map(
-        ({ id, title, imageSource, price, isAvailable, isSelected }) => {
-          return (
-            <Card
-              key={id}
-              imageSource={imageSource}
-              title={title}
-              leftDescription={formatPrice(price)}
-              isAvailable={isAvailable}
-              showDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={(event) => handleCardClick(event, id)}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfProductIsClicked(id, productToModify.id)}
-
-              // className={
-              //   !isModeAdmin
-              //     ? "produit"
-              //     : !isSelected
-              //     ? "produit-admin"
-              //     : "produit-admin-selected"
-              // }
-            />
-          );
-        }
+      {!isLoading ? (
+        menu.map(
+          ({
+            id,
+            title,
+            imageSource,
+            price,
+            isAvailable,
+            isPublicised,
+            quantity,
+          }) => {
+            return (
+              <Card
+                key={id}
+                id={id}
+                imageSource={imageSource}
+                title={title}
+                leftDescription={formatPrice(price)}
+                isAvailable={isAvailable}
+                isPublicised={isPublicised}
+                showDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={(event) => handleCardClick(event, id)}
+                ishoverable={isModeAdmin}
+                isselected={+checkIfProductIsClicked(id, productToModify.id)}
+                onClickButton={(event) => handleButtonClick(event, id)}
+                quantity={quantity ? quantity : 0}
+                onClickOperators={handleClickOperators}
+                // className={
+                //   !isModeAdmin
+                //     ? "produit"
+                //     : !isSelected
+                //     ? "produit-admin"
+                //     : "produit-admin-selected"
+                // }
+              />
+            );
+          }
+        )
+      ) : (
+        <LoadingSpinner />
+      )}
+      {isModeAdmin && (
+        <Admin className={isCollapsed ? "toggle" : "notToggle"} />
       )}
     </MenuStyles>
   );
@@ -97,6 +174,7 @@ const MenuStyles = styled.div`
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow-y: scroll;
+  // height: 100vh;
 
   /* .produit-admin:hover {
     transform: translateY(-5px) scale(1.005) translateZ(0);

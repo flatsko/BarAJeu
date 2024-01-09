@@ -13,11 +13,26 @@ export default createContext({
   menu: [],
   setMenu: () => {},
 
-  //handleAdd: () => {},
+  resetMenu: () => {},
+  handleAdd: () => {},
   handleDelete: () => {},
 
   productToModify: "",
   setProductToModify: () => {},
 
   titleEditRef: {},
+
+  basketMenu: [],
+  setBasketMenu: () => {},
+
+  handleAddToBasket: () => {},
+  handleDeleteToBasket: () => {},
+
+  isLoading: true,
+  setIsLoading: () => {},
+
+  getLocalStorage: () => {},
+  setLocalStorage: () => {},
+
+  setMainMenuByUser: () => {},
 });
